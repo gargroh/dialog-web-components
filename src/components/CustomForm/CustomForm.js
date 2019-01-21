@@ -5,7 +5,9 @@
 
 /* eslint react/jsx-handler-names: 0 */
 
+import type { Component } from 'react';
 import type { JSONValue, JSONSchema } from '@dlghq/dialog-utils';
+import type { ArrayFieldTemplateProps } from './types';
 import React, { PureComponent, type Node } from 'react';
 import classNames from 'classnames';
 import Form from 'react-jsonschema-form';
@@ -25,12 +27,17 @@ export type Props = {
   value: ?JSONValue,
   schema: JSONSchema,
   uiSchema?: ?JSONSchema,
-  onValidate?: (value: JSONValue, errors: FormErrors) => mixed,
+  widgets?: { [string]: Component<*> },
+  fields?: { [string]: Component<*> },
+  ArrayFieldTemplate?: Component<ArrayFieldTemplateProps>,
   onChange: (value: JSONValue) => mixed,
+  onValidate?: (value: JSONValue, errors: FormErrors) => mixed,
+  onFocus?: (value: mixed) => mixed,
 };
 
 class CustomForm extends PureComponent<Props> {
-  widgets: Object;
+  widgets: { [string]: Component<*> };
+  fields: ?{ [string]: Component<*> };
 
   static defaultProps = {
     liveValidate: true,
@@ -44,7 +51,9 @@ class CustomForm extends PureComponent<Props> {
       PasswordWidget,
       TextareaWidget,
       CheckboxWidget,
+      ...this.props.widgets,
     };
+    this.fields = this.props.fields;
   }
 
   handleChange = (value: { formData: JSONValue, errors: FormErrors }) => {
@@ -64,10 +73,13 @@ class CustomForm extends PureComponent<Props> {
           uiSchema={this.props.uiSchema}
           formData={this.props.value}
           widgets={this.widgets}
+          fields={this.fields}
           id={this.props.id}
           idPrefix={this.props.id}
           onChange={this.handleChange}
+          onFocus={this.props.onFocus}
           ObjectFieldTemplate={ObjectFieldTemplate}
+          ArrayFieldTemplate={this.props.ArrayFieldTemplate}
           FieldTemplate={this.getCustomFieldTemplate}
           showErrorList={false}
           validate={this.props.onValidate}

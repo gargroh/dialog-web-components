@@ -4,7 +4,7 @@
  */
 
 import type { CallVideo as CallVideoType } from '@dlghq/dialog-types';
-import React, { type Node, Component } from 'react';
+import React, { PureComponent, type Node } from 'react';
 import CallVideoStream from './CallVideoStream';
 import styles from './CallVideo.css';
 
@@ -14,7 +14,7 @@ export type Props = {
   cover: boolean,
 };
 
-class CallVideo extends Component<Props> {
+class CallVideo extends PureComponent<Props> {
   static defaultProps = {
     cover: false,
   };

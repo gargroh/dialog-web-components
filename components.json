@@ -59,9 +59,7 @@
       "Radio",
       "Switcher",
       "Range",
-      "Fieldset",
-      "CustomForm",
-      "Dialpad"
+      "Fieldset"
     ]
   },
   {
@@ -70,7 +68,14 @@
   },
   {
     "name": "Plug & Play Forms",
-    "components": ["Authorization", "Registration", "GenderSelect"]
+    "components": [
+      "AuthorizationNext",
+      "Authorization",
+      "Registration",
+      "GenderSelect",
+      "CustomForm",
+      "Dialpad"
+    ]
   },
   {
     "name": "Modals",

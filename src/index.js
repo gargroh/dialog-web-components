@@ -113,6 +113,7 @@ export { default as CustomForm } from './components/CustomForm/CustomForm';
 export { default as Dialpad } from './components/Dialpad/Dialpad';
 
 // Plug & Play Forms
+export * from './components/AuthorizationNext/AuthorizationNext';
 export {
   default as Authorization,
 } from './components/Authorization/Authorization';

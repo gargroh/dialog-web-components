@@ -25,21 +25,18 @@ const globalStyles = [
   resolve('src/styleguide/styles.css'),
 ];
 
-const postcssOptions = {
-  env: {
-    features: {
-      'all-property': false,
-    },
-  },
-};
-
 module.exports = {
   mode: 'development',
+  resolve: {
+    alias: {
+      react: resolve('node_modules/react'),
+    },
+  },
   module: {
     rules: [
       {
         test: /\.js$/,
-        include: whitelist,
+        include: [...whitelist, resolve('node_modules/@dlghq/dialog-ui')],
         loader: 'babel-loader',
         options: {
           babelrc: false,
@@ -71,7 +68,7 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               plugins() {
-                return require('@dlghq/postcss-dialog')(postcssOptions);
+                return require('@dlghq/postcss-dialog')();
               },
             },
           },
@@ -89,14 +86,38 @@ module.exports = {
             options: {
               modules: true,
               importLoaders: 1,
-              localIdentName: '[name]__[local]',
+              localIdentName: 'DialogComponents__[name]__[local]',
             },
           },
           {
             loader: 'postcss-loader',
             options: {
               plugins() {
-                return require('@dlghq/postcss-dialog')(postcssOptions);
+                return require('@dlghq/postcss-dialog')();
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        include: [resolve('node_modules/@dlghq/dialog-ui')],
+        exclude: globalStyles,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: 'DialogUI__[name]__[local]',
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins() {
+                return require('@dlghq/postcss-dialog')();
               },
             },
           },

@@ -61,7 +61,7 @@
     "react-dom": "^16.5.2"
   },
   "dependencies": {
-    "@dlghq/dialog-ui": "0.0.13-feature-input.300.0",
+    "@dlghq/dialog-ui": "0.0.13-feature-input.304.0",
     "@dlghq/dialog-utils": "0.10.0",
     "classnames": "2.2.6",
     "clipboard": "2.0.4",
@@ -117,8 +117,8 @@
     "postcss-loader": "3.0.0",
     "prettier": "1.16.4",
     "raw-loader": "1.0.0",
-    "react": "16.8.3",
-    "react-dom": "16.8.3",
+    "react": "16.8.4",
+    "react-dom": "16.8.4",
     "react-styleguidist": "8.0.6",
     "sonarqube-scanner": "2.1.2",
     "style-loader": "0.23.1",

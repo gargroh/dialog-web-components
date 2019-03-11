@@ -38,7 +38,6 @@ export type Props = {
   autoFocus?: boolean,
   htmlAutoFocus?: boolean,
   tabIndex?: number,
-  htmlAutoFocus?: boolean,
   spellcheck?: boolean,
   onChange: (
     value: string,

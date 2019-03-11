@@ -51,7 +51,6 @@
   }
 
   & :global(.rangeslider__handle) {
-    display: none;
     position: absolute;
     top: 50%;
     display: inline-block;

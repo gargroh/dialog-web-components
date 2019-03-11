@@ -1,0 +1,247 @@
+/*
+ * Copyright 2019 dialog LLC <info@dlg.im>
+ */
+@import '../../styles/variables.css';
+
+:root {
+  --country-code-selector-font-family: var(--default-font-family);
+  --country-code-selector-border-color: #bdbdbd;
+  --country-code-selector-color: #212121;
+  --country-code-selector-label-font-family: var(--default-font-family);
+  --country-code-selector-label-font-size: 13px;
+  --country-code-selector-label-color: color-mod(#212121 alpha(50%));
+  --country-code-selector-height: 40px;
+  --country-code-selector-menu-outer-z-index: var(--z-index-dropdown);
+  --country-code-selector-hover-border-color: color-mod(
+    var(--country-code-selector-border-color) shade(15%)
+  );
+  --country-code-selector-focus-border-color: var(--color-primary);
+  --country-code-selector-focus-outline-color: color-mod(
+    var(--country-code-selector-focus-border-color) alpha(20%)
+  );
+  --country-code-selector-transition-duration: 125ms;
+  --country-code-selector-option-hover-color: var(
+    --country-code-selector-color
+  );
+  --country-code-selector-option-hover-background: color-mod(
+    var(--color-primary) alpha(15%)
+  );
+  --country-code-selector-option-active-background: color-mod(
+    var(--color-primary) alpha(20%)
+  );
+  --country-code-selector-option-selected-color: #fff;
+  --country-code-selector-option-selected-background: var(--color-primary);
+  --country-code-arrow-width: 35px;
+}
+
+/* Reset */
+.container,
+.label {
+  all: initial;
+}
+
+/* Styles */
+.container {
+  display: block;
+  vertical-align: middle;
+  font-family: var(--country-code-selector-font-family);
+  color: var(--country-code-selector-color);
+  padding: var(--default-padding) 0;
+
+  & :global(.Select) {
+    transition: box-shadow var(--country-code-selector-transition-duration) ease;
+
+    & :global(.Select-control) {
+      background-color: transparent !important;
+      border: 0;
+      border-radius: 0;
+      box-shadow: inset 0 -1px 0 var(--country-code-selector-border-color);
+      height: var(--country-code-selector-height);
+      position: relative;
+      z-index: calc(var(--z-index-input) + 10);
+      transition: box-shadow var(--country-code-selector-transition-duration)
+        ease;
+    }
+
+    & :global(.Select-input) {
+      height: var(--country-code-selector-height);
+      padding: 0;
+      width: 100%;
+      cursor: text !important;
+
+      & > input {
+        width: 100% !important;
+        line-height: 20px;
+        height: 20px;
+        font-size: 18px;
+        padding: 10px 0;
+      }
+    }
+
+    & :global(.Select-noresults) {
+      text-align: center;
+      padding: 10px 16px;
+      line-height: 30px;
+    }
+
+    & :global(.Select-menu-outer) {
+      margin-top: 6px;
+      border-radius: 4px;
+      border: 0;
+      box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.1),
+        0 5px 10px 0 color-mod(#a8aaac alpha(70%));
+      overflow: hidden;
+      z-index: var(--country-code-selector-menu-outer-z-index);
+    }
+
+    & :global(.Select-placeholder) {
+      line-height: var(--country-code-selector-height);
+      padding: 0 var(--country-code-arrow-width) 0 0;
+      user-select: none;
+    }
+
+    & :global(.Select-arrow-zone) {
+      width: var(--country-code-arrow-width);
+      padding-right: 0;
+    }
+
+    & :global(.Select-value) {
+      padding: 0 !important;
+      cursor: pointer;
+    }
+
+    & :global(.Select-value-label) {
+      padding: 10px 0;
+      line-height: 20px;
+      display: block;
+
+      & .option {
+        padding-left: 0px;
+      }
+    }
+
+    & :global(.Select-option) {
+      padding: 6px var(--default-padding);
+      color: var(--country-code-selector-color);
+    }
+
+    &:global(.is-focused) {
+      & :global(.Select-control) {
+        box-shadow: inset 0 -2px 0 0 var(--country-code-selector-focus-border-color) !important;
+        transition: box-shadow var(--country-code-selector-transition-duration)
+          ease;
+
+        & .optionLabel {
+          opacity: 0.5;
+        }
+      }
+
+      &:global(.is-open) {
+        & :global(.Select-control) {
+          box-shadow: inset 0 -2px 0 0 var(--country-code-selector-focus-border-color) !important;
+          transition: box-shadow
+            var(--country-code-selector-transition-duration) ease;
+        }
+      }
+    }
+
+    &:global(.is-pseudo-focused) {
+      & :global(.Select-control) {
+        box-shadow: inset 0 -1px 0 0 var(--country-code-selector-focus-border-color) !important;
+
+        & .optionLabel {
+          opacity: 1;
+        }
+      }
+    }
+
+    &:global(.is-disabled) {
+      & :global(.Select-value) {
+        cursor: not-allowed !important;
+      }
+
+      & :global(.Select-control) {
+        opacity: 0.6;
+        box-shadow: inset 0 -1px 0 0 var(--country-code-selector-border-color) !important;
+      }
+    }
+
+    &:global(.has-value) {
+      & :global(.Select-control) {
+        box-shadow: inset 0 -1px 0 0 var(--country-code-selector-focus-border-color);
+      }
+    }
+  }
+}
+
+.disabled {
+  & .label,
+  & .option {
+    cursor: not-allowed;
+  }
+}
+
+.label {
+  color: var(--country-code-selector-label-color);
+  font-family: var(--country-code-selector-label-font-family);
+  font-size: var(--country-code-selector-label-font-size);
+  line-height: 17px;
+  display: inline-block;
+  user-select: none;
+  cursor: pointer;
+}
+
+.option {
+  cursor: pointer;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  line-height: 20px;
+  padding-left: 16px;
+  padding-right: var(--country-code-arrow-width);
+}
+
+.optionFocused {
+  background-color: var(--country-code-selector-option-hover-background);
+  color: var(--country-code-selector-option-hover-color);
+
+  &:active {
+    background-color: var(--country-code-selector-option-active-background);
+  }
+}
+
+.optionSelected {
+  background-color: var(--country-code-selector-option-selected-background);
+  color: var(--country-code-selector-option-selected-color);
+  text-shadow: 0 1px 1px color-mod(#000 alpha(20%));
+}
+
+.optionFlag {
+  flex: 0 0 auto;
+  height: 20px;
+  line-height: 20px !important;
+  margin: 0 0 0 10px !important;
+  display: inline-block;
+}
+
+.optionLabel {
+  flex: 1 1 auto;
+  padding: 0 10px 0 0;
+  line-height: 20px;
+  overflow: hidden;
+  @mixin flex-fix;
+  @mixin text-overflow-ellipsis;
+}
+
+.optionCountry {
+  font-size: var(--default-font-size);
+  @mixin text-overflow-ellipsis;
+}
+
+.optionCode {
+  font-size: 16px;
+  flex: 0 0 auto;
+  margin-left: 8px;
+  font-weight: 500;
+}

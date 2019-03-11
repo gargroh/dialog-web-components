@@ -3,7 +3,7 @@
  * @flow
  */
 
-import type { Country } from './types';
+import type { Country } from './utils/countries';
 import { noop } from 'lodash';
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';

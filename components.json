@@ -23,6 +23,7 @@
       "Markdown",
       "Image",
       "CountryCodeSelector",
+      "CountryCodeSelectorNext",
       "ImageEdit",
       "Overlay",
       "SelectedMessagesActions",

@@ -40,6 +40,7 @@ export { default as Dragndrop } from './components/Dragndrop/Dragndrop';
 export {
   default as CountryCodeSelector,
 } from './components/CountryCodeSelector/CountryCodeSelector';
+export * from './components/CountryCodeSelectorNext/CountryCodeSelectorNext';
 export { default as ImageEdit } from './components/ImageEdit/ImageEdit';
 export { default as Overlay } from './components/Overlay/Overlay';
 export {

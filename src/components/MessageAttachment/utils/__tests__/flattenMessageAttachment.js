@@ -4,7 +4,7 @@
  */
 
 import type { Message, MessageAttachment } from '@dlghq/dialog-types';
-import flatten from '../flatten';
+import flattenMessageAttachment from '../flattenMessageAttachment';
 
 function createMessage(attachment: ?MessageAttachment, text: string = 'test') {
   return {
@@ -32,19 +32,24 @@ function createReply(messages: Message[]) {
 }
 
 describe('Flatten message attachments', () => {
-  test('flatten one depth level', () => {
+  test('flattenMessageAttachment one depth level', () => {
     const reply = createReply([createMessage(null)]);
 
-    expect(flatten(reply)).toEqual([reply]);
+    expect(flattenMessageAttachment(reply)).toEqual([reply]);
   });
 
-  test('flatten two depth level', () => {
+  test('flattenMessageAttachment two depth level', () => {
     const child0 = createReply([createMessage(null)]);
     const child1 = createReply([createMessage(child0)]);
     const child2 = createReply([createMessage(null)]);
     const parent = createReply([createMessage(child1), createMessage(child2)]);
 
-    expect(flatten(parent)).toEqual([child0, child1, child2, parent]);
+    expect(flattenMessageAttachment(parent)).toEqual([
+      child0,
+      child1,
+      child2,
+      parent,
+    ]);
   });
 
   test('empty message should be removed', () => {
@@ -53,7 +58,7 @@ describe('Flatten message attachments', () => {
     const child2 = createReply([createMessage(null)]);
     const parent = createReply([createMessage(empty), createMessage(child2)]);
 
-    expect(flatten(parent)).toEqual([child0, child2, parent]);
+    expect(flattenMessageAttachment(parent)).toEqual([child0, child2, parent]);
   });
 
   test('duplicates filtered', () => {
@@ -62,7 +67,7 @@ describe('Flatten message attachments', () => {
     const message1 = createMessage(reply0, 'message1');
     const reply1 = createReply([message1, message0]);
 
-    expect(flatten(reply1)).toEqual([
+    expect(flattenMessageAttachment(reply1)).toEqual([
       createReply([message0]),
       createReply([message1]),
     ]);

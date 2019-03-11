@@ -122,6 +122,7 @@ export function renderBlocks(
             <p key={i} className={styles.paragraph}>
               {renderText(
                 token.content,
+                false,
                 isOnlyEmoji && renderBigEmoji ? 44 : emojiSize,
               )}
             </p>,
@@ -142,7 +143,7 @@ export function renderBlocks(
       case 'blockquote':
         result.push(
           <blockquote key={i} className={styles.blockquote}>
-            {renderBlocks(token.content, emojiSize, renderBigEmoji)}
+            {renderBlocks(token.content, renderBigEmoji, emojiSize)}
           </blockquote>,
         );
         break;

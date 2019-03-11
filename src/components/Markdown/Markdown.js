@@ -45,7 +45,7 @@ class Markdown extends Component<Props> {
 
       return (
         <TagName className={inlineClassName}>
-          {this.props.renderText(tokens, this.props.emojiSize, true)}
+          {this.props.renderText(tokens, true, this.props.emojiSize)}
         </TagName>
       );
     }
@@ -58,8 +58,8 @@ class Markdown extends Component<Props> {
       <TagName className={className}>
         {this.props.renderBlocks(
           tokens,
-          this.props.emojiSize,
           this.props.renderBigEmoji,
+          this.props.emojiSize,
         )}
       </TagName>
     );

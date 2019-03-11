@@ -10,7 +10,7 @@ import type {
 } from '@dlghq/dialog-types';
 import React, { PureComponent } from 'react';
 import MessageAttachment from './MessageAttachment';
-import flattenMessageAttachment from './utils/flatten';
+import flattenMessageAttachment from './utils/flattenMessageAttachment';
 
 type Props = {
   className?: string,

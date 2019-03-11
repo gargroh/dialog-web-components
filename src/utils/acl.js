@@ -37,25 +37,24 @@ export function hasPermission(
 }
 
 export function getDefaultPermissions(group: Group): GroupMemberPermission[] {
-  switch (group.type) {
-    case 'channel':
-      return [
-        'invite',
-        'update_info',
-        'send_message',
-        'edit_message',
-        'delete_message',
-      ];
-
-    default:
-      return [
-        'kick',
-        'invite',
-        'update_info',
-        'send_message',
-        'edit_message',
-        'delete_message',
-        'get_integration_token',
-      ];
+  if (group.type === 'channel') {
+    return [
+      'invite',
+      'update_info',
+      'send_message',
+      'edit_message',
+      'delete_message',
+    ];
   }
+
+  // Defaults
+  return [
+    'kick',
+    'invite',
+    'update_info',
+    'send_message',
+    'edit_message',
+    'delete_message',
+    'get_integration_token',
+  ];
 }

@@ -65,8 +65,7 @@
 
 /* .preloaderActive {} */
 
-.overClose {
-}
+/* .overClose {} */
 
 .toolbar {
   background-color: var(--lightbox-toolbar-background-color) !important;

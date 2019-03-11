@@ -81,22 +81,16 @@ class SpaceInfoModal extends PureComponent<Props, State> {
   handleHotkey = (hotkey: string): void => {
     const { screen } = this.state;
 
-    switch (hotkey) {
-      case 'Escape':
-        if (
-          screen === 'invitationLink' ||
-          screen === 'members' ||
-          screen === 'addMembers'
-        ) {
-          this.handlePrevScreen();
-          break;
-        }
+    if (hotkey === 'Escape') {
+      if (
+        screen === 'invitationLink' ||
+        screen === 'members' ||
+        screen === 'addMembers'
+      ) {
+        this.handlePrevScreen();
+      }
 
-        this.props.onClose();
-        break;
-
-      default:
-      // do nothing
+      this.props.onClose();
     }
   };
 

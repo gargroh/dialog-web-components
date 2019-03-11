@@ -1,27 +1,23 @@
-Audio Call
------------
+## Audio Call
 
 ```jsx
-const CallExample = require('./Call.example').default;
+const { CallExample } = require('./CallExample');
 
-<CallExample />
+<CallExample />;
 ```
 
-
-Video Call
-----------
+## Video Call
 
 ```jsx
-const CallExample = require('./Call.example').default;
+const { CallExample } = require('./CallExample');
 
-<CallExample withVideo />
+<CallExample withVideo />;
 ```
 
-Screen sharing
---------------
+## Screen sharing
 
 ```jsx
-const CallExample = require('./Call.example').default;
+const { CallExample } = require('./CallExample');
 
-<CallExample withVideo withScreenSharing />
+<CallExample withVideo withScreenSharing />;
 ```

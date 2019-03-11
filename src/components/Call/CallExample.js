@@ -35,7 +35,7 @@ function getVideoStream(callback) {
   }
 }
 
-class CallExample extends PureComponent<Props, State> {
+export class CallExample extends PureComponent<Props, State> {
   static getInitialState(): State {
     return {
       call: null,
@@ -271,5 +271,3 @@ class CallExample extends PureComponent<Props, State> {
     );
   }
 }
-
-export default CallExample;

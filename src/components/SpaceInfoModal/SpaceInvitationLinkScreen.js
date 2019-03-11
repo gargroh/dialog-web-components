@@ -21,7 +21,7 @@ type Props = {
   onRevoke: () => mixed,
 };
 
-class SpaceInfoScreen extends PureComponent<Props> {
+class SpaceInvitationLinkScreen extends PureComponent<Props> {
   render() {
     return (
       <div className={styles.invitationWrapper}>
@@ -49,4 +49,4 @@ class SpaceInfoScreen extends PureComponent<Props> {
   }
 }
 
-export default SpaceInfoScreen;
+export default SpaceInvitationLinkScreen;

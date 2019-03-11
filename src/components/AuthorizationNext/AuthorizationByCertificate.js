@@ -3,26 +3,49 @@
  * @flow strict
  */
 
-import type { AuthError } from '@dlghq/dialog-types';
 import React from 'react';
 import { Text } from '@dlghq/react-l10n';
+import { Button } from '@dlghq/dialog-ui';
+
+import type { AuthSteps } from './types';
+import { LOGIN_SENT } from './constants';
 import Error from '../Error/Error';
-import styles from './AuthorizationNext.css';
+import styles from './AuthorizationForm/AuthorizationForm.css';
 
 export type AuthorizationByCertificateProps = {
-  errors: ?{ [field: string]: AuthError },
+  step: AuthSteps,
+  error: ?{ message: string },
+  onSubmit: () => mixed,
 };
 
-export function AuthorizationByCertificate(
-  props: AuthorizationByCertificateProps,
-) {
+export function AuthorizationByCertificate({
+  step,
+  error,
+  onSubmit,
+}: AuthorizationByCertificateProps) {
+  function handleSubmit(event: SyntheticEvent<HTMLFormElement>): void {
+    event.preventDefault();
+    onSubmit();
+  }
+
   return (
-    <div className={styles.form}>
-      {props.errors && props.errors.cert ? (
-        <Error>
-          <Text id="Authorization.cert_error" html />
+    <form onSubmit={handleSubmit}>
+      {error ? (
+        <Error className={styles.error}>
+          <Text id="AuthorizationNext.cert_error" html />
         </Error>
       ) : null}
-    </div>
+      <footer className={styles.footer}>
+        <Button
+          type="submit"
+          intent="primary"
+          pending={step === LOGIN_SENT}
+          disabled={step === LOGIN_SENT}
+          round
+        >
+          <Text id="AuthorizationNext.sign_in" />
+        </Button>
+      </footer>
+    </form>
   );
 }

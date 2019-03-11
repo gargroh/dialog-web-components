@@ -3,43 +3,35 @@
  * @flow strict
  */
 
-import type { AuthType } from './types';
+import type { AuthTypes } from './types';
 import React from 'react';
 import { Text } from '@dlghq/react-l10n';
-import { RadioGroup, Radio } from '@dlghq/dialog-ui';
+import { Tabs, Tab } from '@dlghq/dialog-ui';
 
-import styles from './AuthorizationNext.css';
+// import styles from './AuthorizationNext.css';
 
 export type AuthorizationTypeSelectorProps = {
-  type: AuthType,
-  allowed: Array<AuthType>,
-  disabled: boolean,
+  type: AuthTypes,
+  allowed: Array<AuthTypes>,
   onChange: (type: string) => mixed,
 };
 
-export function AuthorizationTypeSelector(
-  props: AuthorizationTypeSelectorProps,
-) {
-  if (props.allowed.length < 2) {
+export function AuthorizationTypeSelector({
+  allowed,
+  type,
+  onChange,
+}: AuthorizationTypeSelectorProps) {
+  if (allowed.length < 2) {
     return null;
   }
 
   return (
-    <RadioGroup
-      name="type"
-      value={props.type}
-      disabled={props.disabled}
-      onChange={props.onChange}
-      className={styles.typeSelector}
-      intent="none"
-    >
-      {props.allowed.map((type) => {
-        return (
-          <Radio value={type} key={type} className={styles.type}>
-            <Text id={`Authorization.type.${type}`} />
-          </Radio>
-        );
-      })}
-    </RadioGroup>
+    <Tabs current={type} onChange={onChange} intent="primary">
+      {allowed.map((authType) => (
+        <Tab value={authType} key={authType}>
+          <Text id={`AuthorizationNext.type.${authType}`} />
+        </Tab>
+      ))}
+    </Tabs>
   );
 }

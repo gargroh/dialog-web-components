@@ -1,0 +1,20 @@
+type:
+  phone: Phone
+  email: Email
+  username: Login/Password
+  certificate: Certificate
+choose_country: Choose country
+phone: Phone number
+email: Email address
+username: Username
+password: Password
+code: Auth code
+retry: Wrong?
+request_code: Request code
+resend_timer: Repeated code request possible through {time}
+resend_code: Resend code
+check_code: Check code
+sign_in: Sign in
+sign_up: Sign up
+agreement: By pressing "Request code", You agree to the <a href="https://dlg.im/legal" target="_blank">Terms of Service and Privacy Policy</a> of this website.
+cert_error: Something went completely wrong.<br />Perhaps your computer does not have a security certificate.

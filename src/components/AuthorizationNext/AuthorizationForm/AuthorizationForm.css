@@ -1,0 +1,49 @@
+/*
+ * Copyright 2019 dialog LLC <info@dlg.im>
+ */
+
+@import '../../../styles/variables.css';
+
+.inputWrapper {
+  position: relative;
+}
+
+.retry,
+.resend {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-primary);
+  font-size: var(--default-font-size-small);
+  vertical-align: middle;
+  user-select: none;
+  cursor: pointer;
+}
+
+.footer {
+  padding: var(--default-padding) 0;
+  text-align: center;
+}
+
+.error {
+  display: inline-block !important;
+  font-size: var(--default-font-size-small) !important;
+  text-align: center !important;
+}
+
+.agreement {
+  margin-top: var(--default-padding);
+  font-size: var(--default-font-size-small);
+  color: color-mod(#212121 alpha(50%));
+  line-height: 20px;
+  user-select: none;
+  cursor: default;
+
+  & a {
+    color: var(--color-primary);
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

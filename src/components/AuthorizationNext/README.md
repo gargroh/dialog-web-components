@@ -1,7 +1,122 @@
-```jsx
-const { AuthorizationExample } = require('./Authorization.example');
+### Authorization type selector
 
-<div style={{ margin: 'auto', width: 300 }}>
-  <AuthorizationExample />
+```jsx
+const { AuthorizationTypeSelector } = require('./AuthorizationTypeSelector');
+initialState = {
+  type: 'username',
+};
+const allowed = ['username', 'phone', 'certificate'];
+const handleTypeChange = (type) => setState({ type });
+
+<div style={{ margin: 'auto', width: 400 }}>
+  <AuthorizationTypeSelector
+    type={state.type}
+    allowed={allowed}
+    onChange={handleTypeChange}
+  />
+</div>;
+```
+
+### Authorization by username
+
+```jsx
+const { AuthorizationByUsername } = require('./AuthorizationByUsername');
+initialState = {
+  step: 'AUTH_STARTED',
+  error: null,
+};
+
+handleSubmit = (credentials) => {
+  console.log(credentials);
+  setState({ step: 'LOGIN_SENT' });
+  setTimeout(() => {
+    setState({
+      step: 'AUTH_STARTED',
+      error: { message: 'something goes wrong!' },
+    });
+  }, 2000);
+};
+
+<>
+  <div style={{ margin: 'auto', width: 400 }}>
+    <AuthorizationByUsername
+      step={state.step}
+      error={state.error}
+      onSubmit={handleSubmit}
+    />
+  </div>
+</>;
+```
+
+### Authorization by phone
+
+```jsx
+const { AuthorizationByPhone } = require('./AuthorizationByPhone');
+initialState = {
+  step: 'AUTH_STARTED',
+  error: null,
+};
+
+const handlePhoneSubmit = (login) => {
+  setState({ step: 'LOGIN_SENT' });
+  setTimeout(() => {
+    setState({ step: 'CODE_REQUESTED' });
+  }, 2000);
+};
+
+const handleCodeSubmit = (code) => {
+  setState({ step: 'CODE_SENT' });
+  setTimeout(() => {
+    setState({ step: 'SIGNUP_STARTED' });
+  }, 2000);
+};
+
+const handleInfoSubmit = (info) => {
+  setState({ step: 'NAME_SENT' });
+  setTimeout(() => {
+    setState({ step: 'AUTH_FINISHED' });
+  }, 2000);
+};
+
+<div style={{ margin: 'auto', width: 400 }}>
+  <AuthorizationByPhone
+    initialPhoneNumber={'+7123456789'}
+    error={state.error}
+    step={state.step}
+    codeResendTimeout={10}
+    onPhoneSubmit={handlePhoneSubmit}
+    onCodeSubmit={handleCodeSubmit}
+    onInfoSubmit={handleInfoSubmit}
+    onCodeResend={console.log}
+    onRetry={console.log}
+  />
+</div>;
+```
+
+### Authorization by certificate
+
+```jsx
+const { AuthorizationByCertificate } = require('./AuthorizationByCertificate');
+initialState = {
+  step: 'AUTH_STARTED',
+  error: null,
+};
+
+const handleSubmit = () => {
+  setState({ step: 'LOGIN_SENT' });
+  setTimeout(() => {
+    setState({
+      step: 'AUTH_FINISHED',
+      error: { message: 'something goes wrong!' },
+    });
+  }, 2000);
+};
+
+<div style={{ margin: 'auto', width: 400 }}>
+  <AuthorizationByCertificate
+    step={state.step}
+    error={state.error}
+    onSubmit={handleSubmit}
+  />
 </div>;
 ```

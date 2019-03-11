@@ -11,13 +11,9 @@
   --overlay-z-index: 9999;
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   position: relative;
   display: block;
   width: 100%;

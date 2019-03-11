@@ -17,14 +17,11 @@
   font-family: var(--default-font-family);
 }
 
-.scroll {
-}
+/* .scroll {} */
 
-.wrapper {
-}
+/* .wrapper {} */
 
-.zoomWrap {
-}
+/* .zoomWrap {} */
 
 .background {
   background-color: var(--lightbox-background-color) !important;
@@ -41,49 +38,37 @@
   }
 }
 
-.image {
-}
+/* .image {} */
 
-.oneSlide {
-}
+/* .oneSlide {} */
 
 .ui {
   position: relative;
   z-index: 1550;
 }
 
-.overClose {
-}
+/* .overClose {} */
 
-.uiHidden {
-}
+/* .uiHidden {} */
 
 .uiIdle {
   display: none;
 }
 
-.controls {
-}
+/* .controls {} */
 
-.title {
-}
+/* .title {} */
 
-.titleEmpty {
-}
+/* .titleEmpty {} */
 
-.preloader {
-  /*display: none;*/
-}
+/* .preloader {} */
 
-.preloaderActive {
-  /*display: block;*/
-}
+/* .preloaderActive {} */
 
 .overClose {
 }
 
 .toolbar {
-  /*height: 74px;*/
   background-color: var(--lightbox-toolbar-background-color) !important;
   backface-visibility: hidden;
 }
@@ -96,23 +81,17 @@
   }
 }
 
-.buttonZoom {
-}
+/* .buttonZoom {} */
 
-.buttonClose {
-}
+/* .buttonClose {} */
 
-.buttonPrev {
-}
+/* .buttonPrev {} */
 
-.buttonNext {
-}
+/* .buttonNext {} */
 
-.preloader {
-}
+/* .preloader {} */
 
-.elementDisabled {
-}
+/* .elementDisabled {} */
 
 .buttonDownload {
   all: initial;

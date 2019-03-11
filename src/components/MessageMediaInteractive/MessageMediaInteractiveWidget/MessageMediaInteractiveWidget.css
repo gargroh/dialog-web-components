@@ -9,13 +9,9 @@
   --message-media-interactive-label-font-size: 16px;
 }
 
-/* Reset */
-.widget {
-  all: initial;
-}
-
 /* Styles */
 .widget {
+  all: initial;
   font-family: var(--message-media-interactive-font-family);
   display: inline-flex;
   flex: 0 0 auto;

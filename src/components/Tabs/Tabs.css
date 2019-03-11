@@ -12,13 +12,9 @@
   --tabs-color-active: #fff;
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: flex;
   flex-direction: column;
   width: var(--tabs-width);

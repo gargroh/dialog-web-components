@@ -16,13 +16,9 @@
   --welcome-message-horizontal-padding: 20px;
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: block;
   font-family: var(--welcome-message-font-family);
   box-sizing: border-box;

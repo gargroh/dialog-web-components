@@ -10,13 +10,9 @@
   --toolbar-call-button-color-active: #4c4c4c;
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: inline-flex;
   cursor: pointer;
   border-radius: 50%;

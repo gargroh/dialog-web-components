@@ -13,9 +13,6 @@
 
 .container {
   all: initial;
-}
-
-.container {
   display: flex;
   flex-direction: row;
   box-sizing: border-box;

@@ -14,13 +14,8 @@
   --activity-search-item-message-z-index: 10;
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   font-family: var(--activity-search-item-message-font-family);
   padding: 8px 6px;
   box-sizing: border-box;

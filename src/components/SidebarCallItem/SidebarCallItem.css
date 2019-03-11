@@ -22,13 +22,9 @@
   --sidebar-call-item-time-font-size: 13px;
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: flex;
   flex-direction: row;
   box-sizing: border-box;

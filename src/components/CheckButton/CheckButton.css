@@ -13,13 +13,8 @@
   --check-button-transition-border-width: 1.5px;
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   cursor: pointer;
   transition-property: transform, box-shadow;
   transition-duration: var(--check-button-transition-duration);

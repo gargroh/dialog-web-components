@@ -14,13 +14,9 @@
   --message-media-interactive-border-width: 3px;
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: block;
   font-family: var(--message-media-interactive-font-family);
   margin: calc(var(--default-padding-small) / 2) 0;

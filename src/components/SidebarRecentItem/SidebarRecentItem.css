@@ -60,13 +60,9 @@
   --sidebar-recent-item-draft-color: var(--color-danger);
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: flex;
   flex-direction: row;
   box-sizing: border-box;

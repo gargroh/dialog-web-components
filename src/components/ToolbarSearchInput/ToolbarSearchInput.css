@@ -14,14 +14,9 @@
   --toolbar-search-input-font-size: var(--default-font-size-small);
 }
 
-/* Reset */
-.container,
-.input {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   font-family: var(--toolbar-search-input-font-family);
   position: relative;
   display: inline-block;
@@ -42,6 +37,7 @@
 }
 
 .input {
+  all: initial;
   font-family: var(--toolbar-search-input-font-family);
   box-sizing: border-box;
   display: block;

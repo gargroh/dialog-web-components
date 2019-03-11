@@ -11,14 +11,8 @@
   --contact-selector-chip-text-max-width: 150px;
 }
 
-/* Reset */
-.container,
-.input {
-  all: initial;
-}
-
-/* Styles */
 .container {
+  all: initial;
   font-family: var(--default-font-family);
 }
 
@@ -31,6 +25,7 @@
 }
 
 .input {
+  all: initial;
   margin: 2px 0;
   letter-spacing: -0.2px;
   font-family: var(--default-font-family);

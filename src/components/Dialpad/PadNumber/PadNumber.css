@@ -8,13 +8,9 @@
   --pad-number-font-family: var(--default-font-family);
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   font-family: var(--pad-number-font-family);
   margin: 0 auto;
   width: 100%;

@@ -50,13 +50,9 @@
   --select-next-z-index: var(--z-index-dropdown);
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: inline-flex;
   flex-flow: column;
   align-items: flex-start;

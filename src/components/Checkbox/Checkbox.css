@@ -8,14 +8,8 @@
   --checkbox-size: 16px;
 }
 
-/* Reset */
-.container,
-.label {
-  all: initial;
-}
-
-/* Styles */
 .container {
+  all: initial;
   height: var(--default-line-height);
 }
 
@@ -24,6 +18,7 @@
 }
 
 .label {
+  all: initial;
   position: relative;
   display: inline-block;
   padding-left: calc(var(--default-padding) * 2);

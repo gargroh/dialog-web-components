@@ -31,13 +31,9 @@
   --sidebar-peer-item-font-size: var(--default-recent-item-font-size);
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: flex;
   flex-direction: row;
   box-sizing: border-box;

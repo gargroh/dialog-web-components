@@ -14,13 +14,8 @@
   --activity-list-arrow-color: var(--cool-grey);
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   font-family: var(--activity-list-font-family);
 }
 

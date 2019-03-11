@@ -4,13 +4,9 @@
 
 @import '../../styles/variables.css';
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   box-sizing: border-box;
   font-family: var(--default-font-family);
   display: flex;

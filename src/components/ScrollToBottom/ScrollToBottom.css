@@ -14,13 +14,9 @@
   --scroll-to-bottom-transition-duration: var(--default-transition-duration);
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   font-family: var(--scroll-to-bottom-font-family);
   background-color: var(--scroll-to-bottom-background-color);
   display: block;

@@ -12,13 +12,9 @@
   --message-voice-border-color: color-mod(#000 alpha(15%));
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .voiceCard {
+  all: initial;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;

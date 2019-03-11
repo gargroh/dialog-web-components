@@ -10,20 +10,16 @@
   --fieldset-legend-font-color: var(--color-primary);
 }
 
-/* Reset */
-.container,
-.legend {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: block;
   width: 100%;
   margin-bottom: var(--default-padding);
 }
 
 .legend {
+  all: initial;
   display: block;
   width: 100%;
   cursor: default;

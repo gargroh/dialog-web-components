@@ -20,13 +20,9 @@
   --emoji-button-counter-color-active: var(--emoji-button-counter-color-hover);
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   font-family: var(--emoji-button-font-family);
   height: var(--emoji-button-size);
   border-radius: var(--emoji-button-border-radius);

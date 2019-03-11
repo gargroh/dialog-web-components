@@ -14,13 +14,9 @@
   --modal-avatar-edit-cropper-overlay-border-color: #fff;
 }
 
-/* Resest */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   width: 100%;
   font-family: var(--modal-avatar-edit-font-family);
 }

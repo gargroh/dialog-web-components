@@ -14,13 +14,8 @@
   --avatar-active-opacity: 0.85;
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   display: inline-block;
   border-radius: 100%;
   line-height: 0;

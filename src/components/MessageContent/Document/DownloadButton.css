@@ -25,13 +25,9 @@
   }
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   flex: 0 0 auto;
   display: block;
   width: 46px;

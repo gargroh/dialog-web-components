@@ -11,13 +11,9 @@
   --space-avatar-font-size-active: 30px;
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: inline-block;
   line-height: 0;
 }

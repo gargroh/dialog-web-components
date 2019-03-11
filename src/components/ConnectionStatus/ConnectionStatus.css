@@ -14,13 +14,8 @@
   );
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   position: absolute;
   z-index: var(--z-index-connection-status);
   top: 0;

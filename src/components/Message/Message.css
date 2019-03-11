@@ -34,13 +34,9 @@
   }
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   position: relative;
   display: flex;
   flex-direction: row;

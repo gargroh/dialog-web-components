@@ -47,17 +47,9 @@
   --input-next-length-padding: var(--default-padding-small);
 }
 
-/* Reset */
-.container,
-.input,
-.label,
-.prefix,
-.hint {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: block;
   width: 100%;
   margin-bottom: var(--default-padding);
@@ -67,6 +59,7 @@
 }
 
 .input {
+  all: initial;
   border: 0;
   outline: none;
   font-family: var(--input-next-font-family);
@@ -99,6 +92,7 @@
 }
 
 .label {
+  all: initial;
   @mixin no-select;
   color: var(--input-next-label-color);
   font-family: var(--input-next-font-family);
@@ -115,6 +109,7 @@
 }
 
 .prefix {
+  all: initial;
   font-family: var(--input-next-hint-font-family);
   font-size: var(--input-next-hint-font-size);
   line-height: var(--input-next-hint-line-height);
@@ -130,6 +125,7 @@
 }
 
 .hint {
+  all: initial;
   display: inline-block;
   user-select: none;
   font-family: var(--input-next-hint-font-family);

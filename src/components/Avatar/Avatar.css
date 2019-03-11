@@ -30,11 +30,9 @@
   z-index: 3000;
 }
 
-.mask {
-}
+/* .mask {} */
 
-.status {
-}
+/* .status {} */
 
 .text {
   font-family: var(--default-font-family);

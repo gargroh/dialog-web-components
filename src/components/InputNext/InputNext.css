@@ -88,8 +88,7 @@
   }
 }
 
-.filled {
-}
+/* .filled {} */
 
 .label {
   all: initial;
@@ -113,7 +112,10 @@
   font-family: var(--input-next-hint-font-family);
   font-size: var(--input-next-hint-font-size);
   line-height: var(--input-next-hint-line-height);
-  color: var(--input-next-hint-color);
+  display: block;
+  cursor: text;
+  transition: color var(--default-transition-duration) ease-in-out;
+  color: var(--input-next-placeholder-color);
 }
 
 .description {
@@ -297,13 +299,6 @@
   & .prefix {
     color: var(--input-next-focus-border-color);
   }
-}
-
-.prefix {
-  display: block;
-  cursor: text;
-  transition: color var(--default-transition-duration) ease-in-out;
-  color: var(--input-next-placeholder-color);
 }
 
 .readonly {

@@ -33,11 +33,9 @@
   z-index: 3000;
 }
 
-.avatarBig {
-}
+/* .avatarBig {} */
 
-.avatarSmall {
-}
+/* .avatarSmall {} */
 
 .text {
   font-family: var(--default-font-family);

@@ -51,8 +51,7 @@
   flex: 0 0 auto;
 }
 
-.headerButton {
-}
+/* .headerButton {} */
 
 .title {
   font-size: var(--discover-title-font-size);

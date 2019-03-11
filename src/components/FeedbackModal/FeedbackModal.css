@@ -16,8 +16,7 @@
   font-family: var(--feedback-modal-font-family);
 }
 
-.body {
-}
+/* .body {} */
 
 .text {
   height: var(--feedback-modal-textarea-height);

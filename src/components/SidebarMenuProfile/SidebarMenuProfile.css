@@ -40,11 +40,6 @@
   font-size: var(--sidebar-menu-profile-font-size);
 }
 
-.status {
-  height: 16px;
-  line-height: 16px;
-}
-
 .dot {
   margin-top: 1px;
   width: 8px;
@@ -53,6 +48,8 @@
 }
 
 .status {
+  height: 16px;
+  line-height: 16px;
   letter-spacing: -0.2px;
   font-size: var(--sidebar-menu-profile-status-font-size);
   text-transform: lowercase;

@@ -14,9 +14,6 @@
   background-color: var(--admin-modal-user-search-background);
   padding: 8px 32px;
   display: flex;
-}
-
-.input {
   //margin: 2px 0;
   letter-spacing: -0.2px;
   font-family: var(--default-font-family);

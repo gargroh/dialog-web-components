@@ -111,8 +111,7 @@
   display: block;
 }
 
-.messageWrapper {
-}
+/* .messageWrapper {} */
 
 .message {
   font-size: var(--message-attachment-font-size);

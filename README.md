@@ -11,6 +11,9 @@ dialog web components
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=dialogs_dialog-web-components&metric=bugs)](https://sonarcloud.io/dashboard?id=dialogs_dialog-web-components)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=dialogs_dialog-web-components&metric=code_smells)](https://sonarcloud.io/dashboard?id=dialogs_dialog-web-components)
 
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/dialogs/dialog-web-components.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/dialogs/dialog-web-components/alerts/)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/dialogs/dialog-web-components.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/dialogs/dialog-web-components/context:javascript)
+
 [![dependencies](https://img.shields.io/david/dialogs/dialog-web-components.svg)](package.json)
 [![devDependencies](https://img.shields.io/david/dev/dialogs/dialog-web-components.svg)](package.json)
 

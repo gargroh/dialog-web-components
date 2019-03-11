@@ -63,8 +63,7 @@
   @mixin text-overflow-ellipsis;
 }
 
-.chipAvatar {
-}
+/* .chipAvatar {} */
 
 .avatarWrapper {
   line-height: 0;

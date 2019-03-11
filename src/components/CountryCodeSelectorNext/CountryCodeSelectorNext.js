@@ -8,7 +8,7 @@ import React, { PureComponent, createRef } from 'react';
 import classNames from 'classnames';
 import VirtualizedSelect from 'react-virtualized-select';
 import { getCountryName } from '@dlghq/country-codes';
-import { RefObject } from '@dlghq/dialog-ui';
+import type { RefObject } from '@dlghq/dialog-ui';
 
 import type { Country } from '../CountryCodeSelector/types';
 import { renderValue, renderOption } from './CountryCodeSelectorOptionNext';

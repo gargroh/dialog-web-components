@@ -13,6 +13,7 @@ import { CountryCodeSelectorNext } from '../../CountryCodeSelectorNext/CountryCo
 import { PhoneInputNext } from '../../PhoneInputNext/PhoneInputNext';
 import { AuthorizationAgreement } from '../AuthorizationAgreement';
 import { AUTH_STARTED, LOGIN_SENT } from '../constants';
+import type { AuthSteps } from '../types';
 import styles from './AuthorizationForm.css';
 
 export type Phone = {
@@ -22,7 +23,7 @@ export type Phone = {
 
 export type PhoneAuthorizationFormProps = {
   phone: Phone,
-  step: 'AUTH_STARTED' | 'LOGIN_SENT' | 'CODE_REQUESTED',
+  step: AuthSteps,
   onChange: (phone: Phone) => mixed,
   onSubmit: () => mixed,
   onRetry: () => mixed,

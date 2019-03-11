@@ -9,13 +9,14 @@ import { Input, Button } from '@dlghq/dialog-ui';
 
 import { CODE_REQUESTED, CODE_SENT, SIGNUP_STARTED } from '../constants';
 import getHumanTime from '../../../utils/getHumanTime';
+import type { AuthSteps } from '../types';
 import styles from './AuthorizationForm.css';
 
 export type CodeAuthorizationFormProps = {
   code: string,
   codeLength: number,
   codeResendTimeout: number,
-  step: 'CODE_REQUESTED' | 'CODE_SENT',
+  step: AuthSteps,
   error: ?{ message: string },
   onChange: (code: string) => mixed,
   onSubmit: () => mixed,
@@ -83,6 +84,13 @@ export function CodeAuthorizationForm({
     onSubmit();
   }
 
+  function isResendCodeAvailable(): boolean {
+    return (
+      (!isCodeResendRequested && step === CODE_REQUESTED) ||
+      (isCodeResendRequested && (step === CODE_SENT || step === SIGNUP_STARTED))
+    );
+  }
+
   // Clear interval on component unmount
   useEffect(() => {
     handleCodeResend();
@@ -97,8 +105,8 @@ export function CodeAuthorizationForm({
           <div className={styles.inputWrapper}>
             <Input
               type="text"
-              size="normal"
               intent={error ? 'danger' : 'none'}
+              size="normal"
               placeholder={formatText('AuthorizationNext.code')}
               hint={
                 isCodeResendRequested
@@ -114,9 +122,7 @@ export function CodeAuthorizationForm({
               fill
               htmlAutoFocus
             />
-            {(!isCodeResendRequested && step === CODE_REQUESTED) ||
-            (isCodeResendRequested &&
-              (step === CODE_SENT || step === SIGNUP_STARTED)) ? (
+            {isResendCodeAvailable() ? (
               <Text
                 id="AuthorizationNext.resend_code"
                 onClick={handleCodeResend}

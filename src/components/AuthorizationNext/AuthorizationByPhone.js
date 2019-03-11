@@ -25,18 +25,12 @@ import {
   CODE_RESEND_TIMEOUT,
   CODE_LENGTH,
 } from './constants';
+import type { AuthSteps } from './types';
 
 export type AuthorizationByPhoneProps = {
   initialPhoneNumber: string,
   error: ?{ message: string },
-  step:
-    | 'AUTH_STARTED'
-    | 'LOGIN_SENT'
-    | 'CODE_REQUESTED'
-    | 'CODE_SENT'
-    | 'SIGNUP_STARTED'
-    | 'NAME_SENT'
-    | 'AUTH_FINISHED',
+  step: AuthSteps,
   codeLength: number,
   codeResendTimeout: number,
   onPhoneSubmit: (phone: Phone) => mixed,

@@ -8,6 +8,7 @@ import { L10n } from '@dlghq/react-l10n';
 import { Input, Button } from '@dlghq/dialog-ui';
 
 import { SIGNUP_STARTED, NAME_SENT, AUTH_FINISHED } from '../constants';
+import type { AuthSteps } from '../types';
 import styles from './AuthorizationForm.css';
 
 export type RegistrationInfo = {
@@ -16,6 +17,8 @@ export type RegistrationInfo = {
 
 export type RegistrationFormProps = {
   info: RegistrationInfo,
+  step: AuthSteps,
+  error: ?{ message: string },
   onChange: (info: RegistrationInfo) => mixed,
   onSubmit: () => mixed,
 };
@@ -29,12 +32,14 @@ export function RegistrationForm({
 }: RegistrationFormProps) {
   function handleChange(
     value: string,
-    { target: { name } }: SyntheticInputEvent<HTMLInputElement>,
+    event: ?SyntheticInputEvent<HTMLInputElement>,
   ): void {
-    onChange({
-      ...info,
-      [name]: value,
-    });
+    if (event) {
+      onChange({
+        ...info,
+        [event.target.name]: value,
+      });
+    }
   }
 
   function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
@@ -50,11 +55,11 @@ export function RegistrationForm({
             <Input
               type="text"
               name="name"
+              size="normal"
               intent={error ? 'danger' : 'none'}
               placeholder={formatText('Registration.name')}
               autoComplete="off"
               value={info.name}
-              size="normal"
               disabled={step !== SIGNUP_STARTED}
               onChange={handleChange}
               fill

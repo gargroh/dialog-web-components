@@ -3,12 +3,11 @@
  * @flow strict
  */
 
-import type { AuthTypes } from './types';
 import React from 'react';
 import { Text } from '@dlghq/react-l10n';
 import { Tabs, Tab } from '@dlghq/dialog-ui';
 
-// import styles from './AuthorizationNext.css';
+import type { AuthTypes } from './types';
 
 export type AuthorizationTypeSelectorProps = {
   type: AuthTypes,
@@ -26,7 +25,7 @@ export function AuthorizationTypeSelector({
   }
 
   return (
-    <Tabs current={type} onChange={onChange} intent="primary">
+    <Tabs current={type} onChange={onChange} intent="primary" vertical={false}>
       {allowed.map((authType) => (
         <Tab value={authType} key={authType}>
           <Text id={`AuthorizationNext.type.${authType}`} />

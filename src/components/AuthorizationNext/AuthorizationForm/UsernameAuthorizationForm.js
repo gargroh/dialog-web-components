@@ -8,6 +8,7 @@ import { L10n } from '@dlghq/react-l10n';
 import { Input, Button } from '@dlghq/dialog-ui';
 
 import { LOGIN_SENT } from '../constants';
+import type { AuthSteps } from '../types';
 import styles from './AuthorizationForm.css';
 
 export type Credentials = {
@@ -17,7 +18,7 @@ export type Credentials = {
 
 export type UsernameAuthorizationFormProps = {
   credentials: Credentials,
-  step: 'AUTH_STARTED' | 'LOGIN_SENT' | 'AUTH_FINISHED',
+  step: AuthSteps,
   error: ?{ message: string },
   onChange: (credentials: Credentials) => mixed,
   onSubmit: () => mixed,
@@ -32,12 +33,14 @@ export function UsernameAuthorizationForm({
 }: UsernameAuthorizationFormProps) {
   function handleChange(
     value: string,
-    { target: { name } }: SyntheticInputEvent<HTMLInputElement>,
+    event: ?SyntheticInputEvent<HTMLInputElement>,
   ): void {
-    onChange({
-      ...credentials,
-      [name]: value,
-    });
+    if (event) {
+      onChange({
+        ...credentials,
+        [event.target.name]: value,
+      });
+    }
   }
 
   function handleSubmit(event: SyntheticEvent<HTMLFormElement>): void {

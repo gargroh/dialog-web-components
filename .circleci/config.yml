@@ -128,7 +128,7 @@ workflows:
           filters:
             branches:
               ignore:
-                - gh-pages 
+                - gh-pages
       - deployment:
           requires:
             - build

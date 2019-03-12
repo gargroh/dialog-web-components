@@ -46,7 +46,6 @@ export function PhoneAuthorizationForm({
   }
 
   function handleChange(number: string, country: ?Country): void {
-    console.log(number);
     onChange({
       number,
       country,

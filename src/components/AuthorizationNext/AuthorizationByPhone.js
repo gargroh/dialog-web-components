@@ -72,6 +72,11 @@ export function AuthorizationByPhone({
     onInfoSubmit(info);
   }
 
+  function handleRetry(): void {
+    setPhone(initialPhone);
+    onRetry();
+  }
+
   return (
     <>
       <PhoneAuthorizationForm
@@ -80,7 +85,7 @@ export function AuthorizationByPhone({
         step={step}
         onChange={setPhone}
         onSubmit={handlePhoneSubmit}
-        onRetry={onRetry}
+        onRetry={handleRetry}
       />
       {step !== AUTH_STARTED && step !== LOGIN_SENT ? (
         <CodeAuthorizationForm

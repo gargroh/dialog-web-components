@@ -27,7 +27,6 @@ initialState = {
 };
 
 handleSubmit = (credentials) => {
-  console.log(credentials);
   setState({ step: 'LOGIN_SENT' });
   setTimeout(() => {
     setState({
@@ -78,6 +77,10 @@ const handleInfoSubmit = (info) => {
   }, 2000);
 };
 
+const handleRetry = () => {
+  setState({ step: 'AUTH_STARTED' });
+};
+
 <div style={{ margin: 'auto', width: 400 }}>
   <AuthorizationByPhone
     initialPhoneNumber={'+7123456789'}
@@ -88,7 +91,7 @@ const handleInfoSubmit = (info) => {
     onCodeSubmit={handleCodeSubmit}
     onInfoSubmit={handleInfoSubmit}
     onCodeResend={console.log}
-    onRetry={console.log}
+    onRetry={handleRetry}
   />
 </div>;
 ```

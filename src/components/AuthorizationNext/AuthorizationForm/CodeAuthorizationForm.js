@@ -63,8 +63,8 @@ export function CodeAuthorizationForm({
   }
 
   function handleCodeResend(): void {
-    setIsCodeResendRequested(true);
     intervalClear();
+    setIsCodeResendRequested(true);
     intervalRef.current = setInterval(intervalUpdate, 1000);
     onCodeResend();
   }
@@ -91,10 +91,11 @@ export function CodeAuthorizationForm({
     );
   }
 
-  // Clear interval on component unmount
   useEffect(() => {
+    // Create interval in component mount
     handleCodeResend();
 
+    // Clear interval on component unmount
     return () => intervalClear();
   }, []);
 

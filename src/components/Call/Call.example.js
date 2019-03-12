@@ -1,6 +1,5 @@
 /*
  * Copyright 2019 dialog LLC <info@dlg.im>
- * @flow
  */
 
 import type { Call as CallType } from '@dlghq/dialog-types';

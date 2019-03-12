@@ -43,7 +43,7 @@ class ProfileModal extends PureComponent<Props, State> {
     };
   }
 
-  static getDerivedStateFromProps(props: Props, state: State): $Shape<State> {
+  static getDerivedStateFromProps(props: Props, state: State): ?$Shape<State> {
     if (props.profile && !state.profile) {
       return {
         profile: props.profile.value,

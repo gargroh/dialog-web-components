@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 dialog LLC <info@dlg.im>
+ * Copyright <%= new Date().getFullYear() -%> dialog LLC <info@dlg.im>
  */
 
 @import '../../styles/variables.css';
@@ -8,12 +8,8 @@
   --<%= dashedName -%>-font-family: var(--default-font-family);
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   font-family: var(--<%= dashedName -%>-font-family);
 }

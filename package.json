@@ -6,7 +6,9 @@
   "module": "src/index.js",
   "source": true,
   "files": [
-    "src"
+    "src",
+    "babel.config.js",
+    ".babelrc"
   ],
   "keywords": [
     "react",

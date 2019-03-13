@@ -3,6 +3,8 @@
   "version": "0.242.0",
   "description": "dialog Web Components",
   "main": "src/index.js",
+  "module": "src/index.js",
+  "source": true,
   "files": [
     "src"
   ],

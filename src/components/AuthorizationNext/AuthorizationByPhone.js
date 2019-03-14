@@ -6,6 +6,7 @@
 import React, { useState } from 'react';
 
 import { getPreferredCountryCodes } from '../../utils/language';
+import type { Country } from '../CountryCodeSelector/utils/countries';
 import getCountryByPhone from '../PhoneInput/utils/getCountryByPhone';
 import {
   PhoneAuthorizationForm,
@@ -19,6 +20,8 @@ import {
 import {
   AUTH_STARTED,
   LOGIN_SENT,
+  CODE_REQUESTED,
+  CODE_SENT,
   SIGNUP_STARTED,
   NAME_SENT,
   AUTH_FINISHED,
@@ -33,7 +36,7 @@ export type AuthorizationByPhoneProps = {
   step: AuthSteps,
   codeLength: number,
   codeResendTimeout: number,
-  onPhoneSubmit: (phone: Phone) => mixed,
+  onPhoneSubmit: (phone: string, country?: ?Country) => mixed,
   onCodeSubmit: (code: string) => mixed,
   onInfoSubmit: (info: RegistrationInfo) => mixed,
   onCodeResend: () => mixed,
@@ -61,7 +64,7 @@ export function AuthorizationByPhone({
   const [info, setInfo] = useState<RegistrationInfo>({ name: '' });
 
   function handlePhoneSubmit(): void {
-    onPhoneSubmit(phone);
+    onPhoneSubmit(phone.number, phone.country);
   }
 
   function handleCodeSubmit(): void {
@@ -81,7 +84,7 @@ export function AuthorizationByPhone({
     <>
       <PhoneAuthorizationForm
         phone={phone}
-        error={error}
+        error={step === AUTH_STARTED || step === LOGIN_SENT ? error : null}
         step={step}
         onChange={setPhone}
         onSubmit={handlePhoneSubmit}
@@ -91,7 +94,7 @@ export function AuthorizationByPhone({
         <CodeAuthorizationForm
           code={code}
           codeLength={codeLength}
-          error={error}
+          error={step === CODE_REQUESTED || step === CODE_SENT ? error : null}
           step={step}
           onChange={setCode}
           onSubmit={handleCodeSubmit}
@@ -104,7 +107,7 @@ export function AuthorizationByPhone({
       step === AUTH_FINISHED ? (
         <RegistrationForm
           info={info}
-          error={error}
+          error={step === SIGNUP_STARTED || step === NAME_SENT ? error : null}
           step={step}
           onChange={setInfo}
           onSubmit={handleInfoSubmit}

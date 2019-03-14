@@ -4,18 +4,22 @@
 
 @import '../../../styles/variables.css';
 
+.form {
+  all: initial;
+}
+
 .inputWrapper {
   position: relative;
 }
 
 .retry,
 .resend {
+  font-family: var(--default-font-family);
+  font-size: var(--default-font-size-small);
   position: absolute;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: calc(16px + 10px);
   color: var(--color-primary);
-  font-size: var(--default-font-size-small);
   vertical-align: middle;
   user-select: none;
   cursor: pointer;

@@ -24,6 +24,7 @@ export type Phone = {
 export type PhoneAuthorizationFormProps = {
   phone: Phone,
   step: AuthSteps,
+  error: ?{ message: string },
   onChange: (phone: Phone) => mixed,
   onSubmit: () => mixed,
   onRetry: () => mixed,
@@ -32,6 +33,7 @@ export type PhoneAuthorizationFormProps = {
 export function PhoneAuthorizationForm({
   phone,
   step,
+  error,
   onChange,
   onSubmit,
   onRetry,
@@ -60,7 +62,7 @@ export function PhoneAuthorizationForm({
   return (
     <L10n>
       {({ l10n: { formatText } }) => (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           {step === AUTH_STARTED || step === LOGIN_SENT ? (
             <div className={styles.inputWrapper}>
               <CountryCodeSelectorNext
@@ -75,8 +77,10 @@ export function PhoneAuthorizationForm({
             <PhoneInputNext
               placeholder={formatText('AuthorizationNext.phone')}
               value={phone.number}
-              disabled={step !== AUTH_STARTED}
+              disabled={step !== AUTH_STARTED && !error}
               onChange={handleChange}
+              intent={error ? 'danger' : 'none'}
+              hint={error ? error.message : undefined}
               fill
               htmlAutoFocus
             />

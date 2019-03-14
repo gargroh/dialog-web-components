@@ -51,7 +51,7 @@ export function UsernameAuthorizationForm({
   return (
     <L10n>
       {({ l10n: { formatText } }) => (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <Input
             type="text"
             name="username"

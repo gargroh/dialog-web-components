@@ -50,13 +50,14 @@ export function RegistrationForm({
   return (
     <L10n>
       {({ l10n: { formatText } }) => (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputWrapper}>
             <Input
               type="text"
               name="name"
               size="normal"
               intent={error ? 'danger' : 'none'}
+              hint={error ? error.message : undefined}
               placeholder={formatText('Registration.name')}
               autoComplete="off"
               value={info.name}

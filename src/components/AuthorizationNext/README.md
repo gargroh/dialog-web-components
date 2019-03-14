@@ -56,22 +56,34 @@ initialState = {
   error: null,
 };
 
-const handlePhoneSubmit = (login) => {
-  setState({ step: 'LOGIN_SENT' });
+const simulateError = () => {
+  setState(({ error }) =>
+    error
+      ? { error: null }
+      : {
+          error: {
+            message: 'something goes wrong',
+          },
+        },
+  );
+};
+
+const handlePhoneSubmit = (phone) => {
+  setState({ step: 'LOGIN_SENT', error: null });
   setTimeout(() => {
     setState({ step: 'CODE_REQUESTED' });
   }, 2000);
 };
 
 const handleCodeSubmit = (code) => {
-  setState({ step: 'CODE_SENT' });
+  setState({ step: 'CODE_SENT', error: null });
   setTimeout(() => {
     setState({ step: 'SIGNUP_STARTED' });
   }, 2000);
 };
 
 const handleInfoSubmit = (info) => {
-  setState({ step: 'NAME_SENT' });
+  setState({ step: 'NAME_SENT', error: null });
   setTimeout(() => {
     setState({ step: 'AUTH_FINISHED' });
   }, 2000);
@@ -81,19 +93,25 @@ const handleRetry = () => {
   setState({ step: 'AUTH_STARTED' });
 };
 
-<div style={{ margin: 'auto', width: 400 }}>
-  <AuthorizationByPhone
-    initialPhoneNumber={'+7123456789'}
-    error={state.error}
-    step={state.step}
-    codeResendTimeout={10}
-    onPhoneSubmit={handlePhoneSubmit}
-    onCodeSubmit={handleCodeSubmit}
-    onInfoSubmit={handleInfoSubmit}
-    onCodeResend={console.log}
-    onRetry={handleRetry}
-  />
-</div>;
+<>
+  <Button onClick={simulateError} size="small" theme="danger">
+    Simulate error
+  </Button>
+  <hr />
+  <div style={{ margin: 'auto', width: 400 }}>
+    <AuthorizationByPhone
+      initialPhoneNumber={'+7123456789'}
+      error={state.error}
+      step={state.step}
+      codeResendTimeout={10}
+      onPhoneSubmit={handlePhoneSubmit}
+      onCodeSubmit={handleCodeSubmit}
+      onInfoSubmit={handleInfoSubmit}
+      onCodeResend={console.log}
+      onRetry={handleRetry}
+    />
+  </div>
+</>;
 ```
 
 ### Authorization by certificate

@@ -62,20 +62,19 @@ export function CodeAuthorizationForm({
     );
   }
 
-  function handleCodeResend(): void {
+  function createResendTimer(): void {
     intervalClear();
     setIsCodeResendRequested(true);
     intervalRef.current = setInterval(intervalUpdate, 1000);
+  }
+
+  function handleCodeResend(): void {
+    createResendTimer();
     onCodeResend();
   }
 
   function handleCodeChange(updatedCode: string): void {
     onChange(updatedCode);
-
-    if (updatedCode.length === codeLength) {
-      intervalClear();
-      onSubmit();
-    }
   }
 
   function handleSubmit(event: SyntheticEvent<>): void {
@@ -93,16 +92,23 @@ export function CodeAuthorizationForm({
 
   useEffect(() => {
     // Create interval in component mount
-    handleCodeResend();
+    createResendTimer();
 
     // Clear interval on component unmount
     return () => intervalClear();
-  }, [handleCodeResend, intervalClear]);
+  }, []);
+
+  useEffect(() => {
+    if (code.length === codeLength) {
+      intervalClear();
+      onSubmit();
+    }
+  }, [code, codeLength]);
 
   return (
     <L10n>
       {({ l10n: { formatText } }) => (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputWrapper}>
             <Input
               type="text"
@@ -110,7 +116,10 @@ export function CodeAuthorizationForm({
               size="normal"
               placeholder={formatText('AuthorizationNext.code')}
               hint={
-                isCodeResendRequested
+                // eslint-disable-next-line no-nested-ternary
+                error
+                  ? error.message
+                  : isCodeResendRequested
                   ? formatText('AuthorizationNext.resend_timer', {
                       time: getHumanTime(resendTimeout * 1000),
                     })

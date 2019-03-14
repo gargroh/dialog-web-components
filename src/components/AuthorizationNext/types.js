@@ -5,7 +5,7 @@
 
 export type FormState = 'initial' | 'pending' | 'submitted';
 
-export type AuthTypes = 'username' | 'phone' | 'email' | 'cretificate';
+export type AuthTypes = 'username' | 'phone' | 'email' | 'certificate';
 
 export type AuthSteps =
   | 'AUTH_STARTED'

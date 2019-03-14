@@ -17,4 +17,5 @@ check_code: Check code
 sign_in: Sign in
 sign_up: Sign up
 agreement: By pressing "Request code", You agree to the <a href="https://dlg.im/legal" target="_blank">Terms of Service and Privacy Policy</a> of this website.
+cert_hint: To sign in, select one of the available certificates or contact your system administrator to create a new one.
 cert_error: Something went completely wrong.<br />Perhaps your computer does not have a security certificate.

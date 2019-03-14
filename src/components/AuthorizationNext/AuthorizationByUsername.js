@@ -46,3 +46,7 @@ export function AuthorizationByUsername({
     />
   );
 }
+
+AuthorizationByUsername.defautProps = {
+  error: null,
+};

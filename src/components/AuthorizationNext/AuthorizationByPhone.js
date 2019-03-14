@@ -117,4 +117,5 @@ export function AuthorizationByPhone({
 AuthorizationByPhone.defaultProps = {
   codeResendTimeout: CODE_RESEND_TIMEOUT,
   codeLength: CODE_LENGTH,
+  error: null,
 };

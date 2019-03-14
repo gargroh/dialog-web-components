@@ -13,7 +13,7 @@ import styles from './AuthorizationTypeSelector.css';
 export type AuthorizationTypeSelectorProps = {
   type: AuthTypes,
   allowed: Array<AuthTypes>,
-  onChange: (type: string) => mixed,
+  onChange: (type: AuthTypes) => mixed,
 };
 
 export function AuthorizationTypeSelector({

@@ -34,7 +34,9 @@ export function AuthorizationByCertificate({
         <Error className={styles.error}>
           <Text id="AuthorizationNext.cert_error" html />
         </Error>
-      ) : null}
+      ) : (
+        <Text id="AuthorizationNext.cert_hint" className={styles.hint} />
+      )}
       <footer className={styles.footer}>
         <Button
           type="submit"
@@ -49,3 +51,7 @@ export function AuthorizationByCertificate({
     </form>
   );
 }
+
+AuthorizationByCertificate.defautProps = {
+  error: null,
+};

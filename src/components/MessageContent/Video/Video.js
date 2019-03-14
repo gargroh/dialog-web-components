@@ -41,4 +41,9 @@ function Video(props: Props) {
   );
 }
 
+Video.defaultProps = {
+  maxWidth: 400,
+  maxHeight: 400,
+};
+
 export default Video;

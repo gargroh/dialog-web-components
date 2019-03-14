@@ -97,7 +97,7 @@ export function CodeAuthorizationForm({
 
     // Clear interval on component unmount
     return () => intervalClear();
-  }, []);
+  }, [handleCodeResend, intervalClear]);
 
   return (
     <L10n>

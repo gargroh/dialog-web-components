@@ -8,6 +8,7 @@ import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 
 import getAvatarText from './utils/getAvatarText';
+import getAvatarPlaceholder from './utils/getAvatarPlaceholder';
 import getAvatarColor from './utils/getAvatarColor';
 import createSequence from '../../utils/createSequence';
 import ImagePreloader, {
@@ -26,6 +27,7 @@ export type AvatarProps = {
   className?: string,
   onClick?: (event: SyntheticMouseEvent<>) => mixed,
   status?: ?UserStatusType,
+  square?: boolean,
 };
 
 export type AvatarState = {
@@ -43,6 +45,7 @@ class Avatar extends PureComponent<AvatarProps, AvatarState> {
     size: 32,
     placeholder: 'empty',
     status: null,
+    square: false,
   };
 
   constructor(props: AvatarProps) {
@@ -133,7 +136,32 @@ class Avatar extends PureComponent<AvatarProps, AvatarState> {
   }
 
   renderMask() {
-    const { status } = this.props;
+    const { status, square } = this.props;
+
+    if (square) {
+      if (!status || status === 'invisible') {
+        return (
+          <rect
+            className={styles.mask}
+            fill={`url(#${this.id})`}
+            x="0"
+            y="0"
+            width="100"
+            height="100"
+            rx="10"
+          />
+        );
+      }
+
+      return (
+        <path
+          // eslint-disable-next-line
+          d="M12 0C5.373 0 0 5.373 0 12v76c0 6.627 5.373 12 12 12h59.998C67.141 96.351 64 90.542 64 84c0-11.046 8.954-20 20-20 6.542 0 12.351 3.141 16 7.998V12c0-6.627-5.373-12-12-12H12z"
+          fill={`url(#${this.id})`}
+          className={styles.mask}
+        />
+      );
+    }
 
     if (!status || status === 'invisible') {
       return (

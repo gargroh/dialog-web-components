@@ -23,26 +23,26 @@ export type <%= name %>Props = {
 
 <% if (functional) { -%>
 export function <%= name %>(props: <%= name %>Props) {
-  <% if (styles) { -%>
-  const classes = classNames(styles.container, this.props.className);
+<% if (styles) { -%>
+  const classes = classNames(styles.container, props.className);
 
   return (
     <div className={classes}>
       {props.children}
     </div>
   );
-  <% } else { -%>
+<% } else { -%>
   return (
     <div>
       {props.children}
     </div>
   );
-  <% } -%>
+<% } -%>
 }
 <% } else { -%>
 export class <%= name %> extends PureComponent<<%= name %>Props> {
   render() {
-    <% if (styles) { -%>
+<% if (styles) { -%>
     const classes = classNames(styles.container, this.props.className);
 
     return (
@@ -50,13 +50,13 @@ export class <%= name %> extends PureComponent<<%= name %>Props> {
         {this.props.children}
       </div>
     );
-    <% } else { -%>
+<% } else { -%>
     return (
       <div>
         {this.props.children}
       </div>
     );
-    <% } -%>
+<% } -%>
   }
 }
 <% } -%>

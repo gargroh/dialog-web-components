@@ -44,6 +44,7 @@ const space = {
   peer: {
     id: 10101,
     type: 'space',
+    key: 's10101',
   },
 };
 
@@ -55,8 +56,9 @@ const group = {
   about:
     'Dialog is a handy and feature rich enterprise multi-device messenger available for server or cloud – Slack-like, but not Slack-limited.',
   peer: {
-    id: 10101,
+    id: 101,
     type: 'group',
+    key: 'g101',
   },
   members: [
     { peerInfo: contacts[0] },
@@ -67,7 +69,7 @@ const group = {
 
 const channel = {
   avatar: null,
-  title: 'Kirsan news 😡',
+  title: 'Channel with very very long titile',
   placeholder: 'yellow',
   type: 'channel',
   about:
@@ -76,6 +78,7 @@ const channel = {
   peer: {
     id: 111,
     type: 'group',
+    key: 'g111',
   },
   members: [
     { peerInfo: contacts[0] },
@@ -98,6 +101,7 @@ const bot = {
   peer: {
     id: 12239,
     type: 'user',
+    key: 'u12239',
   },
 };
 

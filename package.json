@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "module": "src/index.js",
   "source": true,
+  "sideEffects": false,
   "files": [
     "src",
     "babel.config.js",

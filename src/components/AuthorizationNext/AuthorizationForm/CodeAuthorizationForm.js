@@ -127,7 +127,7 @@ export function CodeAuthorizationForm({
               }
               autoComplete="off"
               value={code}
-              disabled={step !== CODE_REQUESTED}
+              disabled={step !== CODE_REQUESTED && !error}
               onChange={handleCodeChange}
               fill
               htmlAutoFocus
@@ -147,8 +147,8 @@ export function CodeAuthorizationForm({
                 round
                 intent="primary"
                 type="submit"
-                pending={step === CODE_SENT}
-                disabled={step === CODE_SENT || !code.length}
+                pending={step === CODE_SENT && !error}
+                disabled={(step === CODE_SENT || !code.length) && !error}
               >
                 {formatText('AuthorizationNext.check_code')}
               </Button>

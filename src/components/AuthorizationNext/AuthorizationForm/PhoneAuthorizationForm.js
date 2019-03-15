@@ -99,8 +99,8 @@ export function PhoneAuthorizationForm({
                 round
                 type="submit"
                 intent="primary"
-                pending={step === LOGIN_SENT}
-                disabled={step === LOGIN_SENT}
+                pending={step === LOGIN_SENT && !error}
+                disabled={step === LOGIN_SENT && !error}
               >
                 {formatText('AuthorizationNext.request_code')}
               </Button>

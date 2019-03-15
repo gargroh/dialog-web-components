@@ -60,7 +60,7 @@ export function UsernameAuthorizationForm({
             placeholder={formatText('AuthorizationNext.username')}
             autoComplete="off"
             value={credentials.username}
-            disabled={step === LOGIN_SENT}
+            disabled={step === LOGIN_SENT && !error}
             onChange={handleChange}
             fill
             htmlAutoFocus
@@ -73,7 +73,7 @@ export function UsernameAuthorizationForm({
             placeholder={formatText('AuthorizationNext.password')}
             autoComplete="current-password"
             value={credentials.password}
-            disabled={step === LOGIN_SENT}
+            disabled={step === LOGIN_SENT && !error}
             onChange={handleChange}
             hint={error ? error.message : undefined}
             fill
@@ -84,8 +84,11 @@ export function UsernameAuthorizationForm({
               intent="primary"
               pending={step === LOGIN_SENT}
               disabled={
-                !(credentials.username.length && credentials.password.length) ||
-                step === LOGIN_SENT
+                (!(
+                  credentials.username.length && credentials.password.length
+                ) ||
+                  step === LOGIN_SENT) &&
+                !error
               }
               round
             >

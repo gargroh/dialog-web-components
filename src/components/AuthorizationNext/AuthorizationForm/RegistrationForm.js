@@ -61,7 +61,7 @@ export function RegistrationForm({
               placeholder={formatText('Registration.name')}
               autoComplete="off"
               value={info.name}
-              disabled={step !== SIGNUP_STARTED}
+              disabled={step !== SIGNUP_STARTED && !error}
               onChange={handleChange}
               fill
               htmlAutoFocus
@@ -74,7 +74,10 @@ export function RegistrationForm({
               intent="primary"
               pending={step === NAME_SENT}
               disabled={
-                info.name === '' || step === NAME_SENT || step === AUTH_FINISHED
+                (info.name === '' ||
+                  step === NAME_SENT ||
+                  step === AUTH_FINISHED) &&
+                !error
               }
             >
               {formatText('Authorization.sign_up')}

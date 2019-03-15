@@ -12,7 +12,7 @@ import getAvatarText from '../Avatar/utils/getAvatarText';
 import getAvatarColor from '../Avatar/utils/getAvatarColor';
 import createSequence from '../../utils/createSequence';
 import ImagePreloader, {
-  type State as ImagePreloaderState,
+  type ImagePreloaderState,
   STATE_SUCCESS,
 } from '../ImagePreloader/ImagePreloader';
 import Hover from '../Hover/Hover';

@@ -11,23 +11,26 @@ export const STATE_ERROR = 'error';
 
 export type ImageState = 'pending' | 'success' | 'error';
 
-export type State = {
+export type ImagePreloaderState = {
   state: ImageState,
   src: ?string,
   error: ?mixed,
 };
 
-export type Props = {
+export type ImagePreloaderProps = {
   src: ?string,
-  onChange?: (state: State) => mixed,
-  children: (state: State) => Node,
+  onChange?: (state: ImagePreloaderState) => mixed,
+  children: (state: ImagePreloaderState) => Node,
 };
 
-class ImagePreloader extends Component<Props, State> {
+class ImagePreloader extends Component<
+  ImagePreloaderProps,
+  ImagePreloaderState,
+> {
   requestId: ?AnimationFrameID; // eslint-disable-line no-undef
   image: ?HTMLImageElement;
 
-  constructor(props: Props) {
+  constructor(props: ImagePreloaderProps) {
     super(props);
 
     this.state = {
@@ -44,16 +47,16 @@ class ImagePreloader extends Component<Props, State> {
   }
 
   static getDerivedStateFromProps(
-    nextProps: Props,
-    prevState: State,
-  ): $Shape<State> {
+    nextProps: ImagePreloaderProps,
+    prevState: ImagePreloaderState,
+  ): $Shape<ImagePreloaderState> {
     return {
       src: nextProps.src === null ? null : prevState.src,
       state: nextProps.src === prevState.src ? prevState.state : STATE_PENDING,
     };
   }
 
-  componentDidUpdate(prevProps: Props): void {
+  componentDidUpdate(prevProps: ImagePreloaderProps): void {
     if (this.props.src === null) {
       this.handleStopFetch();
     }

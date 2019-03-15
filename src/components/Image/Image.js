@@ -8,6 +8,7 @@ import classNames from 'classnames';
 
 import getImageSize from '../../utils/getImageSize';
 import ImagePreloader, {
+  type ImagePreloaderState,
   STATE_SUCCESS,
 } from '../ImagePreloader/ImagePreloader';
 import styles from './Image.css';
@@ -28,7 +29,7 @@ export type ImageProps = {
 function Image(props: ImageProps) {
   return (
     <ImagePreloader src={props.src}>
-      {({ state, src }) => {
+      {({ state, src }: ImagePreloaderState) => {
         const { width, height } = getImageSize(
           props.width,
           props.height,

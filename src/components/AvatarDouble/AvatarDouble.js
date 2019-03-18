@@ -18,27 +18,27 @@ import ImagePreloader, {
 import Hover from '../Hover/Hover';
 import styles from './AvatarDouble.css';
 
-type AvatarProps = {
+type Avatar = {
   title: string | null,
   image: ?string,
   placeholder: AvatarPlaceholder,
 };
 
-export type Props = {
+export type AvatarProps = {
   className?: string,
-  big: AvatarProps,
-  small: AvatarProps,
+  big: Avatar,
+  small: Avatar,
   size: number,
   onClick?: (event: SyntheticMouseEvent<>) => mixed,
 };
 
-export type State = {
+export type AvatarState = {
   isHovered: boolean,
 };
 
 const seq = createSequence();
 
-class AvatarDouble extends PureComponent<Props, State> {
+class AvatarDouble extends PureComponent<AvatarProps, AvatarState> {
   id: string;
   ids: {
     big: string,
@@ -60,7 +60,7 @@ class AvatarDouble extends PureComponent<Props, State> {
     },
   };
 
-  constructor(props: Props) {
+  constructor(props: AvatarProps) {
     super(props);
 
     this.id = 'double_avatar_' + seq.next();

@@ -14,6 +14,7 @@ import createSequence from '../../utils/createSequence';
 import ImagePreloader, {
   type ImagePreloaderState,
   STATE_SUCCESS,
+  STATE_ERROR,
 } from '../ImagePreloader/ImagePreloader';
 import Hover from '../Hover/Hover';
 import styles from './AvatarDouble.css';
@@ -121,7 +122,7 @@ class AvatarDouble extends PureComponent<AvatarProps, AvatarState> {
   }
 
   renderBigDefs({ state, src }: ImagePreloaderState) {
-    if (state === STATE_SUCCESS || src !== null) {
+    if (state === STATE_SUCCESS || (state !== STATE_ERROR && src !== null)) {
       return (
         <pattern
           id={this.ids.big}
@@ -156,7 +157,7 @@ class AvatarDouble extends PureComponent<AvatarProps, AvatarState> {
   }
 
   renderSmallDefs({ state, src }: ImagePreloaderState) {
-    if (state === STATE_SUCCESS || src !== null) {
+    if (state === STATE_SUCCESS || (state !== STATE_ERROR && src !== null)) {
       return (
         <pattern
           id={this.ids.small}
@@ -200,7 +201,11 @@ class AvatarDouble extends PureComponent<AvatarProps, AvatarState> {
     const {
       big: { title },
     } = this.props;
-    if (state === STATE_SUCCESS || src !== null || !title) {
+    if (
+      state === STATE_SUCCESS ||
+      (state !== STATE_ERROR && src !== null) ||
+      !title
+    ) {
       return null;
     }
 
@@ -230,7 +235,11 @@ class AvatarDouble extends PureComponent<AvatarProps, AvatarState> {
     const {
       small: { title },
     } = this.props;
-    if (state === STATE_SUCCESS || src !== null || !title) {
+    if (
+      state === STATE_SUCCESS ||
+      (state !== STATE_ERROR && src !== null) ||
+      !title
+    ) {
       return null;
     }
 

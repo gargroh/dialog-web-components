@@ -46,7 +46,7 @@
   vertical-align: middle;
   font-family: var(--country-code-selector-font-family);
   color: var(--country-code-selector-color);
-  padding: var(--default-padding) 0;
+  padding: 0 0 var(--default-padding) 0;
 
   & :global(.Select) {
     transition: box-shadow var(--country-code-selector-transition-duration) ease;

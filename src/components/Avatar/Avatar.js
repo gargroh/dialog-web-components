@@ -78,7 +78,7 @@ class Avatar extends PureComponent<AvatarProps, AvatarState> {
   }
 
   renderDefs({ state, src }: ImagePreloaderState) {
-    if (state !== STATE_ERROR && (state === STATE_SUCCESS || src !== null)) {
+    if (state === STATE_SUCCESS || (state !== STATE_ERROR && src !== null)) {
       return (
         <pattern
           id={this.id}
@@ -105,7 +105,8 @@ class Avatar extends PureComponent<AvatarProps, AvatarState> {
     const { title, size } = this.props;
 
     if (
-      (state !== STATE_ERROR && (state === STATE_SUCCESS || src !== null)) ||
+      state === STATE_SUCCESS ||
+      (state !== STATE_ERROR && src !== null) ||
       !title
     ) {
       return null;

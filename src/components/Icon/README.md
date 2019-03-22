@@ -112,13 +112,16 @@ Basic Icon:
   <Icon glyph="screen_share_stop" />
   <Icon glyph="search" />
   <Icon glyph="send" />
+  <Icon glyph="speech_recognition" />
   <Icon glyph="star" />
   <Icon glyph="star_outline" />
+  <Icon glyph="translate" />
   <Icon glyph="tux" />
   <Icon glyph="verified" />
   <Icon glyph="videocam" />
   <Icon glyph="videocam_off" />
   <Icon glyph="volume_off" />
+  <Icon glyph="volume_up" />
   <Icon glyph="windows" />
 </div>
 ```

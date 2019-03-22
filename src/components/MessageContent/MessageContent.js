@@ -7,7 +7,7 @@ import type {
   MessageContent as MessageContentTypes,
   MessageMediaInteractiveConfirm,
 } from '@dlghq/dialog-types';
-import * as React from 'react';
+import React, { type Node } from 'react';
 import Text from './Text/Text';
 import Service from './Text/Service';
 import Photo from './Photo/Photo';
@@ -22,6 +22,7 @@ import Deleted from './Deleted/Deleted';
 export type Props = {
   className?: string,
   rid: string,
+  children?: Node,
   content: MessageContentTypes,
   isPending?: boolean,
   maxHeight: number,
@@ -39,6 +40,7 @@ function MessageContent({
   content,
   isPending,
   rid,
+  children,
   maxHeight,
   maxWidth,
   onLightboxOpen,
@@ -119,7 +121,9 @@ function MessageContent({
           fileExtension={content.fileExtension}
           isUploading={isPending || content.isUploading}
           maxWidth={maxWidth}
-        />
+        >
+          {children}
+        </Voice>
       );
 
     case 'video':

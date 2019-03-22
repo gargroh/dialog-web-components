@@ -244,6 +244,7 @@ export {
 export {
   default as VoiceRecorder,
 } from './components/VoiceRecorder/VoiceRecorder';
+export { VoiceCardContent } from './components/MessageContent/Voice/VoiceCardContent';
 export {
   default as VoiceRecorderControls,
 } from './components/VoiceRecorder/VoiceRecorderControls';

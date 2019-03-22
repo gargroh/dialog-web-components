@@ -7,10 +7,10 @@ import type { Map } from 'immutable';
 import type { Node } from 'react';
 import type {
   Message as MessageType,
-  MessageState as MessageStateType,
-  PeerInfo,
-  Peer,
   MessageMediaInteractiveConfirm,
+  MessageState as MessageStateType,
+  Peer,
+  PeerInfo,
 } from '@dlghq/dialog-types';
 
 export type Props = {
@@ -28,6 +28,7 @@ export type Props = {
   isSelectionEnabled?: boolean,
   isReactionsEnabled?: boolean,
   renderActions?: () => Node,
+  children?: Node,
   onSelect?: (message: MessageType) => mixed,
   onTitleClick?: (message: MessageType) => mixed,
   onAvatarClick?: (message: MessageType) => mixed,

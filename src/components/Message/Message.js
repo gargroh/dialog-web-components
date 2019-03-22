@@ -360,7 +360,9 @@ class Message extends PureComponent<Props, State> {
                 this.props.onLightboxOpen ? this.handleLightboxOpen : undefined
               }
               onInteractiveAction={this.props.onInteractiveAction}
-            />
+            >
+              {this.props.children}
+            </MessageContent>
             {this.renderForward()}
             {this.renderReactions()}
           </div>

@@ -23,7 +23,7 @@ class Voice extends PureComponent<Props> {
     const { isUploading, maxWidth, fileUrl, duration } = this.props;
     const className = classNames(
       styles.container,
-      styles.card,
+      styles.voiceCard,
       this.props.className,
     );
 

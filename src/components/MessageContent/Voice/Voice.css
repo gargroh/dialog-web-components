@@ -18,7 +18,7 @@
 }
 
 /* Styles */
-.card {
+.voiceCard {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -36,11 +36,11 @@
   flex-direction: row;
 }
 
-.cardContent {
+.voiceCardContent {
   display: block;
   padding: var(--message-voice-padding);
 }
 
-.cardSectionDelimiter {
+.voiceCardSectionDelimiter {
   border-top: 1px solid var(--message-voice-border-color);
 }

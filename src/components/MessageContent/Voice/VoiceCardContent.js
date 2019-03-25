@@ -13,8 +13,8 @@ export const VoiceCardContent: StatelessFunctionalComponent<{
   section?: boolean,
 }> = (props) => {
   const className = classNames(
-    styles.cardContent,
-    props.section ? styles.cardSectionDelimiter : undefined,
+    styles.voiceCardContent,
+    props.section ? styles.voiceCardSectionDelimiter : undefined,
     props.className,
   );
 

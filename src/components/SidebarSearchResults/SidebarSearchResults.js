@@ -20,7 +20,7 @@ class SidebarSearchResults extends PureComponent<SidebarSearchResultsProps> {
   renderContent(): Node {
     const { necessaryQueryLength, query } = this.props;
 
-    if (necessaryQueryLength && query.trim().length < necessaryQueryLength) {
+    if (necessaryQueryLength && query.trim().length <= necessaryQueryLength) {
       return (
         <div className={styles.text}>
           <Text html tagName="div" id="SidebarSearchResults.too_short_query" />

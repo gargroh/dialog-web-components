@@ -2,24 +2,28 @@
 const messages = require('../../fixtures/messages');
 const peerInfo = require('../../fixtures/peerInfo');
 
-const searchMessages = [{
+const searchMessages = [
+  {
     info: peerInfo.user,
     before: [messages[0]],
     focus: messages[1],
-    after: [messages[2]]
-},{
+    after: [messages[2]],
+  },
+  {
     info: peerInfo.channel,
     before: [messages[2], messages[1]],
     focus: messages[3],
-    after: [messages[4]]
-},{
+    after: [messages[4]],
+  },
+  {
     info: peerInfo.bot,
     before: [],
     focus: {
-      ...messages[4]
+      ...messages[4],
     },
-    after: []
-}];
+    after: [],
+  },
+];
 
 initialState = {
   query: 'Test query',
@@ -27,16 +31,16 @@ initialState = {
   messages: {
     pending: false,
     error: null,
-    value: []
-  }
+    value: [],
+  },
 };
 
 const togglePending = () => {
   setState({
     messages: {
       ...state.messages,
-      pending: state.messages.pending ? false : true
-    }
+      pending: state.messages.pending ? false : true,
+    },
   });
 };
 
@@ -45,19 +49,26 @@ const toggleError = () => {
   setState({
     messages: {
       ...state.messages,
-      error: state.messages.error ? null : new Error('Something went wrong')
-    }
+      error: state.messages.error ? null : new Error('Something went wrong'),
+    },
   });
 };
 
 const toggleResults = () => {
   console.debug('toggleMessages', state);
   setState({
+    query: 'testQuery',
     peers: [peerInfo.bot, messages[0].sender],
     messages: {
       ...state.messages,
-      value: state.messages.value.length ? [] : searchMessages
-    }
+      value: state.messages.value.length ? [] : searchMessages,
+    },
+  });
+};
+
+const toggleShortQuery = () => {
+  setState({
+    query: '1',
   });
 };
 
@@ -65,18 +76,58 @@ const onGoToPeer = (peer) => console.debug('onGoToPeer', { peer });
 
 <div>
   <div className="styleguide__buttons">
-    <Button onClick={togglePending} size="small" theme="primary" style={{ marginRight: 4 }}>Toggle Pending</Button>
-    <Button onClick={toggleError} size="small" theme="primary" style={{ marginRight: 4 }}>Toggle Error</Button>
-    <Button onClick={toggleResults} size="small" theme="primary" style={{ marginRight: 4 }}>Toggle Results</Button>
+    <Button
+      onClick={togglePending}
+      size="small"
+      theme="primary"
+      style={{ marginRight: 4 }}
+    >
+      Toggle Pending
+    </Button>
+    <Button
+      onClick={toggleError}
+      size="small"
+      theme="primary"
+      style={{ marginRight: 4 }}
+    >
+      Toggle Error
+    </Button>
+    <Button
+      onClick={toggleResults}
+      size="small"
+      theme="primary"
+      style={{ marginRight: 4 }}
+    >
+      Toggle Results
+    </Button>
+    <Button
+      onClick={toggleShortQuery}
+      size="small"
+      theme="primary"
+      style={{ marginRight: 4 }}
+    >
+      Toggle Short Query
+    </Button>
   </div>
-  <div style={{ width: 270, background: '#f5f5f5', height: 500, position: 'relative', display: 'flex' }}>
+  <div
+    style={{
+      width: 270,
+      background: '#f5f5f5',
+      height: 500,
+      position: 'relative',
+      display: 'flex',
+    }}
+  >
     <SidebarSearchResults
       query={state.query}
       peers={state.peers}
       messages={state.messages}
+      necessaryQueryLength={3}
       onGoToPeer={(peer) => console.debug('Go to peer', peer)}
-      onGoToMessage={(peer, message) => console.debug('Go to message', peer, message)}
+      onGoToMessage={(peer, message) =>
+        console.debug('Go to message', peer, message)
+      }
     />
   </div>
-</div>
+</div>;
 ```

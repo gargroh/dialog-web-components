@@ -19,4 +19,5 @@ export type SidebarSearchResultsProps = {
   messages: Field<SearchEntity[]>,
   onGoToPeer: (peer: Peer) => mixed,
   onGoToMessage: (peer: Peer, message: Message) => mixed,
+  necessaryQueryLength?: number,
 };

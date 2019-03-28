@@ -122,7 +122,7 @@ const onGoToPeer = (peer) => console.debug('onGoToPeer', { peer });
       query={state.query}
       peers={state.peers}
       messages={state.messages}
-      necessaryQueryLength={3}
+      minQueryLength={3}
       onGoToPeer={(peer) => console.debug('Go to peer', peer)}
       onGoToMessage={(peer, message) =>
         console.debug('Go to message', peer, message)

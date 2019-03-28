@@ -18,9 +18,9 @@ import styles from './SidebarSearchResults.css';
 
 class SidebarSearchResults extends PureComponent<SidebarSearchResultsProps> {
   renderContent(): Node {
-    const { necessaryQueryLength, query } = this.props;
+    const { minQueryLength, query } = this.props;
 
-    if (necessaryQueryLength && query.trim().length < necessaryQueryLength) {
+    if (minQueryLength && query.trim().length < minQueryLength) {
       return (
         <div className={styles.text}>
           <Text html tagName="div" id="SidebarSearchResults.too_short_query" />

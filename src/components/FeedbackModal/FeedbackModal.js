@@ -27,6 +27,7 @@ type Props = {
   className?: string,
   onSubmit: (feedback: Feedback) => mixed,
   onClose: () => mixed,
+  onSaveLogs?: () => mixed,
 };
 
 type State = Feedback;
@@ -69,6 +70,25 @@ class FeedbackModal extends PureComponent<Props, State> {
     }
   };
 
+  renderSaveLogs = () => {
+    if (!this.props.onSaveLogs) {
+      return null;
+    }
+
+    return (
+      <span className={styles.saveLogs}>
+        <Text id="FeedbackModal.or" />
+        {'\u00A0'}
+        <Text
+          tagName="div"
+          onClick={this.props.onSaveLogs}
+          className={styles.saveLogsLink}
+          id="FeedbackModal.save_logs"
+        />
+      </span>
+    );
+  };
+
   render() {
     const className = classNames(styles.container, this.props.className);
 
@@ -98,13 +118,16 @@ class FeedbackModal extends PureComponent<Props, State> {
                 value={this.state.text}
                 onChange={this.handleFeedbackChange}
               />
-              <Switcher
-                id={this.props.id + '_add_logs'}
-                name="addLogs"
-                value={this.state.addLogs}
-                onChange={this.handleAddLogsToggle}
-                label="FeedbackModal.add_logs"
-              />
+              <div className={styles.logsWrapper}>
+                <Switcher
+                  id={this.props.id + '_add_logs'}
+                  name="addLogs"
+                  value={this.state.addLogs}
+                  onChange={this.handleAddLogsToggle}
+                  label="FeedbackModal.add_logs"
+                />
+                {this.renderSaveLogs()}
+              </div>
             </ModalBody>
             <ModalFooter className={styles.footer}>
               <Button

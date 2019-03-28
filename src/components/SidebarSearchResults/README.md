@@ -39,7 +39,7 @@ const togglePending = () => {
   setState({
     messages: {
       ...state.messages,
-      pending: state.messages.pending ? false : true,
+      pending: !state.messages.pending,
     },
   });
 };

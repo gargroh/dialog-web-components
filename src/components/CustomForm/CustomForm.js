@@ -30,9 +30,14 @@ export type Props = {
   widgets?: { [string]: Component<*> },
   fields?: { [string]: Component<*> },
   ArrayFieldTemplate?: Component<ArrayFieldTemplateProps>,
-  onChange: (value: JSONValue) => mixed,
+  onChange: (
+    value: JSONValue,
+    formId?: string,
+    errors?: Array<FormErrors>,
+  ) => mixed,
   onValidate?: (value: JSONValue, errors: FormErrors) => mixed,
   onFocus?: (value: mixed) => mixed,
+  onTransformErrors?: (errors: Array<FormErrors>) => mixed,
 };
 
 class CustomForm extends PureComponent<Props> {
@@ -56,8 +61,12 @@ class CustomForm extends PureComponent<Props> {
     this.fields = this.props.fields;
   }
 
-  handleChange = (value: { formData: JSONValue, errors: FormErrors }) => {
-    this.props.onChange(value.formData);
+  handleChange = (value: {
+    formData: JSONValue,
+    idSchema: { $id: string },
+    errors: Array<FormErrors>,
+  }) => {
+    this.props.onChange(value.formData, value.idSchema.$id, value.errors);
   };
 
   getCustomFieldTemplate = (field: { children: Node }): Node => field.children;
@@ -83,6 +92,7 @@ class CustomForm extends PureComponent<Props> {
           FieldTemplate={this.getCustomFieldTemplate}
           showErrorList={false}
           validate={this.props.onValidate}
+          transformErrors={this.props.onTransformErrors}
         >
           <span />
         </Form>

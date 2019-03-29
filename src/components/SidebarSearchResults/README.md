@@ -75,37 +75,17 @@ const toggleShortQuery = () => {
 const onGoToPeer = (peer) => console.debug('onGoToPeer', { peer });
 
 <div>
-  <div className="styleguide__buttons">
-    <Button
-      onClick={togglePending}
-      size="small"
-      theme="primary"
-      style={{ marginRight: 4 }}
-    >
+  <div className="styleguide__searchResultsButtons">
+    <Button onClick={togglePending} size="small" theme="primary">
       Toggle Pending
     </Button>
-    <Button
-      onClick={toggleError}
-      size="small"
-      theme="primary"
-      style={{ marginRight: 4 }}
-    >
+    <Button onClick={toggleError} size="small" theme="primary">
       Toggle Error
     </Button>
-    <Button
-      onClick={toggleResults}
-      size="small"
-      theme="primary"
-      style={{ marginRight: 4 }}
-    >
+    <Button onClick={toggleResults} size="small" theme="primary">
       Toggle Results
     </Button>
-    <Button
-      onClick={toggleShortQuery}
-      size="small"
-      theme="primary"
-      style={{ marginRight: 4 }}
-    >
+    <Button onClick={toggleShortQuery} size="small" theme="primary">
       Toggle Short Query
     </Button>
   </div>

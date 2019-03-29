@@ -10,7 +10,7 @@ const handleSubmit = (feedback) => {
   handleClose();
 };
 const handleSaveLogs = () => {
-  console.debug('handleSaveLogs');
+  alert('Logs saved!');
 };
 
 <div>

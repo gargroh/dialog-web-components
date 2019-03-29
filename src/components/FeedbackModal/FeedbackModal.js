@@ -77,8 +77,6 @@ class FeedbackModal extends PureComponent<Props, State> {
 
     return (
       <span className={styles.saveLogs}>
-        <Text id="FeedbackModal.or" />
-        {'\u00A0'}
         <Text
           tagName="div"
           onClick={this.props.onSaveLogs}

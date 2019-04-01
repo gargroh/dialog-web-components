@@ -12,7 +12,7 @@ import ImagePreloader, {
 } from '../ImagePreloader/ImagePreloader';
 import styles from './Image.css';
 
-export type Props = {
+export type ImageProps = {
   className?: string,
   src: ?string,
   id?: string,
@@ -25,58 +25,54 @@ export type Props = {
   onClick?: (event: SyntheticMouseEvent<>) => mixed,
 };
 
-class Image extends PureComponent<Props, void> {
-  static defaultProps = {
-    maxWidth: 400,
-    maxHeight: 400,
-  };
+function Image(props: ImageProps) {
+  return (
+    <ImagePreloader src={props.src}>
+      {({ state, src }) => {
+        const { width, height } = getImageSize(
+          props.width,
+          props.height,
+          props.maxWidth,
+          props.maxHeight,
+        );
+        const className = classNames(
+          styles.container,
+          {
+            [styles.loaded]: state === STATE_SUCCESS,
+          },
+          props.className,
+        );
+        const source = state === STATE_SUCCESS ? src : props.preview;
 
-  getSize() {
-    const { width, height, maxWidth, maxHeight } = this.props;
+        if (!source) {
+          return null;
+        }
 
-    return getImageSize(width, height, maxWidth, maxHeight);
-  }
-
-  render() {
-    return (
-      <ImagePreloader src={this.props.src}>
-        {({ state, src }) => {
-          const { preview } = this.props;
-          const { width, height } = this.getSize();
-          const className = classNames(
-            styles.container,
-            {
-              [styles.loaded]: state === STATE_SUCCESS,
-            },
-            this.props.className,
-          );
-          const source = state === STATE_SUCCESS ? src : preview;
-
-          if (!source) {
-            return null;
-          }
-
-          return (
-            <div
-              className={className}
-              title={this.props.alt}
-              style={{ width, height }}
-            >
-              <img
-                id={this.props.id}
-                src={source}
-                width={width}
-                height={height}
-                alt={this.props.alt}
-                onClick={this.props.onClick}
-                className={styles.image}
-              />
-            </div>
-          );
-        }}
-      </ImagePreloader>
-    );
-  }
+        return (
+          <div
+            className={className}
+            title={props.alt}
+            style={{ width, height }}
+          >
+            <img
+              id={props.id}
+              src={source}
+              width={width}
+              height={height}
+              alt={props.alt}
+              onClick={props.onClick}
+              className={styles.image}
+            />
+          </div>
+        );
+      }}
+    </ImagePreloader>
+  );
 }
+
+Image.defaultProps = {
+  maxWidth: 400,
+  maxHeight: 400,
+};
 
 export default Image;

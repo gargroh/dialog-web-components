@@ -38,25 +38,30 @@ class Image extends PureComponent<Props, void> {
   }
 
   render() {
-    const { preview } = this.props;
-    const { width, height } = this.getSize();
-    const className = classNames(styles.container, this.props.className);
-
     return (
-      <div
-        className={className}
-        title={this.props.alt}
-        style={{ width, height }}
-      >
-        <ImagePreloader src={this.props.src}>
-          {({ state, src }) => {
-            const source = state === STATE_SUCCESS ? src : preview;
+      <ImagePreloader src={this.props.src}>
+        {({ state, src }) => {
+          const { preview } = this.props;
+          const { width, height } = this.getSize();
+          const className = classNames(
+            styles.container,
+            {
+              [styles.loaded]: state === STATE_SUCCESS,
+            },
+            this.props.className,
+          );
+          const source = state === STATE_SUCCESS ? src : preview;
 
-            if (!source) {
-              return null;
-            }
+          if (!source) {
+            return null;
+          }
 
-            return (
+          return (
+            <div
+              className={className}
+              title={this.props.alt}
+              style={{ width, height }}
+            >
               <img
                 id={this.props.id}
                 src={source}
@@ -64,11 +69,12 @@ class Image extends PureComponent<Props, void> {
                 height={height}
                 alt={this.props.alt}
                 onClick={this.props.onClick}
+                className={styles.image}
               />
-            );
-          }}
-        </ImagePreloader>
-      </div>
+            </div>
+          );
+        }}
+      </ImagePreloader>
     );
   }
 }

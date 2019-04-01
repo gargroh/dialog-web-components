@@ -7,4 +7,16 @@
 .container {
   display: inline-block;
   line-height: 0;
+  overflow: hidden;
+
+  & .image {
+    filter: blur(5px);
+    transition: filter 250ms ease;
+  }
+}
+
+.loaded {
+  & .image {
+    filter: blur(0);
+  }
 }

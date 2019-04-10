@@ -53,6 +53,7 @@
 }
 
 .chipText {
+  position: relative;
   margin: 0 10px;
   font-size: var(--default-font-size);
   font-weight: 500;
@@ -61,6 +62,20 @@
   letter-spacing: -0.3px;
   max-width: var(--contact-selector-chip-text-max-width);
   @mixin text-overflow-ellipsis;
+}
+
+.chipText:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--contact-selector-chip-text-max-width);
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 85%,
+    var(--contact-selector-chip-background)
+  );
 }
 
 /* .chipAvatar {} */

@@ -32,7 +32,7 @@ export type Props = {
   ArrayFieldTemplate?: Component<ArrayFieldTemplateProps>,
   onChange: (
     value: JSONValue,
-    formId?: string,
+    formId: string,
     errors?: Array<FormErrors>,
   ) => mixed,
   onValidate?: (value: JSONValue, errors: FormErrors) => mixed,

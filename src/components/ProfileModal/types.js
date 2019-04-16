@@ -47,6 +47,7 @@ export type Props = {
 };
 
 export type State = {
-  screen: Screen,
   ...ProfileUpdate,
+  screen: Screen,
+  errors: Array<string>,
 };

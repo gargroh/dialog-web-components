@@ -40,6 +40,7 @@ class ProfileModal extends PureComponent<Props, State> {
       profile: null,
       customProfile: null,
       avatar: props.avatar,
+      errors: [],
     };
   }
 
@@ -66,8 +67,31 @@ class ProfileModal extends PureComponent<Props, State> {
     }
   };
 
-  handleFormChange = (name: FormName) => (value: JSONValue): void => {
-    this.setState({ [name]: JSON.parse(JSON.stringify(value)) });
+  handleFormChange = (name: FormName) => (
+    value: JSONValue,
+    id: string,
+    errors?: Array<FormErrors>,
+  ): void => {
+    this.setState((prevState) => {
+      const listErrors = prevState.errors.slice();
+
+      if (errors && errors.length > 0) {
+        if (!listErrors.includes(id)) {
+          listErrors.push(id);
+        }
+      } else {
+        const index = listErrors.indexOf(id);
+        if (index > -1) {
+          listErrors.splice(index, 1);
+        }
+      }
+
+      return {
+        ...prevState,
+        [name]: JSON.parse(JSON.stringify(value)),
+        errors: listErrors,
+      };
+    });
   };
 
   handleSubmit = (event: ?SyntheticEvent<>): void => {
@@ -322,7 +346,11 @@ class ProfileModal extends PureComponent<Props, State> {
             id="profile_modal_submit_button"
             rounded={false}
             loading={this.isPending()}
-            disabled={!this.isChanged() || this.isPending()}
+            disabled={
+              !this.isChanged() ||
+              this.isPending() ||
+              this.state.errors.length > 0
+            }
             onClick={this.handleSubmit}
           >
             <Text id="ProfileModal.save" />

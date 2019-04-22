@@ -174,6 +174,9 @@ export {
 export {
   default as SpaceInfoModal,
 } from './components/SpaceInfoModal/SpaceInfoModal';
+export {
+  default as IFrameModal,
+} from './components/IFrameModal/IFrameModal';
 
 // Sidebar
 export {

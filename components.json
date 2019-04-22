@@ -92,7 +92,8 @@
       "EditSpaceModal",
       "CreateSpaceModal",
       "SelectCertificateModal",
-      "SpaceInfoModal"
+      "SpaceInfoModal",
+      "IFrameModal"
     ]
   },
   {

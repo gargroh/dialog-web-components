@@ -134,6 +134,7 @@ class FeedbackModal extends PureComponent<Props, State> {
                 type="submit"
                 theme="success"
                 rounded={false}
+                disabled={!this.state.text}
               >
                 <Text id="FeedbackModal.submit" />
               </Button>

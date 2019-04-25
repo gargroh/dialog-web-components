@@ -15,7 +15,7 @@ import AvatarSelector from '../AvatarSelector/AvatarSelector';
 import InputNext from '../InputNext/InputNext';
 import styles from '../CreateNewModal/CreateNewModal.css';
 import Switcher from '../Switcher/Switcher';
-import getAvatarPlaceholder from '../../utils/getAvatarPlaceholder';
+import getAvatarPlaceholder from '../Avatar/utils/getAvatarPlaceholder';
 
 export type Props = {
   id: string,

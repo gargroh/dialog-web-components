@@ -11,13 +11,14 @@ import getAvatarText from './utils/getAvatarText';
 import getAvatarColor from './utils/getAvatarColor';
 import createSequence from '../../utils/createSequence';
 import ImagePreloader, {
-  type State as ImagePreloaderState,
+  type ImagePreloaderState,
   STATE_SUCCESS,
+  STATE_ERROR,
 } from '../ImagePreloader/ImagePreloader';
 import Hover from '../Hover/Hover';
 import styles from './Avatar.css';
 
-export type Props = {
+export type AvatarProps = {
   title: string | null,
   image: ?string,
   size: number,
@@ -27,13 +28,13 @@ export type Props = {
   status?: ?UserStatusType,
 };
 
-export type State = {
+export type AvatarState = {
   isHovered: boolean,
 };
 
 const seq = createSequence();
 
-class Avatar extends PureComponent<Props, State> {
+class Avatar extends PureComponent<AvatarProps, AvatarState> {
   id: string;
 
   static defaultProps = {
@@ -44,7 +45,7 @@ class Avatar extends PureComponent<Props, State> {
     status: null,
   };
 
-  constructor(props: Props) {
+  constructor(props: AvatarProps) {
     super(props);
 
     this.id = 'avatar_' + seq.next();
@@ -77,7 +78,7 @@ class Avatar extends PureComponent<Props, State> {
   }
 
   renderDefs({ state, src }: ImagePreloaderState) {
-    if (state === STATE_SUCCESS || src !== null) {
+    if (state === STATE_SUCCESS || (state !== STATE_ERROR && src !== null)) {
       return (
         <pattern
           id={this.id}
@@ -103,7 +104,11 @@ class Avatar extends PureComponent<Props, State> {
   renderText({ state, src }: ImagePreloaderState) {
     const { title, size } = this.props;
 
-    if (state === STATE_SUCCESS || src !== null || !title) {
+    if (
+      state === STATE_SUCCESS ||
+      (state !== STATE_ERROR && src !== null) ||
+      !title
+    ) {
       return null;
     }
 

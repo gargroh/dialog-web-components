@@ -15,16 +15,22 @@ const questions = [
     message: 'Component name',
     default: 'DialogComponent',
     validate(value) {
-      const valid = (/^[A-Z][a-zA-Z]+$/).test(value);
+      const valid = /^[A-Z][a-zA-Z]+$/.test(value);
       return valid || 'Component name should match /^[A-Z][a-zA-Z]+$/';
-    }
+    },
+  },
+  {
+    name: 'functional',
+    type: 'confirm',
+    message: 'Create functional component?',
+    default: true,
   },
   {
     name: 'styles',
     type: 'confirm',
     message: 'With styles?',
-    default: true
-  }
+    default: true,
+  },
 ];
 
 const src = path.resolve(__dirname, '../src/components');
@@ -32,7 +38,7 @@ const templates = path.resolve(__dirname, 'templates');
 
 function render(options, template, out) {
   const extendedOptions = Object.assign({}, options, {
-    dashedName: kebabCase(options.name)
+    dashedName: kebabCase(options.name),
   });
   chalk.blue(extendedOptions);
   const input = path.join(templates, template);

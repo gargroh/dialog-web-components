@@ -15,6 +15,7 @@ import AvatarSelector from '../AvatarSelector/AvatarSelector';
 import InputNext from '../InputNext/InputNext';
 import styles from '../CreateNewModal/CreateNewModal.css';
 import Switcher from '../Switcher/Switcher';
+import getAvatarPlaceholder from '../../utils/getAvatarPlaceholder';
 
 export type Props = {
   id: string,
@@ -132,7 +133,7 @@ class EditGroupModalForm extends PureComponent<Props, State> {
       <div className={styles.avatarBlock}>
         <AvatarSelector
           title={name.value}
-          placeholder={group.placeholder}
+          placeholder={getAvatarPlaceholder(group.id)}
           avatar={avatar}
           size={140}
           onRemove={this.props.onAvatarRemove}

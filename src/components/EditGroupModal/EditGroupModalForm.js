@@ -44,6 +44,7 @@ export type Context = ProviderContext;
 
 class EditGroupModalForm extends PureComponent<Props, State> {
   shortnameInput: ?InputNext;
+  isPublic: boolean;
 
   static contextTypes = {
     l10n: LocalizationContextType,
@@ -58,21 +59,17 @@ class EditGroupModalForm extends PureComponent<Props, State> {
   constructor(props: Props, context: Context) {
     super(props, context);
 
+    this.isPublic = props.shortname && Boolean(props.shortname.value);
+
     if (!props.avatar || typeof props.avatar === 'string') {
       this.state = {
         avatar: props.avatar,
-        isPublic:
-          props.shortname &&
-          Boolean(props.shortname.value) &&
-          props.shortname.value !== '',
+        isPublic: this.isPublic,
       };
     } else {
       this.state = {
         avatar: null,
-        isPublic:
-          props.shortname &&
-          Boolean(props.shortname.value) &&
-          props.shortname.value !== '',
+        isPublic: this.isPublic,
       };
       fileToBase64(props.avatar, (avatar) => {
         this.setState({ avatar });
@@ -156,6 +153,7 @@ class EditGroupModalForm extends PureComponent<Props, State> {
           id={`${id}_public_swither`}
           name={`${id}_public_swither`}
           value={this.state.isPublic}
+          disabled={this.isPublic}
           onChange={this.handlePublicToggle}
           label={`EditGroupModal.${group.type}.public`}
           className={styles.switcher}

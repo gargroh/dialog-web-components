@@ -8,7 +8,7 @@ import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import styles from './AdminModalUserList.css';
 import Avatar from '../../Avatar/Avatar';
-import getAvatarPlaceholder from '../../../utils/getAvatarPlaceholder';
+import getAvatarPlaceholder from '../../Avatar/utils/getAvatarPlaceholder';
 import { PeerInfoTitle } from '../../PeerInfoTitle/PeerInfoTitle';
 
 type Props = {

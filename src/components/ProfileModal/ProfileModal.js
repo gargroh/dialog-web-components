@@ -24,7 +24,7 @@ import Field from '../Field/Field';
 import Icon from '../Icon/Icon';
 import Button from '../Button/Button';
 import AvatarSelector from '../AvatarSelector/AvatarSelector';
-import getAvatarPlaceholder from '../../utils/getAvatarPlaceholder';
+import getAvatarPlaceholder from '../Avatar/utils/getAvatarPlaceholder';
 import ImageEdit from '../ImageEdit/ImageEdit';
 import Spinner from '../Spinner/Spinner';
 import CustomForm, { type FormErrors } from '../CustomForm/CustomForm';

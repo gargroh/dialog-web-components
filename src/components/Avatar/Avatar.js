@@ -8,7 +8,6 @@ import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 
 import getAvatarText from './utils/getAvatarText';
-import getAvatarPlaceholder from './utils/getAvatarPlaceholder';
 import getAvatarColor from './utils/getAvatarColor';
 import createSequence from '../../utils/createSequence';
 import ImagePreloader, {

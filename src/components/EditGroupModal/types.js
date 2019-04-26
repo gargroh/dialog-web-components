@@ -30,4 +30,5 @@ export type Props = {
 export type State = {
   screen: 'info' | 'avatar',
   group: GroupUpdate,
+  isPublic: boolean,
 };

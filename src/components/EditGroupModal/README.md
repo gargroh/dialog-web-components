@@ -12,41 +12,41 @@ const initial = {
   context: {
     name: {
       error: null,
-      pending: false
+      pending: false,
     },
     shortname: {
       error: null,
-      pending: false
+      pending: false,
     },
     about: {
       error: null,
-      pending: false
+      pending: false,
     },
     avatar: {
       error: null,
-      pending: false
-    }
-  }
+      pending: false,
+    },
+  },
 };
 initialState = initial;
 const handleClose = () => setState(initial);
-const handleSubmit = (group) => {
-  console.debug(group);
+const handleSubmit = (group, update) => {
+  console.debug(update);
   setState(initial);
 };
 
 <div>
-  <Button theme="primary" onClick={() => setState({ isOpen: true })}>Edit Group</Button>
-  {
-    state.isOpen
-      ? <EditGroupModal
-          group={state.group}
-          shortnamePrefix="https://dlg.im/@"
-          context={state.context}
-          onClose={handleClose}
-          onSubmit={handleSubmit}
-        />
-      : null
-  }
-</div>
+  <Button theme="primary" onClick={() => setState({ isOpen: true })}>
+    Edit Group
+  </Button>
+  {state.isOpen ? (
+    <EditGroupModal
+      group={state.group}
+      shortnamePrefix="https://dlg.im/@"
+      context={state.context}
+      onClose={handleClose}
+      onSubmit={handleSubmit}
+    />
+  ) : null}
+</div>;
 ```

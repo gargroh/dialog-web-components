@@ -27,23 +27,24 @@ export type Props = {
   vertical: boolean,
   isPublicGroupsEnabled: boolean,
   shortnamePrefix?: ?string,
-  onChange: () => void,
+  aboutMaxLength?: number,
+  onChange: (value: mixed, event: SyntheticInputEvent<>) => void,
   onSubmit: () => void,
   onAvatarChange: (avatar: File) => void,
   onAvatarRemove: () => void,
-  aboutMaxLength?: number,
+  onPublicToggle: (isPublic: boolean) => void,
 };
 
 export type State = {
   avatar: ?string,
   isPublic: boolean,
+  shortname: string,
 };
 
 export type Context = ProviderContext;
 
 class EditGroupModalForm extends PureComponent<Props, State> {
   shortnameInput: ?InputNext;
-  isPublic: boolean;
 
   static contextTypes = {
     l10n: LocalizationContextType,
@@ -58,17 +59,20 @@ class EditGroupModalForm extends PureComponent<Props, State> {
   constructor(props: Props, context: Context) {
     super(props, context);
 
-    this.isPublic = props.shortname && Boolean(props.shortname.value);
+    const isPublic = props.shortname && Boolean(props.shortname.value);
+    const shortname = props.shortname.value || '';
 
     if (!props.avatar || typeof props.avatar === 'string') {
       this.state = {
         avatar: props.avatar,
-        isPublic: this.isPublic,
+        isPublic,
+        shortname,
       };
     } else {
       this.state = {
         avatar: null,
-        isPublic: this.isPublic,
+        isPublic,
+        shortname,
       };
       fileToBase64(props.avatar, (avatar) => {
         this.setState({ avatar });
@@ -102,6 +106,15 @@ class EditGroupModalForm extends PureComponent<Props, State> {
 
   handlePublicToggle = (isPublic: boolean): void => {
     this.setState({ isPublic });
+    this.props.onPublicToggle(isPublic);
+  };
+
+  handleShortnameChange = (
+    shortname: string,
+    event: SyntheticInputEvent<>,
+  ): void => {
+    this.setState({ shortname });
+    this.props.onChange(shortname, event);
   };
 
   getInputState = (field: string): Object => {
@@ -140,11 +153,14 @@ class EditGroupModalForm extends PureComponent<Props, State> {
   }
 
   renderShortname() {
-    const { group, shortname, id, isPublicGroupsEnabled } = this.props;
+    const { group, id, isPublicGroupsEnabled } = this.props;
 
     if (!isPublicGroupsEnabled) {
       return null;
     }
+
+    const isInitiallyPublic =
+      this.props.shortname && Boolean(this.props.shortname.value);
 
     return (
       <div className={styles.shortnameWrapper}>
@@ -152,7 +168,7 @@ class EditGroupModalForm extends PureComponent<Props, State> {
           id={`${id}_public_swither`}
           name={`${id}_public_swither`}
           value={this.state.isPublic}
-          disabled={this.isPublic}
+          disabled={isInitiallyPublic}
           onChange={this.handlePublicToggle}
           label={`EditGroupModal.${group.type}.public`}
           className={styles.switcher}
@@ -160,9 +176,9 @@ class EditGroupModalForm extends PureComponent<Props, State> {
         <InputNext
           id={`${id}_shortname`}
           name="shortname"
-          onChange={this.props.onChange}
+          onChange={this.handleShortnameChange}
           prefix={this.props.shortnamePrefix}
-          value={shortname.value || ''}
+          value={this.state.shortname}
           disabled={!this.state.isPublic}
           label={`CreateNewModal.${group.type}.info.shortname`}
           ref={this.setShortnameInput}

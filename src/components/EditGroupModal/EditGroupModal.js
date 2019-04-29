@@ -35,6 +35,7 @@ class EditGroupModal extends PureComponent<Props, State> {
         shortname: props.group.shortname,
         avatar: props.group.avatar,
       },
+      isPublic: Boolean(props.group.shortname),
     };
   }
 
@@ -115,16 +116,32 @@ class EditGroupModal extends PureComponent<Props, State> {
     }
   };
 
+  handlePublicToggle = (isPublic: boolean): void => {
+    this.setState({ isPublic });
+  };
+
   isChanged(): boolean {
     const {
-      context: { avatar, name, about, shortname },
+      group: { avatar, name, about, shortname },
     } = this.props;
 
+    const prevAbout = about || '';
+    const nextAbout = this.state.group.about || '';
+
+    const prevShortname = shortname || '';
+    const nextShortname = this.state.group.shortname || '';
+
+    const isShortnameChanged =
+      this.state.isPublic &&
+      this.state.group.shortname &&
+      this.state.group.shortname.length > 0 &&
+      nextShortname !== prevShortname;
+
     return (
-      this.state.group.name !== name.value ||
-      this.state.group.about !== about.value ||
-      this.state.group.shortname !== shortname.value ||
-      this.state.group.avatar !== avatar.value
+      this.state.group.name !== name ||
+      this.state.group.avatar !== avatar ||
+      nextAbout !== prevAbout ||
+      Boolean(isShortnameChanged)
     );
   }
 
@@ -177,11 +194,17 @@ class EditGroupModal extends PureComponent<Props, State> {
       <EditGroupModalForm
         className={styles.info}
         group={this.props.group}
-        name={{ ...this.props.context.name, value: this.state.group.name }}
-        about={{ ...this.props.context.about, value: this.state.group.about }}
+        name={{
+          ...this.props.context.name,
+          value: this.state.group.name,
+        }}
+        about={{
+          ...this.props.context.about,
+          value: this.state.group.about,
+        }}
         shortname={{
           ...this.props.context.shortname,
-          value: this.state.group.shortname,
+          value: this.props.group.shortname,
         }}
         avatar={this.state.group.avatar}
         shortnamePrefix={this.props.shortnamePrefix}
@@ -190,6 +213,7 @@ class EditGroupModal extends PureComponent<Props, State> {
         onSubmit={this.handleSubmit}
         onAvatarChange={this.handleAvatarEdit}
         onAvatarRemove={this.handleAvatarRemove}
+        onPublicToggle={this.handlePublicToggle}
       />
     );
   }

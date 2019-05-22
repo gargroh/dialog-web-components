@@ -17,15 +17,17 @@ type Props = {
   withVideo: boolean,
   titleStyle: 'row' | 'column',
   onClick?: ?() => mixed,
+  videoCall: boolean,
 };
 
 class CallInfo extends PureComponent<Props> {
   static defaultProps = {
     titleStyle: 'row',
+    videoCall: false,
   };
 
   render() {
-    const { call, titleStyle } = this.props;
+    const { call, titleStyle, videoCall } = this.props;
     const className = classNames(styles.container, this.props.className, {
       [styles.onCall]: this.props.onCall,
       [styles.withVideo]: this.props.withVideo,
@@ -53,7 +55,11 @@ class CallInfo extends PureComponent<Props> {
             />
           </div>
           <div className={styles.state}>
-            <CallInfoState state={call.state} startTime={call.startTime} />
+            <CallInfoState
+              state={call.state}
+              startTime={call.startTime}
+              videoCall={videoCall}
+            />
           </div>
         </div>
       </div>

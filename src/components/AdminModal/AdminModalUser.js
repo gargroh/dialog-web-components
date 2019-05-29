@@ -41,6 +41,7 @@ class AdminModalUser extends PureComponent<Props> {
             title={title}
             className={styles.title}
             emojiSize={22}
+            isFluid
           />
         </div>
       </div>

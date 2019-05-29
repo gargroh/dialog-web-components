@@ -18,6 +18,12 @@
   flex-flow: row nowrap;
 }
 
+.fluid {
+  @mixin text-overflow-ellipsis;
+  display: inline-block;
+  width: 100%;
+}
+
 .title {
   flex: 0 0 auto;
 }

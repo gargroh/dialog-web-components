@@ -33,6 +33,7 @@ class ContactListItem extends PureComponent<ItemProps<PeerInfo>> {
               title={item.title}
               titleClassName={styles.nameText}
               emojiSize={18}
+              isFluid
             />
           </div>
           <CheckButton

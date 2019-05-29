@@ -24,14 +24,18 @@ import styles from './EmojiList.css';
 
 type Screen = 'emoji' | 'stickers';
 
+type SrollTopType = {
+  [Screen]: number,
+};
+
 export type Props = {
   className?: string,
   recent?: string[],
   stickers?: StickerPack[],
   onClick: (char: string) => mixed,
   onStickerClick: (sticker: Sticker) => mixed,
-  scrollTop: ?number,
-  onScroll: ?(scrollTop: number) => mixed,
+  scrollTop: ?SrollTopType,
+  onScroll: ?(screen: Screen, scrollTop: number) => mixed,
   screen: ?Screen,
   onScreenChange: ?(screen: Screen) => mixed,
 };
@@ -50,20 +54,12 @@ class EmojiList extends PureComponent<Props, State> {
     remove: () => void,
   };
 
-  static defaultProps = {
-    screen: 'emoji',
-    scrollTop: {
-      emoji: 0,
-      stickers: 0,
-    },
-  };
-
   constructor(props: Props) {
     super(props);
     const { height, categories } = createEmojiCategories(props.recent);
 
     this.state = {
-      screen: props.screen,
+      screen: props.screen || 'emoji',
       current: categories[0].name,
       isAtBottom: false,
     };
@@ -243,7 +239,7 @@ class EmojiList extends PureComponent<Props, State> {
     }
   }
 
-  scrollToFromProps(screen) {
+  scrollToFromProps(screen: Screen) {
     if (this.container && this.props.scrollTop) {
       this.container.scrollTop = this.props.scrollTop[screen];
     }

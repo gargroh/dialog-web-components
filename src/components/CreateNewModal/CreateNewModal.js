@@ -32,6 +32,11 @@ class CreateNewModal extends PureComponent<Props, CreateNewModalState> {
     id: 'create_new_modal',
     isPublicGroupsEnabled: true,
     isMaxGroupSizeVisible: false,
+    /*
+     * if max group size is below this value, we must inform user about it,
+     * because higher number are not so interesting for him
+     */
+    significantGroupSize: 10000,
   };
 
   state = {
@@ -174,6 +179,7 @@ class CreateNewModal extends PureComponent<Props, CreateNewModalState> {
       maxGroupSize,
       request: { type },
       step,
+      significantGroupSize,
     } = this.props;
 
     return (
@@ -192,6 +198,7 @@ class CreateNewModal extends PureComponent<Props, CreateNewModalState> {
             id={id}
             type={type}
             maxGroupSize={maxGroupSize}
+            significantGroupSize={significantGroupSize}
             onChange={this.handleChange}
             onSubmit={this.handleNextStepClick}
           />

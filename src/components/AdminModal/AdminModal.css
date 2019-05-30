@@ -35,6 +35,10 @@
   margin-right: 16px;
 }
 
+.info {
+  @mixin flex-fix;
+}
+
 .back {
   margin-right: 16px;
   transition: color var(--modal-admin-back-transition-duration) linear;

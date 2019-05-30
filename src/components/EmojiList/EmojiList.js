@@ -106,31 +106,16 @@ class EmojiList extends PureComponent<Props, State> {
 
     switch (nextScreen) {
       case 'emoji': {
-        this.setState(
-          {
-            screen: nextScreen,
-            current: this.categories[0].name,
-          },
-          () => {
-            this.scrollToFromProps(this.state.screen);
-          },
-        );
+        this.toggleScreen(nextScreen, this.categories[0].name);
 
         break;
       }
 
       case 'stickers': {
         const { stickers } = this.props;
+
         if (stickers && stickers.length) {
-          this.setState(
-            {
-              screen: nextScreen,
-              current: String(stickers[0].id),
-            },
-            () => {
-              this.scrollToFromProps(this.state.screen);
-            },
-          );
+          this.toggleScreen(nextScreen, String(stickers[0].id));
         }
 
         break;
@@ -240,9 +225,19 @@ class EmojiList extends PureComponent<Props, State> {
   }
 
   scrollToFromProps(screen: Screen) {
-    if (this.container && this.props.scrollTop) {
+    if (
+      this.container &&
+      this.props.scrollTop &&
+      this.props.scrollTop[screen]
+    ) {
       this.container.scrollTop = this.props.scrollTop[screen];
     }
+  }
+
+  toggleScreen(screen: Screen, current: string) {
+    this.setState({ screen, current }, () => {
+      this.scrollToFromProps(screen);
+    });
   }
 
   renderCategories(): ?Array<Node> {

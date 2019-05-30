@@ -22,15 +22,23 @@ import StickerCategory from './StickerCategory';
 import { handleScroll, scrollToCategory } from './utils/runtime';
 import styles from './EmojiList.css';
 
+type Screen = 'emoji' | 'stickers';
+
+type SrollTopType = {
+  [Screen]: number,
+};
+
 export type Props = {
   className?: string,
   recent?: string[],
   stickers?: StickerPack[],
   onClick: (char: string) => mixed,
   onStickerClick: (sticker: Sticker) => mixed,
+  scrollTop: ?SrollTopType,
+  onScroll: ?(screen: Screen, scrollTop: number) => mixed,
+  screen: ?Screen,
+  onScreenChange: ?(screen: Screen) => mixed,
 };
-
-type Screen = 'emoji' | 'stickers';
 
 export type State = {
   current: string,
@@ -51,7 +59,7 @@ class EmojiList extends PureComponent<Props, State> {
     const { height, categories } = createEmojiCategories(props.recent);
 
     this.state = {
-      screen: 'emoji',
+      screen: props.screen || 'emoji',
       current: categories[0].name,
       isAtBottom: false,
     };
@@ -65,6 +73,8 @@ class EmojiList extends PureComponent<Props, State> {
       this.listener = listen(this.container, 'scroll', this.handleScroll, {
         passive: true,
       });
+
+      this.scrollToFromProps(this.state.screen);
     }
   }
 
@@ -90,23 +100,22 @@ class EmojiList extends PureComponent<Props, State> {
 
     const nextScreen = this.getNextScreen();
 
+    if (this.props.onScreenChange) {
+      this.props.onScreenChange(nextScreen);
+    }
+
     switch (nextScreen) {
       case 'emoji': {
-        this.setState({
-          screen: nextScreen,
-          current: this.categories[0].name,
-        });
+        this.toggleScreen(nextScreen, this.categories[0].name);
 
         break;
       }
 
       case 'stickers': {
         const { stickers } = this.props;
+
         if (stickers && stickers.length) {
-          this.setState({
-            screen: nextScreen,
-            current: String(stickers[0].id),
-          });
+          this.toggleScreen(nextScreen, String(stickers[0].id));
         }
 
         break;
@@ -161,6 +170,10 @@ class EmojiList extends PureComponent<Props, State> {
   handleScroll = ({ target }: $FlowIssue): void => {
     const { scrollTop } = target;
 
+    if (this.props.onScroll) {
+      this.props.onScroll(this.state.screen, scrollTop);
+    }
+
     switch (this.state.screen) {
       case 'emoji': {
         const nextState = handleScroll(
@@ -209,6 +222,22 @@ class EmojiList extends PureComponent<Props, State> {
     if (this.container) {
       this.container.scrollTop = scrollTo;
     }
+  }
+
+  scrollToFromProps(screen: Screen) {
+    if (
+      this.container &&
+      this.props.scrollTop &&
+      this.props.scrollTop[screen]
+    ) {
+      this.container.scrollTop = this.props.scrollTop[screen];
+    }
+  }
+
+  toggleScreen(screen: Screen, current: string) {
+    this.setState({ screen, current }, () => {
+      this.scrollToFromProps(screen);
+    });
   }
 
   renderCategories(): ?Array<Node> {

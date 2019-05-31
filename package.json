@@ -59,7 +59,7 @@
     "@dlghq/country-codes": "^0.3.0",
     "@dlghq/dialog-types": "^1.37.0",
     "@dlghq/emoji": "^2.2.0",
-    "@dlghq/markdown": "^1.4.1",
+    "@dlghq/markdown": "^1.5.1",
     "@dlghq/react-l10n": "^0.9.1",
     "lodash": "^4.17.11",
     "react": "^16.5.2",

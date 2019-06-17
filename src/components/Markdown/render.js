@@ -119,13 +119,13 @@ export function renderBlocks(
       case 'paragraph':
         if (token.content.length) {
           result.push(
-            <p key={i} className={styles.paragraph}>
+            <div key={i} className={styles.paragraph}>
               {renderText(
                 token.content,
                 false,
                 isOnlyEmoji && renderBigEmoji ? 44 : emojiSize,
               )}
-            </p>,
+            </div>,
           );
         } else {
           result.push(<br key={i} className={styles.break} />);

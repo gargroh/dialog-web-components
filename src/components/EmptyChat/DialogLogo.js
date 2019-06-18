@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './EmptyChat.css';
 
-const DialogLogo = (
+const DialogLogo = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 105 90"

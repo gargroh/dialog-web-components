@@ -14,7 +14,7 @@ import ModalBody from '../Modal/ModalBody';
 import ModalFooter from '../Modal/ModalFooter';
 import Button from '../Button/Button';
 import HotKeys from '../HotKeys/HotKeys';
-import Checkbox from '@dlghq/dialog-ui/src/components/Checkbox/Checkbox';
+import { Checkbox } from '@dlghq/dialog-ui';
 
 export type Props = {
   message: string,

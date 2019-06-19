@@ -74,7 +74,7 @@ class FeedbackModal extends PureComponent<Props, State> {
     }
   };
 
-  isAllowedToSend = () => {
+  validateTextLength = () => {
     return (
       !this.props.feedbackRequired ||
       (this.state.text &&
@@ -142,7 +142,7 @@ class FeedbackModal extends PureComponent<Props, State> {
                 type="submit"
                 theme="success"
                 rounded={false}
-                disabled={!this.isAllowedToSend()}
+                disabled={!this.validateTextLength()}
               >
                 <Text id="FeedbackModal.submit" />
               </Button>

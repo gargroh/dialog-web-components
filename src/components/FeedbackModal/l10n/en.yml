@@ -1,5 +1,5 @@
 title: Feedback
-label: Describe your issue
+label: Describe your issue (required)
 add_logs: Add diagnostics data
 submit: Send feedback
 save_logs: Save data to file

@@ -28,6 +28,8 @@ type Props = {
   onSubmit: (feedback: Feedback) => mixed,
   onClose: () => mixed,
   onSaveLogs?: () => mixed,
+  feedbackRequired: boolean,
+  minimumFeedbackLength: number,
 };
 
 type State = Feedback;
@@ -35,6 +37,8 @@ type State = Feedback;
 class FeedbackModal extends PureComponent<Props, State> {
   static defaultProps = {
     id: 'feedback_modal',
+    feedbackRequired: true,
+    minimumFeedbackLength: 5,
   };
 
   constructor(props: Props) {
@@ -70,8 +74,17 @@ class FeedbackModal extends PureComponent<Props, State> {
     }
   };
 
+  isAllowedToSend = () => {
+    return (
+      !this.props.feedbackRequired ||
+      (this.state.text &&
+        this.state.text.length >= this.props.minimumFeedbackLength)
+    );
+  };
+
   renderSaveLogs = () => {
-    if (!this.props.onSaveLogs) {
+    const { onSaveLogs } = this.props;
+    if (!onSaveLogs) {
       return null;
     }
 
@@ -79,7 +92,7 @@ class FeedbackModal extends PureComponent<Props, State> {
       <span className={styles.saveLogs}>
         <Text
           tagName="div"
-          onClick={this.props.onSaveLogs}
+          onClick={onSaveLogs}
           className={styles.saveLogsLink}
           id="FeedbackModal.save_logs"
         />
@@ -89,38 +102,33 @@ class FeedbackModal extends PureComponent<Props, State> {
 
   render() {
     const className = classNames(styles.container, this.props.className);
+    const { id, onClose } = this.props;
+    const { text, addLogs } = this.state;
 
     return (
       <HotKeys onHotKey={this.handleHotkey}>
-        <Modal className={className} onClose={this.props.onClose}>
-          <form
-            id={this.props.id}
-            autoComplete="off"
-            onSubmit={this.handleSubmit}
-          >
+        <Modal className={className} onClose={onClose}>
+          <form id={id} autoComplete="off" onSubmit={this.handleSubmit}>
             <ModalHeader withBorder>
               <Text id="FeedbackModal.title" />
-              <ModalClose
-                onClick={this.props.onClose}
-                id={this.props.id + '_close_button'}
-              />
+              <ModalClose onClick={onClose} id={id + '_close_button'} />
             </ModalHeader>
             <ModalBody className={styles.body}>
               <InputNext
                 htmlAutoFocus
-                id={this.props.id + '_text'}
+                id={id + '_text'}
                 type="textarea"
                 spellcheck
                 placeholder="FeedbackModal.label"
                 inputClassName={styles.text}
-                value={this.state.text}
+                value={text}
                 onChange={this.handleFeedbackChange}
               />
               <div className={styles.logsWrapper}>
                 <Switcher
-                  id={this.props.id + '_add_logs'}
+                  id={id + '_add_logs'}
                   name="addLogs"
-                  value={this.state.addLogs}
+                  value={addLogs}
                   onChange={this.handleAddLogsToggle}
                   label="FeedbackModal.add_logs"
                 />
@@ -130,11 +138,11 @@ class FeedbackModal extends PureComponent<Props, State> {
             <ModalFooter className={styles.footer}>
               <Button
                 wide
-                id={`${this.props.id}_submit_button`}
+                id={`${id}_submit_button`}
                 type="submit"
                 theme="success"
                 rounded={false}
-                disabled={!this.state.text}
+                disabled={!this.isAllowedToSend()}
               >
                 <Text id="FeedbackModal.submit" />
               </Button>

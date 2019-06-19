@@ -43,7 +43,7 @@ class Confirm extends PureComponent<Props, State> {
   };
 
   handleSuccess = (): void => {
-    this.props.onSubmit(this.props.action);
+    this.props.onSubmit(this.props.action, this.state.checked);
   };
 
   handleCancel = (): void => {

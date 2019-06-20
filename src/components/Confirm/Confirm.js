@@ -20,7 +20,7 @@ export type Props = {
   message: string,
   submit: string,
   cancel: string,
-  hasCheckbox: Boolean,
+  hasCheckbox: boolean,
   checkboxMessage: string,
   theme: ColorTheme,
   action: mixed,

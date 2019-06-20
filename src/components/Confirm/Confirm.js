@@ -24,7 +24,7 @@ export type Props = {
   checkboxMessage: string,
   theme: ColorTheme,
   action: mixed,
-  onSubmit: (action: mixed) => void,
+  onSubmit: (action: mixed, checked: boolean) => void,
   onClose: () => mixed,
 };
 type State = {
@@ -50,10 +50,6 @@ class Confirm extends PureComponent<Props, State> {
     this.props.onClose();
   };
 
-  toggleCheck = (): void => {
-    this.setState({ checked: !this.state.checked });
-  };
-
   handleHotkey = (hotkey: string, event: KeyboardEvent): void => {
     event.preventDefault();
     event.stopPropagation();
@@ -67,6 +63,10 @@ class Confirm extends PureComponent<Props, State> {
       default:
       // do nothing
     }
+  };
+
+  handleCheck = (): void => {
+    this.setState((prevState) => ({ checked: !prevState }));
   };
 
   render() {
@@ -86,7 +86,7 @@ class Confirm extends PureComponent<Props, State> {
               {hasCheckbox && (
                 <Checkbox
                   value={this.state.checked}
-                  onChange={this.toggleCheck}
+                  onChange={this.handleCheck}
                 >
                   {checkboxMessage && <Text id={checkboxMessage} />}
                 </Checkbox>

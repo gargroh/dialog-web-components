@@ -71,6 +71,7 @@ class Confirm extends PureComponent<Props, State> {
 
   render() {
     const className = classNames(modalStyles.container, styles.container);
+    const { checkboxMessage, hasCheckbox } = this.props;
 
     return (
       <HotKeys onHotKey={this.handleHotkey}>
@@ -82,12 +83,12 @@ class Confirm extends PureComponent<Props, State> {
                 tagName="h3"
                 className={styles.message}
               />
-              {this.props.hasCheckbox && (
+              {hasCheckbox && (
                 <Checkbox
                   value={this.state.checked}
                   onChange={this.toggleCheck}
                 >
-                  <Text id={this.props.checkboxMessage} />
+                  {checkboxMessage && <Text id={checkboxMessage} />}
                 </Checkbox>
               )}
             </ModalBody>

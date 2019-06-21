@@ -14,7 +14,7 @@ import ModalBody from '../Modal/ModalBody';
 import ModalFooter from '../Modal/ModalFooter';
 import Button from '../Button/Button';
 import HotKeys from '../HotKeys/HotKeys';
-import { Checkbox } from '@dlghq/dialog-ui';
+import CheckButton from '../CheckButton/CheckButton';
 
 export type Props = {
   message: string,
@@ -34,8 +34,8 @@ type State = {
 class Confirm extends PureComponent<Props, State> {
   static defaultProps = {
     theme: 'default',
-    hasCheckbox: false,
-    checkboxMessage: '',
+    hasCheckbox: true,
+    checkboxMessage: 'Text here',
   };
 
   state = {
@@ -66,7 +66,9 @@ class Confirm extends PureComponent<Props, State> {
   };
 
   handleCheck = (): void => {
-    this.setState((prevState) => ({ checked: !prevState }));
+    this.setState(({ checked }) => ({
+      checked: !checked,
+    }));
   };
 
   render() {
@@ -84,12 +86,18 @@ class Confirm extends PureComponent<Props, State> {
                 className={styles.message}
               />
               {hasCheckbox && (
-                <Checkbox
-                  value={this.state.checked}
-                  onChange={this.handleCheck}
-                >
-                  {checkboxMessage && <Text id={checkboxMessage} />}
-                </Checkbox>
+                <div className={styles.checkboxWrapper}>
+                  <CheckButton
+                    size={16}
+                    onClick={this.handleCheck}
+                    checked={this.state.checked}
+                  />
+                  {checkboxMessage && (
+                    <div className={styles.checkboxText}>
+                      <Text id={checkboxMessage} />
+                    </div>
+                  )}
+                </div>
               )}
             </ModalBody>
             <ModalFooter className={styles.footer}>

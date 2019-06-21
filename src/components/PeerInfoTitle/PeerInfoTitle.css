@@ -26,6 +26,10 @@
 
 .title {
   flex: 0 0 auto;
+
+  &.wrap {
+    flex-shrink: 1;
+  }
 }
 
 .userName {

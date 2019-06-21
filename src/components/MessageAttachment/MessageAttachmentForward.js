@@ -58,12 +58,12 @@ class MessageAttachmentForward extends PureComponent<Props> {
           view="link"
           onClick={this.handleGoToPeer}
           size="small"
-          className={styles.fromButton}
+          className={styles.button}
         >
           {from.type === 'channel' || from.type === 'group' ? (
             <Icon glyph={from.type} className={styles.fromIcon} size={20} />
           ) : null}
-          <PeerInfoTitle title={from.title} emojiSize={16} />
+          <PeerInfoTitle title={from.title} emojiSize={16} wrap />
         </Button>
       </div>
     );

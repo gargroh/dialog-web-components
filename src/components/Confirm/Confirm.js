@@ -34,8 +34,8 @@ type State = {
 class Confirm extends PureComponent<Props, State> {
   static defaultProps = {
     theme: 'default',
-    hasCheckbox: true,
-    checkboxMessage: 'Text here',
+    hasCheckbox: false,
+    checkboxMessage: '',
   };
 
   state = {

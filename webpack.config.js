@@ -17,6 +17,8 @@ const whitelist = [
   resolve('node_modules/@dlghq/dialog-types'),
   resolve('node_modules/@dlghq/dialog-utils'),
   resolve('node_modules/@dlghq/country-codes'),
+  resolve('node_modules/@dlghq/dialog-ui'),
+  resolve('node_modules/@dlghq/emoji'),
 ];
 
 const globalStyles = [
@@ -36,22 +38,29 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: [...whitelist, resolve('node_modules/@dlghq/dialog-ui')],
-        loader: 'babel-loader',
-        options: {
-          babelrc: false,
-          cacheDirectory: true,
-          presets: [
-            [
-              '@dlghq/babel-preset-dialog',
-              {
-                modules: false,
-                runtime: false,
-                development: true,
-              },
-            ],
-          ],
-        },
+        include: whitelist,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              babelrc: false,
+              cacheDirectory: true,
+              presets: [
+                [
+                  '@dlghq/babel-preset-dialog',
+                  {
+                    modules: false,
+                    runtime: false,
+                    development: true,
+                  },
+                ],
+              ],
+            },
+          },
+          {
+            loader: 'astroturf/loader',
+          },
+        ],
       },
       {
         test: /\.css$/,
@@ -66,11 +75,6 @@ module.exports = {
           },
           {
             loader: 'postcss-loader',
-            options: {
-              plugins() {
-                return require('@dlghq/postcss-dialog')();
-              },
-            },
           },
         ],
         include: globalStyles,
@@ -78,7 +82,7 @@ module.exports = {
       {
         test: /\.css$/,
         include: whitelist,
-        exclude: globalStyles,
+        exclude: [globalStyles, resolve('node_modules/@dlghq/dialog-ui')],
         use: [
           'style-loader',
           {
@@ -91,18 +95,13 @@ module.exports = {
           },
           {
             loader: 'postcss-loader',
-            options: {
-              plugins() {
-                return require('@dlghq/postcss-dialog')();
-              },
-            },
           },
         ],
       },
       {
         test: /\.css$/,
         include: [resolve('node_modules/@dlghq/dialog-ui')],
-        exclude: globalStyles,
+        exclude: [globalStyles],
         use: [
           'style-loader',
           {
@@ -115,11 +114,6 @@ module.exports = {
           },
           {
             loader: 'postcss-loader',
-            options: {
-              plugins() {
-                return require('@dlghq/postcss-dialog')();
-              },
-            },
           },
         ],
       },
@@ -130,12 +124,18 @@ module.exports = {
       },
       {
         test: /\.(jpg|png|svg|gif)$/,
-        exclude: resolve('src/components/Icon/svg'),
+        exclude: [
+          resolve('src/components/Icon/svg'),
+          resolve('node_modules/@dlghq/dialog-ui/src/components/Icon/svg'),
+        ],
         use: ['file-loader'],
       },
       {
         test: /\.(svg)$/,
-        include: resolve('src/components/Icon/svg'),
+        include: [
+          resolve('src/components/Icon/svg'),
+          resolve('node_modules/@dlghq/dialog-ui/src/components/Icon/svg'),
+        ],
         use: ['svg-sprite-loader'],
       },
       {

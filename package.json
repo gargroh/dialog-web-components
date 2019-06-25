@@ -66,8 +66,10 @@
     "react-dom": "^16.5.2"
   },
   "dependencies": {
-    "@dlghq/dialog-ui": "0.0.18",
+    "@dlghq/dialog-ui": "0.0.48-postcss.0",
     "@dlghq/dialog-utils": "0.10.0",
+    "@dlghq/postcss-dialog": "1.15.0",
+    "astroturf": "0.9.6",
     "classnames": "2.2.6",
     "clipboard": "2.0.4",
     "croppie": "2.6.2",
@@ -95,7 +97,6 @@
     "@dlghq/emoji": "2.2.0",
     "@dlghq/eslint-config-dialog": "4.0.8",
     "@dlghq/markdown": "1.5.3",
-    "@dlghq/postcss-dialog": "1.13.1",
     "@dlghq/react-l10n": "0.9.3",
     "@dlghq/stylelint-config-dialog": "0.11.0",
     "babel-jest": "24.5.0",
@@ -104,6 +105,7 @@
     "buildbranch": "2.0.1",
     "chalk": "2.4.2",
     "core-js": "2.6.5",
+    "css-loader": "2.1.1",
     "ejs": "2.6.1",
     "eslint": "5.15.1",
     "eslint-config-prettier": "4.1.0",

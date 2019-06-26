@@ -4,6 +4,7 @@
 
 @import './colors.css';
 @import './helpers.css';
+@import '@dlghq/dialog-ui/src/styles/variables.css';
 
 @custom-media --smaller (width < 500px);
 @custom-media --small (width < 800px);
@@ -61,11 +62,11 @@
   --z-index-overlay: 1500;
 
   /* Colors */
-  --color-primary: var(--violet-blue);
+  /* --color-primary: var(--violet-blue);
   --color-success: var(--medium-green);
   --color-danger: var(--lipstick);
   --color-info: var(--dark-periwinkle);
-  --color-warning: var(--orange-yellow);
+  --color-warning: var(--orange-yellow); */
   --color-pending: var(--color-info);
   --color-error: var(--color-danger);
   --color-labels: var(--dark-grey);

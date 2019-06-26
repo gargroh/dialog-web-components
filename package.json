@@ -66,7 +66,7 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "@dlghq/dialog-ui": "0.0.48",
+    "@dlghq/dialog-ui": "0.0.50",
     "@dlghq/dialog-utils": "0.10.0",
     "astroturf": "0.9.6",
     "classnames": "2.2.6",

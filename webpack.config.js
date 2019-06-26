@@ -88,9 +88,10 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              modules: true,
+              modules: {
+                localIdentName: 'DialogComponents__[name]__[local]',
+              },
               importLoaders: 1,
-              localIdentName: 'DialogComponents__[name]__[local]',
             },
           },
           {
@@ -101,15 +102,16 @@ module.exports = {
       {
         test: /\.css$/,
         include: [resolve('node_modules/@dlghq/dialog-ui')],
-        exclude: [globalStyles],
+        exclude: globalStyles,
         use: [
           'style-loader',
           {
             loader: 'css-loader',
             options: {
-              modules: true,
+              modules: {
+                localIdentName: 'DialogUI__[name]__[local]',
+              },
               importLoaders: 1,
-              localIdentName: 'DialogUI__[name]__[local]',
             },
           },
           {

@@ -3,19 +3,17 @@ due internally Scroller uses [AutoSizer](https://github.com/bvaughn/react-virtua
 Also we have `onUserScroll` and `onJSScroll` event handlers which detects how scroll be initiated
 
 ```jsx
-const text = require('./mock/lorem.txt');
+const text = require('raw-loader!./mock/lorem.txt').default;
 
 <div style={{ width: 300, height: 200 }}>
-  <Scroller onScroll={() => console.log('onScroll')}>
-    {text}
-  </Scroller>
-</div>
+  <Scroller onScroll={() => console.log('onScroll')}>{text}</Scroller>
+</div>;
 ```
 
 `ScrollTo` and `ScrollToBottom` methods
 
 ```jsx
-const text = require('./mock/lorem.txt');
+const text = require('raw-loader!./mock/lorem.txt').default;
 let scroller = null;
 
 <div>
@@ -23,18 +21,22 @@ let scroller = null;
     <Button theme="primary" onClick={() => scroller.scrollTo(100)} size="small">
       Scroll to 100
     </Button>
-    <Button theme="primary" onClick={() => scroller.scrollToBottom()} size="small">
+    <Button
+      theme="primary"
+      onClick={() => scroller.scrollToBottom()}
+      size="small"
+    >
       Scroll to bottom
     </Button>
   </div>
   <div style={{ width: 300, height: 200 }}>
     <Scroller
-      ref={(scrollerNode) => scroller = scrollerNode}
+      ref={(scrollerNode) => (scroller = scrollerNode)}
       onUserScroll={() => console.log('Scrolled by user')}
       onJSScroll={() => console.log('Scrolled by js')}
     >
       {text}
     </Scroller>
   </div>
-</div>
+</div>;
 ```

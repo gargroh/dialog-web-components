@@ -39,7 +39,7 @@ class Confirm extends PureComponent<Props, State> {
   };
 
   state = {
-    checked: false,
+    checked: true,
   };
 
   handleSuccess = (): void => {

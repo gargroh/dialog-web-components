@@ -1,13 +1,14 @@
 ```jsx
 const initial = {
   isOpen: false,
+  isWebOpen: false,
   appName: 'dialog',
   appVersion: '1.10.2',
   updateState: {
     value: 'upToDate',
     pending: false,
-    error: null
-  }
+    error: null,
+  },
 };
 initialState = initial;
 
@@ -20,51 +21,64 @@ const actions = {
       updateState: {
         value: 'upToDate',
         pending: true,
-        error: null
-      }
+        error: null,
+      },
     });
-    
+
     setTimeout(() => {
       setState({
         updateState: {
           value: 'available',
           pending: true,
-          error: null
-        }
+          error: null,
+        },
       });
     }, 2000);
-    
+
     setTimeout(() => {
       if (Math.random() > 0.5) {
         setState({
           updateState: {
             value: 'available',
             pending: false,
-            error: null
-          }
+            error: null,
+          },
         });
       } else {
         setState({
           updateState: {
             value: 'available',
             pending: false,
-            error: new Error('Update failed')
-          }
+            error: new Error('Update failed'),
+          },
         });
       }
     }, 10000);
   },
   onUpdate: () => {
     console.log('Update app');
-  }
+  },
 };
 
 const handleOpen = () => {
   setState({ isOpen: true });
 };
 
+const handleWebOpen = () => {
+  setState({ isWebOpen: true });
+};
+
 <div>
-  <Button theme="primary" onClick={handleOpen}>Show about</Button>
-  {state.isOpen ? (<AboutModal {...state} {...actions} />) : null}
-</div>
+  <Button theme="primary" onClick={handleOpen}>
+    Show about
+  </Button>
+  {state.isOpen ? <AboutModal {...state} {...actions} /> : null}
+
+  <Button theme="primary" onClick={handleWebOpen}>
+    Show web about
+  </Button>
+  {state.isWebOpen ? (
+    <AboutModal updatesDisabled={true} {...state} {...actions} />
+  ) : null}
+</div>;
 ```

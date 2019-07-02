@@ -14,24 +14,36 @@ import ModalBody from '../Modal/ModalBody';
 import ModalFooter from '../Modal/ModalFooter';
 import Button from '../Button/Button';
 import HotKeys from '../HotKeys/HotKeys';
+import CheckButton from '../CheckButton/CheckButton';
 
 export type Props = {
   message: string,
   submit: string,
   cancel: string,
+  hasCheckbox: boolean,
+  checkboxMessage: string,
   theme: ColorTheme,
   action: mixed,
-  onSubmit: (action: mixed) => void,
+  onSubmit: (action: mixed, checked: boolean) => void,
   onClose: () => mixed,
 };
+type State = {
+  checked: boolean,
+};
 
-class Confirm extends PureComponent<Props> {
+class Confirm extends PureComponent<Props, State> {
   static defaultProps = {
     theme: 'default',
+    hasCheckbox: false,
+    checkboxMessage: '',
+  };
+
+  state = {
+    checked: true,
   };
 
   handleSuccess = (): void => {
-    this.props.onSubmit(this.props.action);
+    this.props.onSubmit(this.props.action, this.state.checked);
   };
 
   handleCancel = (): void => {
@@ -53,8 +65,15 @@ class Confirm extends PureComponent<Props> {
     }
   };
 
+  handleCheck = (): void => {
+    this.setState(({ checked }) => ({
+      checked: !checked,
+    }));
+  };
+
   render() {
     const className = classNames(modalStyles.container, styles.container);
+    const { checkboxMessage, hasCheckbox } = this.props;
 
     return (
       <HotKeys onHotKey={this.handleHotkey}>
@@ -66,6 +85,20 @@ class Confirm extends PureComponent<Props> {
                 tagName="h3"
                 className={styles.message}
               />
+              {hasCheckbox && (
+                <div className={styles.checkboxWrapper}>
+                  <CheckButton
+                    size={16}
+                    onClick={this.handleCheck}
+                    checked={this.state.checked}
+                  />
+                  {checkboxMessage && (
+                    <div className={styles.checkboxText}>
+                      <Text id={checkboxMessage} />
+                    </div>
+                  )}
+                </div>
+              )}
             </ModalBody>
             <ModalFooter className={styles.footer}>
               <Button

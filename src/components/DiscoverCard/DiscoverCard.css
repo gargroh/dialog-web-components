@@ -72,6 +72,10 @@
   @mixin text-overflow-ellipsis;
 }
 
+.titleInner {
+  display: inline;
+}
+
 .icon {
   display: inline-block;
   margin-right: 4px;

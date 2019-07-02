@@ -122,7 +122,11 @@ class DiscoverCard extends PureComponent<Props> {
     return (
       <div className={styles.title} title={title}>
         {this.renderIcon()}
-        <PeerInfoTitle title={title} emojiSize={20} />
+        <PeerInfoTitle
+          className={styles.titleInner}
+          title={title}
+          emojiSize={20}
+        />
       </div>
     );
   }

@@ -19,13 +19,9 @@
   --toolbar-border-color: color-mod(#000 alpha(14%));
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   z-index: var(--z-index-toolbar);
   display: flex;
   flex-direction: row;
@@ -58,20 +54,19 @@
   justify-content: flex-end;
 }
 
-/* Theming */
 .nameWrapper {
-  display: block;
   width: 100%;
   line-height: 22px;
   height: 22px;
-  @mixin text-overflow-ellipsis;
 }
 
 .name {
+  flex: 0 1 auto;
   letter-spacing: -0.3px;
   font-size: var(--toolbar-title-font-size);
   font-weight: 500;
   color: var(--toolbar-title-color);
+  @mixin text-overflow-ellipsis;
 }
 
 .status {
@@ -81,6 +76,10 @@
   height: 18px;
   color: var(--toolbar-status-color);
   @mixin text-overflow-ellipsis;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
 }
 
 .avatar {
@@ -98,4 +97,14 @@
   padding: 2px;
   border-radius: 50%;
   background-color: #fff;
+}
+
+@media screen and (--small) {
+  .nameWrapper {
+    display: block;
+  }
+
+  .status {
+    display: block;
+  }
 }

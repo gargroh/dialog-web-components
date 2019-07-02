@@ -7,7 +7,7 @@ import type { Message, PeerInfo, Peer } from '@dlghq/dialog-types';
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import PeerAvatar from '../../PeerAvatar/PeerAvatar';
-import PeerInfoTitle from '../../PeerInfoTitle/PeerInfoTitle';
+import { PeerInfoTitle } from '../../PeerInfoTitle/PeerInfoTitle';
 import MessageContent from '../../MessageContent/MessageContent';
 import Icon from '../../Icon/Icon';
 import styles from './ActivitySearchItemMessage.css';

@@ -11,14 +11,23 @@ import TimeTimer from '../Timer/TimeTimer';
 type Props = {
   state: CallState,
   startTime: number,
+  videoCall?: ?boolean,
 };
 
 function CallInfoState(props: Props) {
   switch (props.state) {
-    case 'connecting_to_server':
+    case 'ringing_incoming':
+      return (
+        <Text
+          id={
+            props.videoCall
+              ? 'Call.ringing_incoming_video'
+              : 'Call.ringing_incoming'
+          }
+        />
+      );
     case 'connecting_to_peer':
     case 'ringing_outgoing':
-    case 'ringing_incoming':
     case 'connecting':
     case 'ended':
       return <Text id={`Call.${props.state}`} />;

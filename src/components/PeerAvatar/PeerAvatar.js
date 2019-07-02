@@ -7,7 +7,7 @@ import type { PeerInfo, UserStatusType } from '@dlghq/dialog-types';
 import React from 'react';
 
 import Avatar from '../Avatar/Avatar';
-import getAvatarPlaceholder from '../../utils/getAvatarPlaceholder';
+import getAvatarPlaceholder from '../Avatar/utils/getAvatarPlaceholder';
 
 export type Props = {
   className?: string,

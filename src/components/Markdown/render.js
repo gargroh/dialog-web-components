@@ -9,9 +9,9 @@ import Emoji from '../Emoji/Emoji';
 import styles from './Markdown.css';
 
 export function renderText(
-  tokens: TextToken[],
-  emojiSize?: number = 16,
+  tokens: Array<TextToken>,
   isInline?: boolean,
+  emojiSize?: number = 16,
 ) {
   const result = [];
 
@@ -92,7 +92,7 @@ export function renderText(
   return result;
 }
 
-function containsOnlyEmoji(tokens: BlockToken[]): boolean {
+function containsOnlyEmoji(tokens: Array<BlockToken>): boolean {
   if (tokens.length === 1) {
     const token = tokens[0];
     if (token.type === 'paragraph') {
@@ -104,9 +104,9 @@ function containsOnlyEmoji(tokens: BlockToken[]): boolean {
 }
 
 export function renderBlocks(
-  tokens: BlockToken[],
-  emojiSize?: number = 16,
+  tokens: Array<BlockToken>,
   renderBigEmoji: boolean,
+  emojiSize?: number = 16,
 ) {
   const result = [];
 
@@ -122,6 +122,7 @@ export function renderBlocks(
             <p key={i} className={styles.paragraph}>
               {renderText(
                 token.content,
+                false,
                 isOnlyEmoji && renderBigEmoji ? 44 : emojiSize,
               )}
             </p>,
@@ -142,7 +143,7 @@ export function renderBlocks(
       case 'blockquote':
         result.push(
           <blockquote key={i} className={styles.blockquote}>
-            {renderBlocks(token.content, emojiSize, renderBigEmoji)}
+            {renderBlocks(token.content, renderBigEmoji, emojiSize)}
           </blockquote>,
         );
         break;

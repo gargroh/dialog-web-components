@@ -4,33 +4,11 @@
  */
 
 /* eslint-disable */
-
-const senders = [
-  {
-    avatar: 'https://avatars1.githubusercontent.com/u/3505878',
-    placeholder: 'red',
-    title: 'Nikita 🤷',
-    userName: 'gusnkt',
-    peer: {
-      id: 1643224499,
-      type: 'user',
-    },
-  },
-  {
-    avatar: 'https://avatars1.githubusercontent.com/u/930121',
-    placeholder: 'purple',
-    title: 'Oleg Shilov',
-    userName: 'olegshilov',
-    peer: {
-      id: 1709029441,
-      type: 'user',
-    },
-  },
-];
+const { users } = require('./peerInfo');
 
 module.exports = [
   {
-    sender: senders[0],
+    sender: users[0],
     rid: Math.random(),
     date: '20:30',
     fullDate: new Date(),
@@ -43,7 +21,7 @@ module.exports = [
     isEdited: true,
   },
   {
-    sender: senders[0],
+    sender: users[0],
     rid: Math.random(),
     date: '20:20',
     fullDate: new Date(),
@@ -55,7 +33,7 @@ module.exports = [
     },
   },
   {
-    sender: senders[1],
+    sender: users[1],
     rid: Math.random(),
     date: '20:31',
     fullDate: new Date(),
@@ -73,7 +51,7 @@ module.exports = [
     isEdited: true,
   },
   {
-    sender: senders[1],
+    sender: users[1],
     rid: Math.random(),
     date: '4:20',
     fullDate: new Date(),
@@ -90,7 +68,7 @@ module.exports = [
     },
   },
   {
-    sender: senders[0],
+    sender: users[0],
     rid: Math.random(),
     date: '12:32',
     fullDate: new Date(),
@@ -106,7 +84,7 @@ module.exports = [
     },
   },
   {
-    sender: senders[0],
+    sender: users[0],
     rid: Math.random(),
     date: '00:00',
     fullDate: new Date(),
@@ -124,7 +102,7 @@ module.exports = [
     },
   },
   {
-    sender: senders[1],
+    sender: users[1],
     rid: Math.random(),
     date: '12:21',
     fullDate: new Date(),
@@ -137,7 +115,7 @@ module.exports = [
     },
   },
   {
-    sender: senders[0],
+    sender: users[0],
     rid: Math.random(),
     date: '11:1',
     fullDate: new Date(),

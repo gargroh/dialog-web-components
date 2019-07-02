@@ -4,7 +4,7 @@ import { Provider } from '@dlghq/react-l10n';
 import classNames from 'classnames';
 
 import { ModalProvider } from '../../components/Modal';
-import messages from '../devMessages';
+import messages from '../messages';
 import Select from '../../components/Select/Select';
 import Switcher from '../../components/Switcher/Switcher';
 import styles from './Wrapper.css';

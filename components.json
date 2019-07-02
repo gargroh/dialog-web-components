@@ -23,6 +23,7 @@
       "Markdown",
       "Image",
       "CountryCodeSelector",
+      "CountryCodeSelectorNext",
       "ImageEdit",
       "Overlay",
       "SelectedMessagesActions",
@@ -31,6 +32,7 @@
       "ScrollToBottom",
       "CustomProfile",
       "UserStatus",
+      "UserOnline",
       "SidebarMenuProfile",
       "SpaceList"
     ]
@@ -52,15 +54,14 @@
       "Input",
       "InputNext",
       "PhoneInput",
+      "PhoneInputNext",
       "Select",
       "SelectNext",
       "Checkbox",
       "Radio",
       "Switcher",
       "Range",
-      "Fieldset",
-      "CustomForm",
-      "Dialpad"
+      "Fieldset"
     ]
   },
   {
@@ -69,7 +70,14 @@
   },
   {
     "name": "Plug & Play Forms",
-    "components": ["Authorization", "Registration", "GenderSelect"]
+    "components": [
+      "AuthorizationNext",
+      "Authorization",
+      "Registration",
+      "GenderSelect",
+      "CustomForm",
+      "Dialpad"
+    ]
   },
   {
     "name": "Modals",
@@ -91,7 +99,8 @@
       "EditSpaceModal",
       "CreateSpaceModal",
       "SelectCertificateModal",
-      "SpaceInfoModal"
+      "SpaceInfoModal",
+      "IFrameModal"
     ]
   },
   {

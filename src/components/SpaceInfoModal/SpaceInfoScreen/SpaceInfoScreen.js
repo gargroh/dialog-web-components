@@ -9,7 +9,7 @@ import type { Space } from '../types';
 import ModalBody from '../../Modal/ModalBody';
 import ModalFooter from '../../Modal/ModalFooter';
 import ModalClose from '../../Modal/ModalClose';
-import ActivityProfile from '../../ActivityProfile/ActivityProfile';
+import { ActivitySpaceProfile } from '../../ActivityProfile/ActivitySpaceProfile';
 import ActivityList from '../../ActivityList/ActivityList';
 import ActivityListItem from '../../ActivityList/ActivityListItem';
 import ActivityListSwitcher from '../../ActivityList/ActivityListSwitcher';
@@ -72,7 +72,7 @@ class SpaceInfoScreen extends PureComponent<Props> {
           />
 
           <div>
-            <ActivityProfile info={this.props.space} type="space" />
+            <ActivitySpaceProfile info={this.props.space} />
             <ActivityList>
               <ActivityListSwitcher
                 id="space_info_screen_notification_switcher"

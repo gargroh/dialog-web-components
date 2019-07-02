@@ -18,13 +18,9 @@
   --sidebar-footer-button-counter-font-size: 8px;
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: flex;
   font-family: var(--sidebar-footer-font-family);
   height: var(--sidebar-footer-height);

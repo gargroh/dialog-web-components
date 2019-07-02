@@ -14,13 +14,8 @@
   --activity-profile-title-font-size: 22px;
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   display: flex;
   flex-direction: column;
   padding: var(--activity-profile-padding);
@@ -39,9 +34,13 @@
   flex: 0 0 auto;
 }
 
+.peerInfo {
+  flex-flow: column nowrap;
+  margin-top: var(--default-padding);
+}
+
 .name {
   display: block;
-  margin-top: var(--default-padding);
   letter-spacing: -0.4px;
   font-size: var(--activity-profile-title-font-size);
   line-height: 30px;
@@ -70,6 +69,14 @@
   color: var(--activity-profile-text-color-light);
 }
 
+.onlinePending {
+  display: flex;
+  height: 20px;
+  margin-top: var(--default-padding-small);
+  align-items: center;
+  justify-content: center;
+}
+
 .actions {
   margin-top: var(--default-padding-large);
 }
@@ -94,7 +101,7 @@
 }
 
 .contactContent {
-  margin-top: var(--default-padding-small);
+  margin-top: calc(var(--default-padding-small) * 2);
 
   &:first-child {
     margin-top: 0;

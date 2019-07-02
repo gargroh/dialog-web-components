@@ -11,7 +11,7 @@ import { hasSelection } from '@dlghq/dialog-utils';
 import { Text, LocalizationContextType } from '@dlghq/react-l10n';
 import TextMessagePreview from '../SidebarRecentItem/MessagePreview/TextMessagePreview';
 import Icon from '../Icon/Icon';
-import PeerInfoTitle from '../PeerInfoTitle/PeerInfoTitle';
+import { PeerInfoTitle } from '../PeerInfoTitle/PeerInfoTitle';
 import MessageContent from '../MessageContent/MessageContent';
 import decorators from './utils/decorators';
 import getLocalDateTimeFormat from '../../utils/getLocalDateTimeFormat';
@@ -93,6 +93,7 @@ class MessageAttachmentItem extends Component<Props> {
           onUserNameClick={this.handleGoToPeer}
           addSpacebars
           emojiSize={18}
+          wrap
         />
         {type === 'reply' ? this.renderTimestamp() : null}
       </header>

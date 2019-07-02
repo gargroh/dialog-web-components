@@ -43,40 +43,13 @@
   @mixin text-overflow-ellipsis;
 }
 
+.callerColumn {
+  height: initial;
+}
+
 .state {
   letter-spacing: -0.3px;
   font-size: var(--call-info-state-font-size);
   color: var(--call-info-state-color);
   line-height: 25px;
-}
-
-.onCall {
-  align-items: flex-start;
-  align-content: flex-start;
-  justify-content: center;
-
-  & .wrapper {
-    text-align: left;
-  }
-
-  & .caller {
-    font-size: var(--call-info-oncall-caller-font-size);
-    line-height: 20px;
-    height: 20px;
-  }
-  & .state {
-    font-size: var(--call-info-oncall-state-font-size);
-    line-height: 15px;
-  }
-
-  &.withVideo {
-    & .caller {
-      font-size: var(--call-info-video-caller-font-size);
-      color: var(--call-info-oncall-caller-color);
-    }
-    & .state {
-      font-size: var(--call-info-video-state-font-size);
-      color: var(--call-info-oncall-state-color);
-    }
-  }
 }

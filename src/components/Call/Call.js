@@ -51,22 +51,25 @@ class Call extends PureComponent<Props> {
       return null;
     }
 
-    const ChildCall = small ? CallWindow : CallChat;
+    const props = {
+      call,
+      onEnd: this.handleEnd,
+      onAnswer: this.handleAnswer,
+      onResize: this.props.onResize,
+      onGoToPeer: this.props.onGoToPeer,
+      onMuteToggle: this.handleMuteToggle,
+      onChatToggle: this.props.onChatToggle,
+      onCameraToggle: isVideoEnabled ? this.handleCameraToggle : null,
+      onScreenShareToggle: isScreenSharingEnabled
+        ? this.handleScreenShareToggle
+        : null,
+    };
 
-    return (
-      <ChildCall
-        call={call}
-        onEnd={this.handleEnd}
-        onAnswer={this.handleAnswer}
-        onResize={this.props.onResize}
-        onGoToPeer={this.props.onGoToPeer}
-        onMuteToggle={this.handleMuteToggle}
-        onCameraToggle={isVideoEnabled ? this.handleCameraToggle : null}
-        onScreenShareToggle={
-          isScreenSharingEnabled ? this.handleScreenShareToggle : null
-        }
-      />
-    );
+    if (small) {
+      return <CallWindow {...props} />;
+    }
+
+    return <CallChat {...props} selfPeerInfo={this.props.selfPeerInfo} />;
   }
 }
 

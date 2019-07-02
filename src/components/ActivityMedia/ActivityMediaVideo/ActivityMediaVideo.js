@@ -6,7 +6,7 @@
 import type { ProviderContext } from '@dlghq/react-l10n';
 import React, { PureComponent } from 'react';
 import { Text, LocalizationContextType } from '@dlghq/react-l10n';
-import PeerInfoTitle from '../../PeerInfoTitle/PeerInfoTitle';
+import { PeerInfoTitle } from '../../PeerInfoTitle/PeerInfoTitle';
 import formatDate from 'date-fns/format';
 import getLocalDateTimeFormat from '../../../utils/getLocalDateTimeFormat';
 import getDateFnsLocale from '../../../utils/getDateFnsLocale';
@@ -53,7 +53,7 @@ class ActivityMediaVideo extends PureComponent<Props> {
   renderTitle() {
     const { title } = this.props;
 
-    if (!title || title === '') {
+    if (!title) {
       return (
         <Text id="ActivityMedia.video" className={styles.title} tagName="div" />
       );
@@ -106,7 +106,13 @@ class ActivityMediaVideo extends PureComponent<Props> {
       return null;
     }
 
-    return <PeerInfoTitle title={sender} emojiSize={13} />;
+    return (
+      <PeerInfoTitle
+        title={sender}
+        emojiSize={13}
+        className={styles.peerInfo}
+      />
+    );
   }
 
   render() {

@@ -23,8 +23,7 @@
   font-size: var(--modal-attachment-font-size);
 }
 
-.header {
-}
+/* .header {} */
 
 .body {
   display: flex;

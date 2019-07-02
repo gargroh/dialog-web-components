@@ -18,12 +18,8 @@
   --sidebar-search-input-height: 34px;
 }
 
-.container,
-.input {
-  all: initial;
-}
-
 .container {
+  all: initial;
   position: relative;
   display: flex;
   box-sizing: border-box;
@@ -31,6 +27,7 @@
 }
 
 .input {
+  all: initial;
   display: block;
   box-sizing: border-box;
   width: 100%;

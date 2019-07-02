@@ -13,13 +13,9 @@
   --message-media-border-color: color-mod(#000 alpha(14%));
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: block;
   font-family: var(--message-media-font-family);
   margin-top: var(--default-padding-small);

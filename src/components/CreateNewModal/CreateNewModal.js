@@ -23,11 +23,24 @@ import ImageEdit from '../ImageEdit/ImageEdit';
 import styles from './CreateNewModal.css';
 import HotKeys from '../HotKeys/HotKeys';
 
-class CreateNewModal extends PureComponent<Props> {
+type CreateNewModalState = {
+  isPublic: boolean,
+};
+
+class CreateNewModal extends PureComponent<Props, CreateNewModalState> {
   static defaultProps = {
     id: 'create_new_modal',
     isPublicGroupsEnabled: true,
     isMaxGroupSizeVisible: false,
+    /*
+     * if max group size is below this value, we must inform user about it,
+     * because higher number are not so interesting for him
+     */
+    significantGroupSize: 10000,
+  };
+
+  state = {
+    isPublic: false,
   };
 
   handlePrevStepClick = (): void => {
@@ -91,11 +104,19 @@ class CreateNewModal extends PureComponent<Props> {
     this.props.onStepChange('avatar');
   };
 
+  handlePublicToggle = (isPublic: boolean): void => {
+    this.setState({ isPublic });
+  };
+
   handleSubmit = (event: ?SyntheticEvent<>): void => {
     if (event) {
       event.preventDefault();
     }
-    this.props.onSubmit(this.props.request);
+    const shortname = this.state.isPublic ? this.props.request.shortname : '';
+    this.props.onSubmit({
+      ...this.props.request,
+      shortname,
+    });
   };
 
   handleCancelAvatarEdit = (): void => {
@@ -158,6 +179,7 @@ class CreateNewModal extends PureComponent<Props> {
       maxGroupSize,
       request: { type },
       step,
+      significantGroupSize,
     } = this.props;
 
     return (
@@ -176,6 +198,7 @@ class CreateNewModal extends PureComponent<Props> {
             id={id}
             type={type}
             maxGroupSize={maxGroupSize}
+            significantGroupSize={significantGroupSize}
             onChange={this.handleChange}
             onSubmit={this.handleNextStepClick}
           />
@@ -231,10 +254,12 @@ class CreateNewModal extends PureComponent<Props> {
             avatar={avatar}
             shortname={shortname}
             shortnamePrefix={shortnamePrefix}
+            isPublic={this.state.isPublic}
             onChange={this.handleChange}
             onSubmit={this.handleNextStepClick}
             onAvatarRemove={this.handleAvatarRemove}
             onAvatarChange={this.handleAvatarEdit}
+            onPublicToggle={this.handlePublicToggle}
             isPublicGroupsEnabled={this.props.isPublicGroupsEnabled}
           />
         </ModalBody>

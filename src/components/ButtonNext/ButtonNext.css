@@ -21,13 +21,8 @@
   --button-next-transition-duration: var(--default-transition-duration);
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   position: relative;
   display: inline-block;
   box-sizing: border-box;

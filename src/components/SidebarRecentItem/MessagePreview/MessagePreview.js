@@ -6,7 +6,7 @@
 import type { Message, PeerInfo } from '@dlghq/dialog-types';
 import React, { PureComponent } from 'react';
 import { Text } from '@dlghq/react-l10n';
-import PeerInfoTitle from '../../PeerInfoTitle/PeerInfoTitle';
+import { PeerInfoTitle } from '../../PeerInfoTitle/PeerInfoTitle';
 import TextMessagePreview from './TextMessagePreview';
 import getShortTitle from '../utils/getShortTitle';
 import styles from '../SidebarRecentItem.css';

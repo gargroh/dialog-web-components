@@ -21,13 +21,9 @@
   );
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   position: absolute;
   z-index: var(--z-index-sidebar-unread);
   right: 0;

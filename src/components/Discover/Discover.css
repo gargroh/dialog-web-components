@@ -18,13 +18,9 @@
   --discover-border-color: color-mod(#000 alpha(14%));
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: flex;
   overflow: hidden;
   flex-flow: column nowrap;
@@ -56,8 +52,7 @@
   flex: 0 0 auto;
 }
 
-.headerButton {
-}
+/* .headerButton {} */
 
 .title {
   font-size: var(--discover-title-font-size);

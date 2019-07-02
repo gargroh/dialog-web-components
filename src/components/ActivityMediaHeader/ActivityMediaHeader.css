@@ -15,13 +15,8 @@
   --activity-media-header-icon-color-hover: color-mod(#000 alpha(60%));
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   position: relative;
   display: block;
   min-height: var(--activity-media-header-height);

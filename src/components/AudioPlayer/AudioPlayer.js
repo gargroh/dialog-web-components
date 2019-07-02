@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import getHumanTime from '../../utils/getHumanTime';
 import MediaErrorMessage from '../MediaErrorMessage/MediaErrorMessage';
 import AudioPlayerButton from './AudioPlayerButton/AudioPlayerButton';
-import PeerInfoTitle from '../PeerInfoTitle/PeerInfoTitle';
+import { PeerInfoTitle } from '../PeerInfoTitle/PeerInfoTitle';
 import styles from './AudioPlayer.css';
 
 type Props = {
@@ -228,7 +228,11 @@ class AudioPlayer extends PureComponent<Props, State> {
     return (
       <div className={styles.sender}>
         {'\u00A0-\u00A0'}
-        <PeerInfoTitle title={this.props.sender || ''} emojiSize={13} />
+        <PeerInfoTitle
+          title={this.props.sender || ''}
+          emojiSize={13}
+          className={styles.peerInfo}
+        />
       </div>
     );
   }

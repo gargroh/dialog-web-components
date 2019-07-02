@@ -3,3 +3,4 @@ header: Search results
 jump: Jump
 not_found: "No messages found matching: <b>{query}</b>"
 error: "<b>Error:</b> {error}"
+too_short_query: Search query is too short

@@ -10,7 +10,7 @@ function normalize(code: string): string {
   return code.replace(/\s/g, '');
 }
 
-function getCountryByPhone(phone: string, languages: string[]): ?Country {
+function getCountryByPhone(phone: string, languages: Array<string>): ?Country {
   const variants = countries.filter((country) => {
     return phone.startsWith(normalize(country.code));
   });

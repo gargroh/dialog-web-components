@@ -11,6 +11,7 @@ type Props = {
   className: string,
   stream: MediaSource,
   isMirrored: boolean,
+  cover?: boolean,
 };
 
 class CallVideoStream extends PureComponent<Props> {
@@ -45,10 +46,10 @@ class CallVideoStream extends PureComponent<Props> {
   };
 
   render() {
-    const className = classNames(
-      this.props.className,
-      this.props.isMirrored ? styles.mirrored : null,
-    );
+    const className = classNames(this.props.className, {
+      [styles.mirrored]: this.props.isMirrored,
+      [styles.cover]: this.props.cover,
+    });
 
     return <video ref={this.setVideo} className={className} />;
   }

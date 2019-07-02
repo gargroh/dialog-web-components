@@ -88,13 +88,9 @@
   --button-warning-color: var(--button-default-color);
   --button-transition-duration: clac(var(--default-transition-duration) * 0.75);
 }
-/* Reset */
+
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   display: inline-block;
   box-sizing: border-box;
   min-width: var(--button-min-width);

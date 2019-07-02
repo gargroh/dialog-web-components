@@ -12,7 +12,7 @@ import classNames from 'classnames';
 
 import SidebarSearchItemMessage from '../SidebarSearchItemMessage/SidebarSearchItemMessage';
 import styles from './SidebarSearchItem.css';
-import PeerInfoTitle from '../../PeerInfoTitle/PeerInfoTitle';
+import { PeerInfoTitle } from '../../PeerInfoTitle/PeerInfoTitle';
 
 type Props = {
   className?: string,

@@ -1,7 +1,6 @@
 /*
  * Copyright 2019 dialog LLC <info@dlg.im>
  */
-
 @import '../../../styles/variables.css';
 
 :root {
@@ -13,16 +12,11 @@
   --message-voice-border-color: color-mod(#000 alpha(15%));
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
-.container {
+.voiceCard {
+  all: initial;
   display: flex;
-  height: var(--message-voice-height);
-  flex-direction: row;
+  flex-direction: column;
   box-sizing: border-box;
   cursor: default;
   user-select: none;
@@ -30,6 +24,19 @@
   background-color: var(--message-voice-background-color);
   box-shadow: 0 0 0 1px var(--message-voice-border-color);
   font-family: var(--message-voice-font-family);
-  padding: var(--message-voice-padding);
   position: relative;
+}
+
+.voiceControlsContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.voiceCardContent {
+  display: block;
+  padding: var(--message-voice-padding);
+}
+
+.voiceCardSectionDelimiter {
+  border-top: 1px solid var(--message-voice-border-color);
 }

@@ -1,23 +1,23 @@
 /*
  * Copyright 2019 dialog LLC <info@dlg.im>
- * @flow
+ * @flow strict
  */
 
 import type { Space } from '../SpaceInfoModal/types';
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import Avatar from '../Avatar/Avatar';
-import PeerInfoTitle from '../PeerInfoTitle/PeerInfoTitle';
+import { PeerInfoTitle } from '../PeerInfoTitle/PeerInfoTitle';
 import styles from './ActivityProfile.css';
 import Text from '@dlghq/react-l10n/src/Text';
 import Markdown from '../Markdown/Markdown';
 
-export type Props = {
+export type ActivitySpaceProfileProps = {
   className?: string,
   info: Space,
 };
 
-class ActivityGroupProfile extends PureComponent<Props> {
+export class ActivitySpaceProfile extends PureComponent<ActivitySpaceProfileProps> {
   renderAbout() {
     const {
       info: { about },
@@ -68,5 +68,3 @@ class ActivityGroupProfile extends PureComponent<Props> {
     );
   }
 }
-
-export default ActivityGroupProfile;

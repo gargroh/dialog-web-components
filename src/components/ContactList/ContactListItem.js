@@ -9,7 +9,7 @@ import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import PeerAvatar from '../PeerAvatar/PeerAvatar';
 import CheckButton from '../CheckButton/CheckButton';
-import PeerInfoTitle from '../PeerInfoTitle/PeerInfoTitle';
+import { PeerInfoTitle } from '../PeerInfoTitle/PeerInfoTitle';
 import styles from './ContactList.css';
 
 class ContactListItem extends PureComponent<ItemProps<PeerInfo>> {
@@ -33,6 +33,7 @@ class ContactListItem extends PureComponent<ItemProps<PeerInfo>> {
               title={item.title}
               titleClassName={styles.nameText}
               emojiSize={18}
+              isFluid
             />
           </div>
           <CheckButton

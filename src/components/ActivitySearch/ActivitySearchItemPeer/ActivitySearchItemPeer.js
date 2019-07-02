@@ -6,7 +6,7 @@
 import type { PeerInfo, Peer } from '@dlghq/dialog-types';
 import React, { PureComponent } from 'react';
 import PeerAvatar from '../../PeerAvatar/PeerAvatar';
-import PeerInfoTitle from '../../PeerInfoTitle/PeerInfoTitle';
+import { PeerInfoTitle } from '../../PeerInfoTitle/PeerInfoTitle';
 import styles from './ActivitySearchItemPeer.css';
 
 type Props = {
@@ -14,7 +14,7 @@ type Props = {
   onGoToPeer: (peer: Peer) => mixed,
 };
 
-class ActivitySearchItemMessage extends PureComponent<Props> {
+class ActivitySearchItemPeer extends PureComponent<Props> {
   handleGoToPeer = (event: SyntheticMouseEvent<>) => {
     event.preventDefault();
     event.stopPropagation();
@@ -34,4 +34,4 @@ class ActivitySearchItemMessage extends PureComponent<Props> {
   }
 }
 
-export default ActivitySearchItemMessage;
+export default ActivitySearchItemPeer;

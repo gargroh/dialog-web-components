@@ -24,17 +24,9 @@
   --dropdown-transition-duration: var(--default-transition-duration);
 }
 
-/* Reset */
-.container,
-.item,
-.divider,
-.text,
-.header {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   z-index: var(--z-index-dropdown);
   display: table;
   min-width: var(--dropdown-min-width);
@@ -55,11 +47,13 @@
 }
 
 .item {
+  all: initial;
   display: table-row;
   box-sizing: border-box;
 }
 
 .content {
+  all: initial;
   display: flex;
   flex-direction: row;
   cursor: inherit;
@@ -86,6 +80,7 @@
 }
 
 .divider {
+  all: initial;
   position: relative;
   display: block;
   box-sizing: border-box;
@@ -106,6 +101,7 @@
 }
 
 .header {
+  all: initial;
   display: block;
   box-sizing: border-box;
   width: 100%;

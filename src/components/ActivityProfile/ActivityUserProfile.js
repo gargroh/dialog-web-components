@@ -1,188 +1,103 @@
 /*
  * Copyright 2019 dialog LLC <info@dlg.im>
- * @flow
+ * @flow strict
  */
 
-import type { User, UserOnline } from '@dlghq/dialog-types';
-import React, { PureComponent, type Node } from 'react';
+import type { User } from '@dlghq/dialog-types';
+import React, { type Node } from 'react';
 import { Text } from '@dlghq/react-l10n';
 import classNames from 'classnames';
 import Avatar from '../Avatar/Avatar';
 import Markdown from '../Markdown/Markdown';
-import PeerInfoTitle from '../PeerInfoTitle/PeerInfoTitle';
+import { PeerInfoTitle } from '../PeerInfoTitle/PeerInfoTitle';
 import CustomProfile from '../CustomProfile/CustomProfile';
+import Spinner from '../Spinner/Spinner';
+import { UserOnline, type UserOnlineState } from '../UserOnline/UserOnline';
+import { ActivityUserProfileContacts } from './ActivityUserProfileContacts/ActivityUserProfileContacts';
 import styles from './ActivityProfile.css';
 
-export type Props = {
+export type ActivityUserProfileProps = {
   info: User,
-  online: ?UserOnline,
+  online?: UserOnlineState,
   className?: string,
   schema?: ?string,
   children: Node,
   onAvatarClick?: () => mixed,
 };
 
-class ActivityUserProfile extends PureComponent<Props> {
-  renderAvatar() {
-    const {
-      info: { name, bigAvatar, placeholder },
-    } = this.props;
+export function ActivityUserProfile(props: ActivityUserProfileProps) {
+  const {
+    info: {
+      name,
+      nick,
+      bigAvatar,
+      placeholder,
+      about,
+      customProfile,
+      phones,
+      emails,
+    },
+    online,
+    children,
+    schema,
+  } = props;
+  const classes = classNames(styles.container, props.className);
 
-    return (
-      <Avatar
-        className={styles.avatar}
-        size={140}
-        title={name}
-        image={bigAvatar}
-        placeholder={placeholder}
-        onClick={bigAvatar ? this.props.onAvatarClick : undefined}
-      />
-    );
-  }
-
-  renderTitle() {
-    const {
-      info: { name, nick },
-    } = this.props;
-
-    return (
-      <PeerInfoTitle
-        title={name}
-        userName={nick}
-        titleClassName={styles.name}
-        userNameClassName={styles.nick}
-        emojiSize={24}
-      />
-    );
-  }
-
-  renderOnline() {
-    const { online } = this.props;
-
-    if (!online) {
-      return null;
-    }
-
-    return <div className={styles.online}>{online.message}</div>;
-  }
-
-  renderAbout() {
-    const {
-      info: { about },
-    } = this.props;
-
-    if (!about) {
-      return null;
-    }
-
-    return (
-      <div className={styles.wrapper}>
-        <Text
-          className={styles.title}
-          tagName="div"
-          id="ActivityProfile.about"
+  return (
+    <div className={classes}>
+      <div className={styles.header}>
+        <Avatar
+          className={styles.avatar}
+          size={140}
+          title={name}
+          image={bigAvatar}
+          placeholder={placeholder}
+          onClick={bigAvatar ? props.onAvatarClick : undefined}
         />
-        <Markdown text={about} className={styles.about} />
-      </div>
-    );
-  }
-
-  renderChildren() {
-    const { children } = this.props;
-
-    if (!children) {
-      return null;
-    }
-
-    return <div className={styles.actions}>{children}</div>;
-  }
-
-  renderProfileContacts() {
-    const { info } = this.props;
-
-    if (!info.phones.length && !info.emails.length) {
-      return null;
-    }
-
-    const phones = info.phones.map((phone) => (
-      <div key={phone.number} className={styles.contactLinkWrapper}>
-        <a href={`tel:${phone.number}`} className={styles.contactLink}>
-          {phone.number}
-        </a>
-      </div>
-    ));
-
-    const emails = info.emails.map((email) => (
-      <div key={email.email} className={styles.contactLinkWrapper}>
-        <a href={`mailto:${email.email}`} className={styles.contactLink}>
-          {email.email}
-        </a>
-      </div>
-    ));
-
-    return (
-      <div className={styles.wrapper}>
-        {phones.length ? (
-          <div className={styles.contactContent}>
-            <Text
-              className={styles.title}
-              tagName="div"
-              id="ActivityProfile.phone"
-            />
-            {phones}
+        <PeerInfoTitle
+          title={name}
+          userName={nick}
+          className={styles.peerInfo}
+          titleClassName={styles.name}
+          userNameClassName={styles.nick}
+          emojiSize={24}
+        />
+        {!online ? (
+          <div className={styles.onlinePending}>
+            <Spinner type="round" />
           </div>
-        ) : null}
-        {emails.length ? (
-          <div className={styles.contactContent}>
-            <Text
-              className={styles.title}
-              tagName="div"
-              id="ActivityProfile.email"
-            />
-            {emails}
-          </div>
-        ) : null}
+        ) : (
+          <UserOnline className={styles.online} online={online} />
+        )}
+        {children ? <div className={styles.actions}>{children}</div> : null}
       </div>
-    );
-  }
-
-  renderCustomProfile() {
-    const {
-      schema,
-      info: { customProfile },
-    } = this.props;
-
-    if (!schema || !customProfile) {
-      return null;
-    }
-
-    return (
-      <CustomProfile
-        value={customProfile}
-        schema={schema}
-        className={styles.wrapper}
-      />
-    );
-  }
-
-  render() {
-    const { className } = this.props;
-    const userProfileClassName = classNames(styles.container, className);
-
-    return (
-      <div className={userProfileClassName}>
-        <div className={styles.header}>
-          {this.renderAvatar()}
-          {this.renderTitle()}
-          {this.renderOnline()}
-          {this.renderChildren()}
+      {about ? (
+        <div className={styles.wrapper}>
+          <Text
+            className={styles.title}
+            tagName="div"
+            id="ActivityProfile.about"
+          />
+          <Markdown text={about} className={styles.about} />
         </div>
-        {this.renderAbout()}
-        {this.renderProfileContacts()}
-        {this.renderCustomProfile()}
-      </div>
-    );
-  }
+      ) : null}
+      {phones.length || emails.length ? (
+        <div className={styles.wrapper}>
+          {phones.length ? (
+            <ActivityUserProfileContacts type="phone" phones={phones} />
+          ) : null}
+          {phones.length ? (
+            <ActivityUserProfileContacts type="email" emails={emails} />
+          ) : null}
+        </div>
+      ) : null}
+      {schema && customProfile ? (
+        <CustomProfile
+          value={customProfile}
+          schema={schema}
+          className={styles.wrapper}
+        />
+      ) : null}
+    </div>
+  );
 }
-
-export default ActivityUserProfile;

@@ -12,33 +12,34 @@ import getAvatarText from '../Avatar/utils/getAvatarText';
 import getAvatarColor from '../Avatar/utils/getAvatarColor';
 import createSequence from '../../utils/createSequence';
 import ImagePreloader, {
-  type State as ImagePreloaderState,
+  type ImagePreloaderState,
   STATE_SUCCESS,
+  STATE_ERROR,
 } from '../ImagePreloader/ImagePreloader';
 import Hover from '../Hover/Hover';
 import styles from './AvatarDouble.css';
 
-type AvatarProps = {
+type Avatar = {
   title: string | null,
   image: ?string,
   placeholder: AvatarPlaceholder,
 };
 
-export type Props = {
+export type AvatarProps = {
   className?: string,
-  big: AvatarProps,
-  small: AvatarProps,
+  big: Avatar,
+  small: Avatar,
   size: number,
   onClick?: (event: SyntheticMouseEvent<>) => mixed,
 };
 
-export type State = {
+export type AvatarState = {
   isHovered: boolean,
 };
 
 const seq = createSequence();
 
-class AvatarDouble extends PureComponent<Props, State> {
+class AvatarDouble extends PureComponent<AvatarProps, AvatarState> {
   id: string;
   ids: {
     big: string,
@@ -60,7 +61,7 @@ class AvatarDouble extends PureComponent<Props, State> {
     },
   };
 
-  constructor(props: Props) {
+  constructor(props: AvatarProps) {
     super(props);
 
     this.id = 'double_avatar_' + seq.next();
@@ -121,7 +122,7 @@ class AvatarDouble extends PureComponent<Props, State> {
   }
 
   renderBigDefs({ state, src }: ImagePreloaderState) {
-    if (state === STATE_SUCCESS || src !== null) {
+    if (state === STATE_SUCCESS || (state !== STATE_ERROR && src !== null)) {
       return (
         <pattern
           id={this.ids.big}
@@ -156,7 +157,7 @@ class AvatarDouble extends PureComponent<Props, State> {
   }
 
   renderSmallDefs({ state, src }: ImagePreloaderState) {
-    if (state === STATE_SUCCESS || src !== null) {
+    if (state === STATE_SUCCESS || (state !== STATE_ERROR && src !== null)) {
       return (
         <pattern
           id={this.ids.small}
@@ -200,7 +201,11 @@ class AvatarDouble extends PureComponent<Props, State> {
     const {
       big: { title },
     } = this.props;
-    if (state === STATE_SUCCESS || src !== null || !title) {
+    if (
+      state === STATE_SUCCESS ||
+      (state !== STATE_ERROR && src !== null) ||
+      !title
+    ) {
       return null;
     }
 
@@ -230,7 +235,11 @@ class AvatarDouble extends PureComponent<Props, State> {
     const {
       small: { title },
     } = this.props;
-    if (state === STATE_SUCCESS || src !== null || !title) {
+    if (
+      state === STATE_SUCCESS ||
+      (state !== STATE_ERROR && src !== null) ||
+      !title
+    ) {
       return null;
     }
 

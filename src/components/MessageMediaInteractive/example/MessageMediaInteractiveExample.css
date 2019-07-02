@@ -4,8 +4,7 @@
 
 @import '../../../styles/variables.css';
 
-.container {
-}
+/* .container {} */
 
 .heading {
   margin: 0;
@@ -19,5 +18,4 @@
   margin-bottom: 1rem;
 }
 
-.result {
-}
+/* .result {} */

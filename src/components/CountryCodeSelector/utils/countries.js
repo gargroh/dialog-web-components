@@ -1,6 +1,6 @@
-/*
+/**
  * Copyright 2019 dialog LLC <info@dlg.im>
- * @flow
+ * @flow strict
  */
 
 import { getCountries } from '@dlghq/country-codes';
@@ -11,7 +11,7 @@ export type Country = {
   alpha: string,
 };
 
-const countries: Country[] = [];
+const countries: Array<Country> = [];
 
 getCountries().forEach((country) => {
   country.codes.forEach((code) => {

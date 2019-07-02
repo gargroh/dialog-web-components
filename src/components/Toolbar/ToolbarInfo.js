@@ -3,38 +3,30 @@
  * @flow
  */
 
-import React, { PureComponent } from 'react';
+import React, { type Node } from 'react';
 import classNames from 'classnames';
-import PeerInfoTitle from '../PeerInfoTitle/PeerInfoTitle';
-import Markdown from '../Markdown/Markdown';
+import { PeerInfoTitle } from '../PeerInfoTitle/PeerInfoTitle';
 import styles from './Toolbar.css';
 
 export type Props = {
   className?: string,
   title: string,
-  status: string,
+  status: Node,
   isVerified?: ?boolean,
 };
 
-class ToolbarInfo extends PureComponent<Props> {
-  render() {
-    const className = classNames(styles.info, this.props.className);
-
-    return (
-      <div className={className}>
-        <PeerInfoTitle
-          title={this.props.title}
-          className={styles.nameWrapper}
-          titleClassName={styles.name}
-          emojiSize={20}
-          isVerified={this.props.isVerified}
-        />
-        <div className={styles.status}>
-          <Markdown text={this.props.status} emojiSize={16} inline />
-        </div>
-      </div>
-    );
-  }
+export function ToolbarInfo(props: Props) {
+  return (
+    <div className={classNames(styles.info, props.className)}>
+      <PeerInfoTitle
+        title={props.title}
+        className={styles.nameWrapper}
+        titleClassName={styles.name}
+        verifiedIconClassName={styles.verifiedIcon}
+        emojiSize={20}
+        isVerified={props.isVerified}
+      />
+      <div className={styles.status}>{props.status}</div>
+    </div>
+  );
 }
-
-export default ToolbarInfo;

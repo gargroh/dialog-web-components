@@ -12,13 +12,9 @@
   --range-fill-color: var(--color-primary);
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: block;
   box-sizing: border-box;
   height: 20px;
@@ -55,7 +51,6 @@
   }
 
   & :global(.rangeslider__handle) {
-    display: none;
     position: absolute;
     top: 50%;
     display: inline-block;

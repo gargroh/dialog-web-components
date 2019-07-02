@@ -5,7 +5,7 @@
 
 import React, { PureComponent, type Node } from 'react';
 import classNames from 'classnames';
-import PeerInfoTitle from '../PeerInfoTitle/PeerInfoTitle';
+import { PeerInfoTitle } from '../PeerInfoTitle/PeerInfoTitle';
 import { Text } from '@dlghq/react-l10n';
 import Markdown from '../Markdown/Markdown';
 import styles from './WelcomeMessage.css';

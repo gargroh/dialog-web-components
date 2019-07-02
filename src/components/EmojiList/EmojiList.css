@@ -24,14 +24,9 @@
   );
 }
 
-/* Reset */
-.container,
-.goToButton {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: inline-block;
   overflow: hidden;
   position: relative;
@@ -56,6 +51,7 @@
 }
 
 .goToButton {
+  all: initial;
   position: absolute;
   top: 7px;
   right: 20px;

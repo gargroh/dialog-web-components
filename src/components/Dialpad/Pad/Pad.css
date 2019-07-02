@@ -4,13 +4,8 @@
 
 @import '../../../styles/variables.css';
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

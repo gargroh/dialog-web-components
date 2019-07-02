@@ -25,14 +25,9 @@
   );
 }
 
-/* Reset */
-.container,
-.label {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   font-family: var(--country-code-selector-font-family);
   color: var(--country-code-selector-color);
 
@@ -169,6 +164,7 @@
 }
 
 .label {
+  all: initial;
   @mixin no-select;
   color: var(--country-code-selector-label-color);
   font-family: var(--country-code-selector-label-font-family);
@@ -213,6 +209,7 @@
   padding: 0 8px 0 10px;
   overflow: hidden;
   @mixin flex-fix;
+  @mixin text-overflow-ellipsis;
 }
 
 .optionCountry {

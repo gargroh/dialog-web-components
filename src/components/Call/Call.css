@@ -73,6 +73,12 @@
   z-index: calc(var(--z-index-call) + 1);
 }
 
+.callDirectionLabel {
+  position: absolute;
+  top: 0;
+  padding-top: var(--default-padding);
+}
+
 .callState {
   box-sizing: border-box;
   padding: calc(var(--default-padding-large) * 2.5) var(--default-padding) 0;
@@ -98,4 +104,17 @@
   position: absolute;
   top: 20px;
   left: 20px;
+}
+
+.timerOnVideo {
+  position: absolute;
+  padding: 4px 16px;
+  border-radius: 4px;
+  bottom: 104px;
+  width: fit-content;
+  min-width: 50px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  font-size: 13px;
+  text-align: center;
 }

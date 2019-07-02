@@ -9,7 +9,7 @@ import { Text } from '@dlghq/react-l10n';
 import classNames from 'classnames';
 import Spinner from '../Spinner/Spinner';
 import PeerAvatar from '../PeerAvatar/PeerAvatar';
-import PeerInfoTitle from '../PeerInfoTitle/PeerInfoTitle';
+import { PeerInfoTitle } from '../PeerInfoTitle/PeerInfoTitle';
 import PeerAvatarDouble from '../PeerAvatarDouble/PeerAvatarDouble';
 import MessagePreview from './MessagePreview/MessagePreview';
 import Icon from '../Icon/Icon';

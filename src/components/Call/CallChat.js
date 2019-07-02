@@ -3,7 +3,8 @@
  * @flow
  */
 
-import type { CallProps as Props } from './types';
+import type { PeerInfo } from '@dlghq/dialog-types';
+import type { CallProps } from './types';
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import fullScreen from 'screenfull';
@@ -14,9 +15,17 @@ import CallInfo from '../CallInfo/CallInfo';
 import CallControls from '../CallControls/CallControls';
 import CallFingerprint from '../CallFingerprint/CallFingerprint';
 import Icon from '../Icon/Icon';
+import CallInfoState from '../CallInfo/CallInfoState';
 import isOnCall from './utils/isOnCall';
 import { hasVideos, hasTheirVideos } from './utils/hasVideo';
 import styles from './Call.css';
+
+type CallChatProps = {
+  showTimerOnVideo: boolean,
+  selfPeerInfo: PeerInfo,
+};
+
+type Props = CallProps & CallChatProps;
 
 type State = {
   isFullScreen: boolean,
@@ -25,6 +34,11 @@ type State = {
 
 class CallChat extends PureComponent<Props, State> {
   container: ?Node;
+
+  static defaultProps = {
+    avatarSize: 180,
+    showTimerOnVideo: false,
+  };
 
   constructor(props: Props) {
     super(props);
@@ -75,9 +89,19 @@ class CallChat extends PureComponent<Props, State> {
   }
 
   renderInfo() {
-    const { call } = this.props;
+    const { call, avatarSize, showTimerOnVideo } = this.props;
 
-    if (isOnCall(call.state) && hasTheirVideos(call)) {
+    const isVideoCall = isOnCall(call.state) && hasTheirVideos(call);
+
+    if (isVideoCall) {
+      if (showTimerOnVideo) {
+        return (
+          <div className={styles.timerOnVideo}>
+            <CallInfoState state={call.state} startTime={call.startTime} />
+          </div>
+        );
+      }
+
       return null;
     }
 
@@ -85,14 +109,14 @@ class CallChat extends PureComponent<Props, State> {
       <div className={styles.info}>
         <CallAvatar
           animated={!isOnCall(call.state)}
-          size={180}
+          size={avatarSize}
           peer={call.peer}
           state={call.state}
         />
         <CallInfo
           className={styles.chatCallState}
           call={call}
-          onCall={false}
+          onCall={isOnCall(call.state)}
           withVideo={false}
         />
       </div>
@@ -108,6 +132,7 @@ class CallChat extends PureComponent<Props, State> {
         withVideo={hasVideos(call)}
         size="large"
         isVisible={this.state.isControlsVisible}
+        disabled={this.props.isControlsDisabled}
         state={call.state}
         isMuted={call.isMuted}
         isCameraOn={call.isCameraOn}

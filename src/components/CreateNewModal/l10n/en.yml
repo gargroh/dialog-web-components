@@ -2,7 +2,8 @@ group:
   title: Create new group
   type:
     title: Group
-    hint: Groups are ideal for limited communities, they can have up to {count} members
+    hintCount: Groups are ideal for limited communities, they can have up to {count} members
+    hintDefault: Groups are ideal for limited communities, they can have more than {count} members
   info:
     title:
       label: Group title

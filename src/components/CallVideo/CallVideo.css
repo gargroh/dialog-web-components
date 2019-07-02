@@ -50,3 +50,7 @@
 .mirrored {
   transform: translateZ(0) scaleX(-1);
 }
+
+.cover {
+  object-fit: cover;
+}

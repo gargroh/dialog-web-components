@@ -8,7 +8,7 @@ import type { PeerInfo } from '@dlghq/dialog-types';
 import React, { PureComponent } from 'react';
 import PeerAvatar from '../PeerAvatar/PeerAvatar';
 import classNames from 'classnames';
-import PeerInfoTitle from '../PeerInfoTitle/PeerInfoTitle';
+import { PeerInfoTitle } from '../PeerInfoTitle/PeerInfoTitle';
 import Hover from '../Hover/Hover';
 import Icon from '../Icon/Icon';
 import styles from './ContactSelector.css';

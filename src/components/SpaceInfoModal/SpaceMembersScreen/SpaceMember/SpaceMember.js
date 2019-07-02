@@ -6,7 +6,7 @@
 import type { Peer } from '@dlghq/dialog-types';
 import React, { PureComponent } from 'react';
 import type { SpaceMember as SpaceMemberType } from '../../types';
-import PeerInfoTitle from '../../../PeerInfoTitle/PeerInfoTitle';
+import { PeerInfoTitle } from '../../../PeerInfoTitle/PeerInfoTitle';
 import PeerAvatar from '../../../PeerAvatar/PeerAvatar';
 import SpaceMemberKick from './SpaceMemberKick';
 import styles from './SpaceMember.css';

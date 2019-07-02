@@ -1,8 +1,11 @@
 connecting_to_server: Ожидание сети…
 connecting_to_peer: Вызов
 ringing_incoming: Входящий звонок
+ringing_incoming_video: Входящий видео звонок
 ringing_outgoing: Исходящий звонок
 connecting: Подключение…
 ended: Вызов завершён
 unknown: Неизвестно
 fingerprint: Ваш звонок защищен, если вы видите такие же эмодзи как и ваш собеседник
+outgoing_call: Исходящий звонок
+incoming_call: Входящий звонок

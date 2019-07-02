@@ -12,7 +12,7 @@ import classNames from 'classnames';
 
 import ActivitySearchItemMessage from '../ActivitySearchItemMessage/ActivitySearchItemMessage';
 import styles from './ActivitySearchItem.css';
-import PeerInfoTitle from '../../PeerInfoTitle/PeerInfoTitle';
+import { PeerInfoTitle } from '../../PeerInfoTitle/PeerInfoTitle';
 
 type Props = {
   className?: string,

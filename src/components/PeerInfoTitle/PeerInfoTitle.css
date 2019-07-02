@@ -5,12 +5,39 @@
 @import '../../styles/variables.css';
 
 :root {
+  --peer-info-title-font-family: var(--default-font-family);
   --peer-info-title-verification-icon-color: var(--color-success);
 }
 
-/* Reset */
+/* Styles */
+.container {
+  font-family: var(--peer-info-title-font-family);
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-flow: row nowrap;
+}
+
+.fluid {
+  @mixin text-overflow-ellipsis;
+  display: inline-block;
+  width: 100%;
+}
+
+.title {
+  flex: 0 0 auto;
+
+  &.wrap {
+    flex-shrink: 1;
+  }
+}
+
+.userName {
+  flex: 0 0 auto;
+}
+
 .verifiedIcon {
+  flex: 0 0 auto;
   color: var(--peer-info-title-verification-icon-color);
   margin-left: 4px;
-  vertical-align: text-bottom;
 }

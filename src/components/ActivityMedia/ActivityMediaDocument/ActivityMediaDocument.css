@@ -12,13 +12,8 @@
   --activity-media-preview-image-size: 46px;
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   cursor: inherit;
   display: flex;
   flex-flow: row nowrap;
@@ -95,4 +90,8 @@
   float: left;
   color: var(--color-primary);
   margin-right: 4px;
+}
+
+.peerInfo {
+  display: inline-block;
 }

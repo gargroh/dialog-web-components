@@ -1,6 +1,6 @@
 ```jsx
 const ToolbarAvatar = require('./ToolbarAvatar').default;
-const ToolbarInfo = require('./ToolbarInfo').default;
+const { ToolbarInfo } = require('./ToolbarInfo');
 const ToolbarButtons = require('./ToolbarButtons').default;
 const IconButton = require('../IconButton/IconButton').default;
 
@@ -13,7 +13,7 @@ initialState = {
     },
   },
   isFavourite: false,
-  infoActve: false,
+  infoActive: false,
 };
 
 <div style={{ background: 'white' }}>
@@ -30,10 +30,10 @@ initialState = {
     />
     <ToolbarButtons>
       <ToolbarCallButton onClick={console.debug} />
-      <div style={{ marginRight: 8 }} />
+      <div style={{ marginRight: 16 }} />
       <ToolbarInfoButton
-        active={state.infoActve}
-        onClick={() => setState({ infoActve: !state.infoActve })}
+        active={state.infoActive}
+        onClick={() => setState({ infoActive: !state.infoActive })}
       />
     </ToolbarButtons>
   </Toolbar>

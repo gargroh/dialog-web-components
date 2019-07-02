@@ -14,12 +14,12 @@ export type Props = {
   id?: string,
   style?: Object,
   glyph: string,
-  size: 'small' | 'normal' | 'large',
+  size: 'small' | 'normal' | 'large' | number,
   theme: ColorTheme,
   flat: boolean,
   disabled: boolean,
   active?: boolean,
-  onClick: (event: SyntheticEvent<HTMLButtonElement>) => mixed,
+  onClick?: ?(event: SyntheticEvent<HTMLButtonElement>) => mixed,
 };
 
 class IconButton extends PureComponent<Props> {
@@ -39,11 +39,14 @@ class IconButton extends PureComponent<Props> {
       case 'small':
         return 16;
 
+      case 'normal':
+        return 22;
+
       case 'large':
         return 30;
 
       default:
-        return 22;
+        return size;
     }
   };
 
@@ -70,7 +73,7 @@ class IconButton extends PureComponent<Props> {
 
     const buttonClassName = classNames(
       styles.container,
-      styles[size],
+      styles[String(size)],
       {
         [styles.disabled]: disabled,
         [styles.defaultStyle]: !flat,

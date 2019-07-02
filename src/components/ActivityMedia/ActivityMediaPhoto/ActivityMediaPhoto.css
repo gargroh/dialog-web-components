@@ -12,13 +12,8 @@
   --activity-media-photo-image-size: 46px;
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   cursor: inherit;
   display: flex;
   flex-flow: row nowrap;
@@ -57,6 +52,10 @@
   flex-flow: column nowrap;
   flex: 1 1 auto;
   @mixin flex-fix;
+}
+
+.peerInfo {
+  display: inline-block;
 }
 
 .title {

@@ -7,7 +7,7 @@ import type { AvatarPlaceholder, UserStatusType } from '@dlghq/dialog-types';
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import Avatar from '../Avatar/Avatar';
-import PeerInfoTitle from '../PeerInfoTitle/PeerInfoTitle';
+import { PeerInfoTitle } from '../PeerInfoTitle/PeerInfoTitle';
 import UserStatus from '../UserStatus/UserStatus';
 import styles from './SidebarMenuProfile.css';
 

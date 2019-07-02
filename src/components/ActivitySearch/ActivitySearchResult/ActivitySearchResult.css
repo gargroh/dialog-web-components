@@ -8,13 +8,8 @@
   --activity-search-list-font-family: var(--default-font-family);
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   font-family: var(--activity-search-list-font-family);
   display: block;
   overflow-x: hidden;

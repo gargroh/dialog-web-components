@@ -11,11 +11,16 @@ import styles from './CallVideo.css';
 export type Props = {
   ownVideos?: CallVideoType[],
   theirVideos: CallVideoType[],
+  cover: boolean,
 };
 
 class CallVideo extends PureComponent<Props> {
+  static defaultProps = {
+    cover: false,
+  };
+
   renderTheirVideos(): Node {
-    const { theirVideos } = this.props;
+    const { theirVideos, cover } = this.props;
 
     return theirVideos.map(({ stream, isMirrored }) => {
       return (
@@ -25,6 +30,7 @@ class CallVideo extends PureComponent<Props> {
           className={styles.video}
           stream={stream}
           isMirrored={isMirrored}
+          cover={cover}
         />
       );
     });

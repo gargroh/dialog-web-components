@@ -8,7 +8,7 @@ defaults_run: &defaults_run
     echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc
     git config user.name "$GIT_NAME"
     git config user.email "$GIT_EMAIL"
-    npm i --no-package-lock
+    npm ci
 
 git_config: &git_config
   name: configure git bot
@@ -37,13 +37,31 @@ jobs:
       - run:
           <<: *defaults_run
       - run: |
-          npm i
           npm run build
           npm test
       - save_cache:
-          key: dialog-components-{{ .Branch }}
+          key: dialog-components-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
+
+  sonar_scan:
+    docker:
+      - image: node:10
+    steps:
+      - checkout
+      - run:
+          <<: *defaults_run
+      - run: |
+          ./node_modules/.bin/sonar-scanner \
+            -Dsonar.projectKey=dialogs_dialog-web-components \
+            -Dsonar.organization=dialogs \
+            -Dsonar.sources=src/ \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=${SONAR_TOKEN}
+      - save_cache:
+          key: dialog-components-sonar-cube
+          paths:
+            - ~/.sonar
 
   deployment:
     docker:
@@ -52,7 +70,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - dialog-components-{{ .Branch }}
+            - dialog-components-{{ checksum "package-lock.json" }}
       - run:
           <<: *defaults_run
       - run:
@@ -102,6 +120,11 @@ workflows:
   build-deploy:
     jobs:
       - build:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+      - sonar_scan:
           filters:
             branches:
               ignore:

@@ -59,6 +59,17 @@ class AddMembersModal extends PureComponent<Props> {
     }
   };
 
+  isMaxGroupSizeExceeded(): boolean {
+    const {
+      maxGroupSize,
+      group: { type },
+    } = this.props;
+
+    const membersCount = this.getMembersCount();
+
+    return type === 'group' && membersCount > maxGroupSize;
+  }
+
   getMembersCount = (): number => {
     const {
       selector,
@@ -69,10 +80,8 @@ class AddMembersModal extends PureComponent<Props> {
   };
 
   renderError() {
-    const { maxGroupSize, error } = this.props;
-    const membersCount = this.getMembersCount();
-
-    if (membersCount > maxGroupSize) {
+    const { error } = this.props;
+    if (this.isMaxGroupSizeExceeded()) {
       return (
         <div className={styles.error}>
           <Text id="CreateNewModal.group.error.max_group_size" />
@@ -104,7 +113,7 @@ class AddMembersModal extends PureComponent<Props> {
 
     const membersCount = this.getMembersCount();
     const membersCountClassNames = classNames(styles.membersCount, {
-      [styles.membersCountError]: membersCount > maxGroupSize,
+      [styles.membersCountError]: this.isMaxGroupSizeExceeded(),
     });
 
     return (

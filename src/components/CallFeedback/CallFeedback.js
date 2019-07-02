@@ -79,6 +79,7 @@ class CallFeedback extends PureComponent<Props, State> {
 
   render() {
     const className = classNames(styles.container, this.props.className);
+    const { rating } = this.state;
 
     return (
       <HotKeys onHotKey={this.handleHotkey}>
@@ -114,11 +115,13 @@ class CallFeedback extends PureComponent<Props, State> {
                 value={this.state.addLogs}
                 onChange={this.handleAddLogsToggle}
                 label="CallFeedback.add_logs"
+                className={styles.switcher}
               />
             </ModalBody>
             <ModalFooter className={styles.footer}>
               <Button
                 wide
+                disabled={rating === 0}
                 type="submit"
                 theme="success"
                 rounded={false}

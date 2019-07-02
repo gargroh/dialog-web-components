@@ -18,6 +18,7 @@ type Props = {
   className?: string,
   appName: string,
   appVersion: string,
+  updatesDisabled: boolean,
   updateState: Field<'upToDate' | 'available'>,
   onCheck: () => mixed,
   onUpdate: () => mixed,
@@ -27,7 +28,11 @@ type Props = {
 
 class AboutModal extends PureComponent<Props> {
   renderState() {
-    const { appName, updateState } = this.props;
+    const { appName, updateState, updatesDisabled } = this.props;
+
+    if (updatesDisabled) {
+      return null;
+    }
 
     if (updateState.error) {
       return <div className={styles.error}>{updateState.error.message}</div>;
@@ -48,7 +53,11 @@ class AboutModal extends PureComponent<Props> {
   }
 
   renderUpdateButton() {
-    const { updateState } = this.props;
+    const { updateState, updatesDisabled } = this.props;
+
+    if (updatesDisabled) {
+      return null;
+    }
 
     if (!updateState.error && updateState.value === 'available') {
       return (

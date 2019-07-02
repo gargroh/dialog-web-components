@@ -36,7 +36,7 @@ const handleSubmit = (request) => {
       request={state.request}
       shortnamePrefix="https://dlg.im/@"
       onClose={handleClose}
-      maxGroupSize={4}
+      maxGroupSize={4000}
       onRequestChange={handleRequestChange}
       onStepChange={handleStepChange}
       onSubmit={handleSubmit}

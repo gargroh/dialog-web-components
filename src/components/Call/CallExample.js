@@ -1,6 +1,5 @@
 /*
  * Copyright 2019 dialog LLC <info@dlg.im>
- * @flow
  */
 
 import type { Call as CallType } from '@dlghq/dialog-types';
@@ -36,7 +35,7 @@ function getVideoStream(callback) {
   }
 }
 
-class CallExample extends PureComponent<Props, State> {
+export class CallExample extends PureComponent<Props, State> {
   static getInitialState(): State {
     return {
       call: null,
@@ -229,6 +228,10 @@ class CallExample extends PureComponent<Props, State> {
     console.debug('[call] go to', peer); // eslint-disable-line
   };
 
+  handleChatToggle = () => {
+    console.debug('[call] open chat'); // eslint-disable-line
+  };
+
   renderCall() {
     if (!this.state.call) {
       return null;
@@ -246,6 +249,7 @@ class CallExample extends PureComponent<Props, State> {
         onResize={this.handleResize}
         onGoToPeer={this.handleGoToPeer}
         onMuteToggle={this.handleMuteToggle}
+        onChatToggle={this.handleChatToggle}
         onCameraToggle={this.handleCameraToggle}
         onScreenShareToggle={this.handleScreenShareToggle}
       />
@@ -267,5 +271,3 @@ class CallExample extends PureComponent<Props, State> {
     );
   }
 }
-
-export default CallExample;

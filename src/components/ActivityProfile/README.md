@@ -3,6 +3,7 @@ User profile:
 ```jsx
 const cutomProfileSchema = require('../../fixtures/customProfileSchema.js')
   .default;
+const { ActivityUserProfile } = require('./ActivityUserProfile.js');
 const schema = JSON.stringify(cutomProfileSchema.schema);
 const user = {
   name: 'Steve Rodgers',
@@ -29,18 +30,24 @@ const user = {
     telephone: '+1 234 567 89 00',
   }),
 };
+const now = new Date();
+
 const online = {
-  message: '3 minutes ago',
+  online: false,
+  lastSeen: now.setMinutes(now.getMinutes() - 45),
+  updateDate: now,
 };
 
 <div style={{ background: '#fff', width: 320 }}>
-  <ActivityProfile info={user} online={online} type="user" schema={schema} />
+  <ActivityUserProfile info={user} online={online} schema={schema} />
 </div>;
 ```
 
 Group profile:
 
 ```jsx
+const { ActivityGroupProfile } = require('./ActivityGroupProfile.js');
+
 const group = {
   name: 'American Option Buddies',
   shortname: null,
@@ -51,17 +58,14 @@ const group = {
   placeholder: 'lblue',
   adminId: 1001,
 };
-const online = {
-  message: '2 hours ago',
-};
 const onAboutEdit = () => console.debug('Edit about action');
+const onCreatorClick = () => console.debug('Clicked on creator name');
 
 <div style={{ background: '#fff', width: 320 }}>
-  <ActivityProfile
+  <ActivityGroupProfile
     info={group}
     onAboutEdit={onAboutEdit}
-    online={online}
-    type="group"
+    onCreatorClick={onCreatorClick}
   >
     <div style={{ margin: '0px 5px', display: 'inline-block' }}>
       <IconButton glyph="star" key="more" size="large" />
@@ -72,6 +76,6 @@ const onAboutEdit = () => console.debug('Edit about action');
     <div style={{ margin: '0px 5px', display: 'inline-block' }}>
       <IconButton glyph="more_outline" key="more" size="large" />
     </div>
-  </ActivityProfile>
+  </ActivityGroupProfile>
 </div>;
 ```

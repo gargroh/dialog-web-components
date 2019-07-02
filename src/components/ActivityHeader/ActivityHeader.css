@@ -14,13 +14,8 @@
   --activity-header-z-index: var(--z-index-chat);
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   position: relative;
   display: block;
   min-height: var(--activity-header-height);

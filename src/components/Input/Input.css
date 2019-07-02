@@ -35,17 +35,9 @@
   --input-hint-font-family: var(--default-font-family);
   --input-prefix-color: var(--default-font-color-light);
 }
-
-/* Reset */
-.container,
-.input,
-.label,
-.hint {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: block;
   width: 100%;
   margin-bottom: var(--default-padding);
@@ -75,6 +67,7 @@
 }
 
 .input {
+  all: initial;
   box-sizing: border-box;
   width: 100%;
   padding: 10px 0;
@@ -167,6 +160,7 @@
 }
 
 .label {
+  all: initial;
   display: inline-block;
   cursor: pointer;
   user-select: none;
@@ -179,6 +173,7 @@
 }
 
 .hint {
+  all: initial;
   display: inline-block;
   margin: 6px 0;
   user-select: none;

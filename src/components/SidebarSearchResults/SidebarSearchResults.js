@@ -17,6 +17,25 @@ import SidebarSearchItem from './SidebarSearchItem/SidebarSearchItem';
 import styles from './SidebarSearchResults.css';
 
 class SidebarSearchResults extends PureComponent<SidebarSearchResultsProps> {
+  renderContent(): Node {
+    const { minQueryLength, query } = this.props;
+
+    if (minQueryLength && query.trim().length < minQueryLength) {
+      return (
+        <div className={styles.text}>
+          <Text html tagName="div" id="SidebarSearchResults.too_short_query" />
+        </div>
+      );
+    }
+
+    return (
+      <div>
+        {this.renderPeers()}
+        {this.renderMessages()}
+      </div>
+    );
+  }
+
   renderPeers(): Node {
     const { peers } = this.props;
 
@@ -109,12 +128,7 @@ class SidebarSearchResults extends PureComponent<SidebarSearchResultsProps> {
   render() {
     const className = classNames(styles.container, this.props.className);
 
-    return (
-      <div className={className}>
-        {this.renderPeers()}
-        {this.renderMessages()}
-      </div>
-    );
+    return <div className={className}>{this.renderContent()}</div>;
   }
 }
 

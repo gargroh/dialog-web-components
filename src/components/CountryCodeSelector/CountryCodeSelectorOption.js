@@ -3,7 +3,7 @@
  * @flow
  */
 
-import type { Country } from './types';
+import type { Country } from './utils/countries';
 import { noop } from 'lodash';
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
@@ -98,6 +98,7 @@ class CountryCodeSelectorOption extends PureComponent<Props> {
         style={style}
         onClick={this.handleClick}
         onMouseEnter={this.handleMouseEnter}
+        title={title}
       >
         {this.renderFlag()}
         <div className={styles.optionLabel}>{title}</div>

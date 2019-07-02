@@ -9,7 +9,7 @@ import { Text } from '@dlghq/react-l10n';
 import classNames from 'classnames';
 
 import MessageAttachmentItem from './MessageAttachmentItem';
-import PeerInfoTitle from '../PeerInfoTitle/PeerInfoTitle';
+import { PeerInfoTitle } from '../PeerInfoTitle/PeerInfoTitle';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import styles from './MessageAttachment.css';
@@ -58,12 +58,12 @@ class MessageAttachmentForward extends PureComponent<Props> {
           view="link"
           onClick={this.handleGoToPeer}
           size="small"
-          className={styles.fromButton}
+          className={styles.button}
         >
           {from.type === 'channel' || from.type === 'group' ? (
             <Icon glyph={from.type} className={styles.fromIcon} size={20} />
           ) : null}
-          <PeerInfoTitle title={from.title} emojiSize={16} />
+          <PeerInfoTitle title={from.title} emojiSize={16} wrap />
         </Button>
       </div>
     );

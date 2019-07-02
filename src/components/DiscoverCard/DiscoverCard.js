@@ -14,8 +14,8 @@ import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import Markdown from '../Markdown/Markdown';
 import Hover from '../Hover/Hover';
-import PeerInfoTitle from '../PeerInfoTitle/PeerInfoTitle';
-import getAvatarPlaceholder from '../../utils/getAvatarPlaceholder';
+import { PeerInfoTitle } from '../PeerInfoTitle/PeerInfoTitle';
+import getAvatarPlaceholder from '../Avatar/utils/getAvatarPlaceholder';
 import styles from './DiscoverCard.css';
 
 export type Card = {
@@ -136,7 +136,11 @@ class DiscoverCard extends PureComponent<Props, State> {
     return (
       <div className={styles.title} title={title}>
         {this.renderIcon()}
-        <PeerInfoTitle title={title} emojiSize={20} />
+        <PeerInfoTitle
+          className={styles.titleInner}
+          title={title}
+          emojiSize={20}
+        />
       </div>
     );
   }

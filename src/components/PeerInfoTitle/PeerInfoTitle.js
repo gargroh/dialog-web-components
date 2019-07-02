@@ -1,97 +1,88 @@
 /*
  * Copyright 2019 dialog LLC <info@dlg.im>
- * @flow
+ * @flow strict
  */
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import Icon from '../Icon/Icon';
+import classNames from 'classnames';
 import Markdown from '../Markdown/Markdown';
 import decorators from './decorators';
 import styles from './PeerInfoTitle.css';
 
 type Props = {
   title: string,
+  inline: boolean,
   userName?: ?string,
   className?: string,
   titleClassName?: string,
   userNameClassName?: string,
+  verifiedIconClassName?: string,
   onTitleClick?: ?(event: SyntheticMouseEvent<>) => mixed,
   onUserNameClick?: ?(event: SyntheticMouseEvent<>) => mixed,
   addSpacebars: boolean,
   emojiSize?: number,
   isVerified?: ?boolean,
+  isFluid: boolean,
+  wrap: boolean,
 };
 
-class PeerInfoTitle extends PureComponent<Props> {
-  static defaultProps = {
-    addSpacebars: false,
-  };
+export function PeerInfoTitle(props: Props) {
+  const spacebars = props.addSpacebars ? '\u00A0\u00A0' : null;
+  const { userName, title, isFluid, wrap } = props;
 
-  renderVerified() {
-    if (this.props.isVerified) {
-      return (
-        <Icon
-          glyph="verified"
-          size={this.props.emojiSize}
-          className={styles.verifiedIcon}
-        />
-      );
-    }
-
-    return null;
-  }
-
-  render() {
-    const titleStyle = this.props.onTitleClick
-      ? { cursor: 'pointer' }
-      : undefined;
-    const spacebars = this.props.addSpacebars ? '\u00A0\u00A0' : null;
-    const title = (
+  return (
+    <span
+      className={classNames(
+        styles.container,
+        { [styles.fluid]: isFluid },
+        props.className,
+      )}
+    >
       <span
-        className={this.props.titleClassName}
-        style={titleStyle}
-        onClick={this.props.onTitleClick}
-        title={this.props.title}
+        className={classNames(styles.title, props.titleClassName, {
+          [styles.wrap]: wrap,
+        })}
+        style={props.onTitleClick ? { cursor: 'pointer' } : undefined}
+        onClick={props.onTitleClick}
+        title={title}
       >
         <Markdown
-          inline
-          emojiSize={this.props.emojiSize}
+          inline={props.inline}
+          emojiSize={props.emojiSize}
           decorators={decorators}
-          text={this.props.title}
+          text={title}
         />
         {spacebars}
       </span>
-    );
-
-    if (this.props.userName) {
-      const userNameStyle = this.props.onUserNameClick
-        ? { cursor: 'pointer' }
-        : undefined;
-
-      return (
-        <span className={this.props.className}>
-          {title}
-          <span
-            className={this.props.userNameClassName}
-            style={userNameStyle}
-            onClick={this.props.onUserNameClick}
-            title={`@${this.props.userName}`}
-          >
-            {`@${this.props.userName}`}
-            {spacebars}
-          </span>
-          {this.renderVerified()}
+      {userName ? (
+        <span
+          className={classNames(styles.userName, props.userNameClassName)}
+          style={props.onUserNameClick ? { cursor: 'pointer' } : undefined}
+          onClick={props.onUserNameClick}
+          title={`@${userName}`}
+        >
+          {`@${userName}`}
+          {spacebars}
         </span>
-      );
-    }
-
-    return (
-      <span className={this.props.className}>
-        {title}
-        {this.renderVerified()}
-      </span>
-    );
-  }
+      ) : null}
+      {props.isVerified ? (
+        <Icon
+          glyph="verified"
+          size={16}
+          className={classNames(
+            styles.verifiedIcon,
+            props.verifiedIconClassName,
+          )}
+        />
+      ) : null}
+    </span>
+  );
 }
 
-export default PeerInfoTitle;
+PeerInfoTitle.defaultProps = {
+  addSpacebars: false,
+  inline: true,
+  isFluid: false,
+  wrap: false,
+};

@@ -38,7 +38,7 @@
 .pre {
   font-family: var(--code-font-family);
   overflow: auto;
-  margin: var(--markdown-padding) calc(0 - var(--markdown-padding));
+  margin: var(--markdown-padding) calc(0px - var(--markdown-padding));
   padding: var(--markdown-padding);
   white-space: pre;
   word-wrap: normal;
@@ -146,5 +146,4 @@
   display: block;
 }
 
-.emoji {
-}
+/* .emoji {} */

@@ -3,9 +3,10 @@
  * @flow
  */
 
-import type { CallProps as Props } from './types';
+import type { CallProps } from './types';
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
+import { Text } from '@dlghq/react-l10n';
 import Hover from '../Hover/Hover';
 import CallControls from '../CallControls/CallControls';
 import CallVideo from '../CallVideo/CallVideo';
@@ -17,11 +18,24 @@ import isOnCall from './utils/isOnCall';
 import { hasTheirVideos } from './utils/hasVideo';
 import styles from './Call.css';
 
+type CallWindowProps = {
+  showCallDirectionLabel: boolean,
+  coverVideo: boolean,
+};
+
+type Props = CallProps & CallWindowProps;
+
 type State = {
   hover: boolean,
 };
 
 class CallWindow extends PureComponent<Props, State> {
+  static defaultProps = {
+    avatarSize: 136,
+    showCallDirectionLabel: false,
+    coverVideo: false,
+  };
+
   constructor(props: Props) {
     super(props);
 
@@ -43,6 +57,7 @@ class CallWindow extends PureComponent<Props, State> {
   handleGoToPeer = () => {
     if (!this.isSIP()) {
       this.props.onGoToPeer(this.props.call.peer.peer);
+      this.props.onChatToggle(false);
     }
   };
 
@@ -73,29 +88,56 @@ class CallWindow extends PureComponent<Props, State> {
   }
 
   renderVideo() {
-    const { call } = this.props;
+    const { call, coverVideo } = this.props;
 
     if (!hasTheirVideos(call)) {
       return null;
     }
 
-    return <CallVideo theirVideos={call.theirVideos} />;
+    return <CallVideo theirVideos={call.theirVideos} cover={coverVideo} />;
+  }
+
+  renderCallDirectionLabel() {
+    if (this.props.showCallDirectionLabel) {
+      const suffix = this.props.call.isOutgoing
+        ? 'outgoing_call'
+        : 'incoming_call';
+
+      return (
+        <Text className={styles.callDirectionLabel} id={`Call.${suffix}`} />
+      );
+    }
+
+    return null;
+  }
+
+  renderAvatarOrVideo() {
+    const { call, avatarSize, coverVideo } = this.props;
+
+    if (hasTheirVideos(call) && coverVideo) {
+      return this.renderVideo();
+    }
+
+    return (
+      <CallAvatar
+        animated
+        size={avatarSize}
+        peer={call.peer}
+        state={call.state}
+        onClick={this.isSIP() ? undefined : this.handleGoToPeer}
+      />
+    );
   }
 
   renderContent() {
-    const { call } = this.props;
+    const { call, coverVideo } = this.props;
 
-    if (!isOnCall(call.state)) {
+    if (!isOnCall(call.state) || coverVideo) {
       return (
         <div className={styles.content}>
           <div className={styles.info}>
-            <CallAvatar
-              animated
-              size={136}
-              peer={call.peer}
-              state={call.state}
-              onClick={this.isSIP() ? undefined : this.handleGoToPeer}
-            />
+            {this.renderCallDirectionLabel()}
+            {this.renderAvatarOrVideo()}
             <CallInfo
               className={styles.callState}
               call={call}
@@ -124,6 +166,7 @@ class CallWindow extends PureComponent<Props, State> {
         withVideo={hasTheirVideos(call)}
         size="normal"
         isVisible={this.state.hover}
+        disabled={this.props.isControlsDisabled}
         state={call.state}
         isMuted={call.isMuted}
         isCameraOn={call.isCameraOn}

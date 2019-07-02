@@ -14,11 +14,6 @@
   --tooltip-transition-duration: 100ms;
 }
 
-/* Reset */
-.tooltip {
-  all: initial;
-}
-
 /* Styles */
 .wrapper {
   display: inline-block;
@@ -30,6 +25,7 @@
 }
 
 .tooltip {
+  all: initial;
   position: relative;
   z-index: var(--tooltip-z-index);
   display: block;

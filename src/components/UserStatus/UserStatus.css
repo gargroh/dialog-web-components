@@ -27,6 +27,8 @@
   width: var(--presence-dot-size);
   height: var(--presence-dot-size);
   margin-right: var(--default-padding);
+  display: flex;
+  align-items: center;
 }
 
 .status {
@@ -51,4 +53,11 @@
 
 .invisible {
   background-color: #c1c1c0;
+}
+
+.dnd {
+  background-color: var(--default-background-color);
+  width: 75%;
+  height: 20%;
+  margin: auto;
 }

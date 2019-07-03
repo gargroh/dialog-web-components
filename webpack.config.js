@@ -17,7 +17,6 @@ const whitelist = [
   resolve('node_modules/@dlghq/dialog-types'),
   resolve('node_modules/@dlghq/dialog-utils'),
   resolve('node_modules/@dlghq/country-codes'),
-  resolve('node_modules/@dlghq/dialog-ui'),
   resolve('node_modules/@dlghq/emoji'),
 ];
 
@@ -57,9 +56,6 @@ module.exports = {
               ],
             },
           },
-          {
-            loader: 'astroturf/loader',
-          },
         ],
       },
       {
@@ -82,7 +78,7 @@ module.exports = {
       {
         test: /\.css$/,
         include: whitelist,
-        exclude: [globalStyles, resolve('node_modules/@dlghq/dialog-ui')],
+        exclude: globalStyles,
         use: [
           'style-loader',
           {
@@ -100,44 +96,18 @@ module.exports = {
         ],
       },
       {
-        test: /\.css$/,
-        include: [resolve('node_modules/@dlghq/dialog-ui')],
-        exclude: globalStyles,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: 'DialogUI__[name]__[local]',
-              },
-              importLoaders: 1,
-            },
-          },
-          {
-            loader: 'postcss-loader',
-          },
-        ],
-      },
-      {
         test: /\.yml$/,
         include: whitelist,
         use: ['yml-loader'],
       },
       {
         test: /\.(jpg|png|svg|gif)$/,
-        exclude: [
-          resolve('src/components/Icon/svg'),
-          resolve('node_modules/@dlghq/dialog-ui/src/components/Icon/svg'),
-        ],
+        exclude: resolve('src/components/Icon/svg'),
         use: ['file-loader'],
       },
       {
         test: /\.(svg)$/,
-        include: [
-          resolve('src/components/Icon/svg'),
-          resolve('node_modules/@dlghq/dialog-ui/src/components/Icon/svg'),
-        ],
+        include: resolve('src/components/Icon/svg'),
         use: ['svg-sprite-loader'],
       },
       {

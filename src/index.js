@@ -40,7 +40,6 @@ export { default as Dragndrop } from './components/Dragndrop/Dragndrop';
 export {
   default as CountryCodeSelector,
 } from './components/CountryCodeSelector/CountryCodeSelector';
-export * from './components/CountryCodeSelectorNext/CountryCodeSelectorNext';
 export { default as ImageEdit } from './components/ImageEdit/ImageEdit';
 export { default as Overlay } from './components/Overlay/Overlay';
 export {
@@ -103,7 +102,6 @@ export {
 export { default as Input } from './components/Input/Input';
 export { default as InputNext } from './components/InputNext/InputNext';
 export { default as PhoneInput } from './components/PhoneInput/PhoneInput';
-export * from './components/PhoneInputNext/PhoneInputNext';
 export { default as Select } from './components/Select/Select';
 export { default as SelectNext } from './components/SelectNext/SelectNext';
 export { default as Checkbox } from './components/Checkbox/Checkbox';
@@ -115,7 +113,6 @@ export { default as CustomForm } from './components/CustomForm/CustomForm';
 export { default as Dialpad } from './components/Dialpad/Dialpad';
 
 // Plug & Play Forms
-export * from './components/AuthorizationNext/AuthorizationNext';
 export {
   default as Authorization,
 } from './components/Authorization/Authorization';

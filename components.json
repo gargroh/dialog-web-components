@@ -54,7 +54,6 @@
       "Input",
       "InputNext",
       "PhoneInput",
-      "PhoneInputNext",
       "Select",
       "SelectNext",
       "Checkbox",
@@ -71,7 +70,6 @@
   {
     "name": "Plug & Play Forms",
     "components": [
-      "AuthorizationNext",
       "Authorization",
       "Registration",
       "GenderSelect",

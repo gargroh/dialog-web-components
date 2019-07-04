@@ -36,6 +36,7 @@ export function ActivityUserProfile(props: ActivityUserProfileProps) {
       customProfile,
       phones,
       emails,
+      status: { type: status },
     },
     online,
     children,
@@ -48,6 +49,7 @@ export function ActivityUserProfile(props: ActivityUserProfileProps) {
       <div className={styles.header}>
         <Avatar
           className={styles.avatar}
+          status={online.online ? status : null}
           size={140}
           title={name}
           image={bigAvatar}

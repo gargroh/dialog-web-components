@@ -1,7 +1,6 @@
 /*
  * Copyright 2019 dialog LLC <info@dlg.im>
  */
-
 @import '../../styles/variables.css';
 
 :root {
@@ -12,7 +11,11 @@
   --modal-about-appName-font-size: 22px;
   --modal-about-appName-color: color-mod(#000 alpha(80%));
   --modal-about-state-font-size: 14px;
-  --modal-about-state-color: color-mod(#000 alpha(60%));
+  --modal-about-state-color: color-mod(#000 alpha(80%));
+
+  --modal-about-padding: 10px;
+  --modal-about-margin: 10px;
+  --modal-about-version-color: #000;
 }
 
 /* Styles */
@@ -62,6 +65,54 @@
   line-height: 1;
   color: color-mod(var(--modal-about-appName-color) alpha(40%));
   margin-bottom: 1rem;
+}
+
+.changeLogBlock {
+  padding-top: var(--modal-about-padding);
+}
+
+.changeLogItem {
+  margin-bottom: calc(var(--modal-about-margin) * 2);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.changeLogChanges {
+  text-align: left;
+  padding: var(--modal-about-padding);
+  margin: 0;
+  list-style: none;
+  font-size: var(--font-size-small);
+  color: var(--modal-about-version-color);
+  word-break: break-word;
+
+  & li {
+    margin-bottom: 5px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.changeLogVersion {
+  font-size: var(--modal-about-state-font-size);
+  line-height: 1;
+  color: var(--modal-about-version-color);
+}
+
+.changeLogButton {
+  display: block;
+  margin: 0 auto;
+  outline: none;
+  font-size: var(--font-size-small);
+  color: var(--modal-about-version-color);
+  background-color: transparent;
+  border-color: transparent;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .state {

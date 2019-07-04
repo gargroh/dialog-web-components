@@ -55,6 +55,10 @@
   background-color: #c1c1c0;
 }
 
+.busy {
+  background-color: var(--color-danger);
+}
+
 .dnd {
   background-color: var(--default-background-color);
   width: 75%;

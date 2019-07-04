@@ -99,7 +99,7 @@
 }
 
 .changeLogVersion {
-  font-size: 14px;
+  font-size: var(--modal-about-state-font-size);
   line-height: 1;
   color: var(--modal-about-version-color);
 }

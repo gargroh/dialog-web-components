@@ -4,7 +4,7 @@
  */
 
 import type { Field } from '@dlghq/dialog-types';
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 import { Text } from '@dlghq/react-l10n';
 import Modal from '../Modal/Modal';
@@ -30,7 +30,11 @@ type AboutModalProps = {
   onVersionClick: () => mixed,
 };
 
-class AboutModal extends PureComponent<AboutModalProps> {
+type AboutModalState = {
+  changeLogExpanded: boolean,
+};
+
+class AboutModal extends Component<AboutModalProps, AboutModalState> {
   state = {
     changeLogExpanded: false,
   };

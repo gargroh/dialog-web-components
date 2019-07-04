@@ -11,10 +11,16 @@ import {
 } from '@dlghq/react-l10n';
 import styles from './AboutModal.css';
 
+type LocaleType = string;
+
+type ChangeLogItem = {
+  [LocaleType]: Array<string>,
+};
+
 export type AboutModalChangeLogItemProps = {
-  date: number,
+  date: string,
   version: string,
-  changes: Array<string>,
+  changes: ChangeLogItem,
 };
 
 function AboutModalChangeLogItem(

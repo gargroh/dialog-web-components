@@ -80,11 +80,13 @@ class MessageAttachmentItem extends Component<Props> {
       return null;
     }
 
+    const classes = type === 'forward' ? styles.forwardPeerInfoTitle : '';
+
     return (
       <header className={styles.header}>
         <Icon glyph={type} size={20} className={styles.icon} />
         <PeerInfoTitle
-          className={styles.peerInfoTitle}
+          className={classes}
           title={sender.title}
           userName={sender.userName}
           titleClassName={styles.name}
@@ -93,7 +95,7 @@ class MessageAttachmentItem extends Component<Props> {
           onUserNameClick={this.handleGoToPeer}
           addSpacebars
           emojiSize={18}
-          wrap
+          wrap={type === 'forward'}
         />
         {type === 'reply' ? this.renderTimestamp() : null}
       </header>

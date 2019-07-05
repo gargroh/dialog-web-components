@@ -49,6 +49,7 @@
     margin-left: 6px;
     line-height: var(--message-attachment-header-line-height);
     font-size: var(--message-attachment-from-font-size);
+    text-align: left;
   }
 }
 
@@ -70,7 +71,7 @@
   vertical-align: sub;
 }
 
-.peerInfoTitle {
+.forwardPeerInfoTitle {
   display: flex;
   flex-wrap: wrap;
   line-height: var(--message-attachment-header-line-height);

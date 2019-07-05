@@ -69,6 +69,9 @@
 .do_not_disturb {
   fill: var(--avatar-dnd-color);
 }
+.dnd {
+  fill: var(--default-background-color);
+}
 
 /* Clicker */
 .clickerWrapper {

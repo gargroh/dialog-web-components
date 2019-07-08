@@ -61,11 +61,7 @@ class ImagePreloader extends Component<
       this.handleStopFetch();
     }
 
-    if (
-      this.props.src &&
-      this.props.src !== prevProps.src &&
-      this.state.state !== STATE_PENDING
-    ) {
+    if (this.props.src && this.props.src !== prevProps.src) {
       this.handleStartFetch(this.props.src);
     }
 

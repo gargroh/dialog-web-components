@@ -4,14 +4,17 @@
  */
 
 import type { ProviderContext } from '@dlghq/react-l10n';
-import React, { PureComponent } from 'react';
+import React, { PureComponent, createRef } from 'react';
 import { LocalizationContextType } from '@dlghq/react-l10n';
 import classNames from 'classnames';
 import styles from './Input.css';
 
 type HTMLAbstractInputElement = HTMLInputElement | HTMLTextAreaElement;
-
+type RefType =
+  | ((null | HTMLAbstractInputElement) => mixed)
+  | { current: null | HTMLAbstractInputElement };
 export type Props = {
+  forwardRef?: RefType,
   className?: string,
   inputClassName?: string,
   wrapperClassName?: string,
@@ -62,9 +65,7 @@ export type Context = ProviderContext;
 
 class Input extends PureComponent<Props, State> {
   context: Context;
-
-  // refs
-  input: ?(HTMLInputElement | HTMLTextAreaElement);
+  innerRef: RefType;
 
   static defaultProps = {
     type: 'text',
@@ -82,6 +83,8 @@ class Input extends PureComponent<Props, State> {
     this.state = {
       isFocused: false,
     };
+
+    this.setInnerRef();
   }
 
   componentDidMount(): void {
@@ -90,13 +93,18 @@ class Input extends PureComponent<Props, State> {
 
   componentDidUpdate(): void {
     this.autoFocus();
+    this.setInnerRef();
   }
 
-  handleChange = (event: $FlowIssue): void => {
+  handleChange = (
+    event: SyntheticInputEvent<HTMLAbstractInputElement>,
+  ): void => {
     this.props.onChange(event.target.value, event);
   };
 
-  handleFocus = (event: $FlowIssue): void => {
+  handleFocus = (
+    event: SyntheticFocusEvent<HTMLAbstractInputElement>,
+  ): void => {
     this.setState({ isFocused: true });
 
     if (this.props.onFocus) {
@@ -104,10 +112,10 @@ class Input extends PureComponent<Props, State> {
     }
   };
 
-  handleBlur = (event: $FlowIssue): void => {
+  handleBlur = (event: SyntheticFocusEvent<HTMLAbstractInputElement>): void => {
     if (this.isAutoFocus()) {
       event.preventDefault();
-      event.target.focus();
+      event.currentTarget.focus();
 
       return;
     }
@@ -122,8 +130,8 @@ class Input extends PureComponent<Props, State> {
   handleLabelMouseDown = (event: $FlowIssue): void => {
     event.preventDefault();
 
-    if (this.input) {
-      this.input.focus();
+    if (this.innerRef.current) {
+      this.innerRef.current.focus();
     }
   };
 
@@ -131,27 +139,30 @@ class Input extends PureComponent<Props, State> {
     return Boolean(this.props.autoFocus) && !this.props.disabled;
   }
 
-  setInput = (element: *): void => {
-    this.input = element;
-  };
+  setInnerRef(): void {
+    this.innerRef = this.props.forwardRef || createRef();
+  }
 
   autoFocus(): void {
-    if (this.isAutoFocus() && this.input) {
-      if (document.activeElement !== this.input) {
-        this.input.focus();
+    if (this.isAutoFocus() && this.innerRef.current) {
+      if (document.activeElement !== this.innerRef.current) {
+        this.innerRef.current.focus();
       }
     }
   }
 
   focus(): void {
-    if (this.input && document.activeElement !== this.input) {
-      this.input.focus();
+    if (
+      this.innerRef.current &&
+      document.activeElement !== this.innerRef.current
+    ) {
+      this.innerRef.current.focus();
     }
   }
 
   blur(): void {
-    if (this.input) {
-      this.input.blur();
+    if (this.innerRef.current) {
+      this.innerRef.current.blur();
     }
   }
 
@@ -231,7 +242,7 @@ class Input extends PureComponent<Props, State> {
       placeholder: placeholder ? l10n.formatText(placeholder) : null,
       type,
       value,
-      ref: this.setInput,
+      ref: this.innerRef,
       tabIndex,
       autoFocus: htmlAutoFocus,
       onChange: this.handleChange,
@@ -283,4 +294,6 @@ class Input extends PureComponent<Props, State> {
   }
 }
 
-export default Input;
+export default React.forwardRef<Props, HTMLAbstractInputElement>(
+  (props, ref) => <Input {...props} forwardRef={ref} />,
+);

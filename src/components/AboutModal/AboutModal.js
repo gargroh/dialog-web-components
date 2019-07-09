@@ -22,7 +22,7 @@ type AboutModalProps = {
   appName: string,
   appVersion: string,
   updatesDisabled: boolean,
-  changeLog: Array<AboutModalChangeLogItemProps>,
+  changeLog?: Array<AboutModalChangeLogItemProps>,
   updateState: Field<'upToDate' | 'available'>,
   onCheck: () => mixed,
   onUpdate: () => mixed,

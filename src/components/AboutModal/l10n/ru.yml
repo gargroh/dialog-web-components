@@ -8,3 +8,6 @@ pending:
   available: Скачивание обновления
 check: Проверить обновление
 update: Обновить приложение
+showChangeLog: Показать историю версий
+hideChangeLog: Скрыть историю версий
+changeLogVersion: "{version} от {date}"

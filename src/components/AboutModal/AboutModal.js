@@ -4,7 +4,7 @@
  */
 
 import type { Field } from '@dlghq/dialog-types';
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 import { Text } from '@dlghq/react-l10n';
 import Modal from '../Modal/Modal';
@@ -12,13 +12,17 @@ import Icon from '../Icon/Icon';
 import ModalBody from '../Modal/ModalBody';
 import Logo from '../Logo/Logo';
 import ButtonNext from '../ButtonNext/ButtonNext';
+import AboutModalChangeLogItem, {
+  type AboutModalChangeLogItemProps,
+} from './AboutModalChangeLogItem';
 import styles from './AboutModal.css';
 
-type Props = {
+type AboutModalProps = {
   className?: string,
   appName: string,
   appVersion: string,
   updatesDisabled: boolean,
+  changeLog?: Array<AboutModalChangeLogItemProps>,
   updateState: Field<'upToDate' | 'available'>,
   onCheck: () => mixed,
   onUpdate: () => mixed,
@@ -26,7 +30,23 @@ type Props = {
   onVersionClick: () => mixed,
 };
 
-class AboutModal extends PureComponent<Props> {
+type AboutModalState = {
+  changeLogExpanded: boolean,
+};
+
+class AboutModal extends Component<AboutModalProps, AboutModalState> {
+  state = {
+    changeLogExpanded: false,
+  };
+
+  handleToggleChangeLog = () => {
+    this.setState((prevState) => {
+      return {
+        changeLogExpanded: !prevState.changeLogExpanded,
+      };
+    });
+  };
+
   renderState() {
     const { appName, updateState, updatesDisabled } = this.props;
 
@@ -86,6 +106,58 @@ class AboutModal extends PureComponent<Props> {
     );
   }
 
+  renderChangeLogButton() {
+    const { changeLog } = this.props;
+    const { changeLogExpanded } = this.state;
+
+    if (!changeLog || changeLog.length === 0) {
+      return null;
+    }
+
+    return (
+      <button
+        type="button"
+        id="about_change_log_button"
+        onClick={this.handleToggleChangeLog}
+        className={styles.changeLogButton}
+      >
+        <Text
+          id={
+            changeLogExpanded
+              ? 'AboutModal.hideChangeLog'
+              : 'AboutModal.showChangeLog'
+          }
+        />
+      </button>
+    );
+  }
+
+  renderChangeLogBlock() {
+    const { changeLogExpanded } = this.state;
+    const { changeLog } = this.props;
+
+    if (!changeLogExpanded) {
+      return null;
+    }
+
+    if (!changeLog || changeLog.length === 0) {
+      return null;
+    }
+
+    return (
+      <div className={styles.changeLogBlock}>
+        {changeLog.map((log) => (
+          <AboutModalChangeLogItem
+            key={`${log.version}_${log.date.toString()}`}
+            version={log.version}
+            date={log.date}
+            changes={log.changes}
+          />
+        ))}
+      </div>
+    );
+  }
+
   render() {
     const { appName, appVersion } = this.props;
     const className = classNames(styles.container, this.props.className);
@@ -111,6 +183,8 @@ class AboutModal extends PureComponent<Props> {
           />
           <div className={styles.state}>{this.renderState()}</div>
           {this.renderUpdateButton()}
+          {this.renderChangeLogButton()}
+          {this.renderChangeLogBlock()}
         </ModalBody>
       </Modal>
     );

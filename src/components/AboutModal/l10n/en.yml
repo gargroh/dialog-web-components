@@ -8,3 +8,6 @@ pending:
   available: Downloading update
 check: Check for updates
 update: Install update
+showChangeLog: Show change log
+hideChangeLog: Hide change log
+changeLogVersion: "{version} from {date}"

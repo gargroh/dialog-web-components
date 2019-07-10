@@ -195,7 +195,13 @@ class Avatar extends PureComponent<AvatarProps, AvatarState> {
       <>
         <circle cx="84" cy="84" r="15" className={styles[status]} />
         {status === 'do_not_disturb' && (
-          <rect x="74" y="82" width="20" height="5" className={styles.dnd} />
+          <rect
+            x="74"
+            y="82"
+            width="20"
+            height="5"
+            className={styles.dndBrick}
+          />
         )}
       </>
     );

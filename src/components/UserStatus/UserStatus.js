@@ -33,7 +33,7 @@ class UserStatus extends PureComponent<Props> {
       styles.status,
       this.props.statusClassName,
     );
-    const dndClassName = classNames(styles.dnd);
+    const dndClassName = classNames(styles.dndBrick);
 
     return (
       <div className={className}>

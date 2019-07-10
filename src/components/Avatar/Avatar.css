@@ -9,6 +9,7 @@
   --avatar-text-font-size: 32px;
   --avatar-unset-color: var(--color-success);
   --avatar-away-color: var(--color-warning);
+  --avatar-busy-color: var(--color-danger);
   --avatar-dnd-color: var(--color-danger);
   --avatar-hovered-opacity: 0.9;
   --avatar-active-opacity: 0.85;
@@ -66,10 +67,14 @@
   fill: var(--avatar-away-color);
 }
 
+.busy {
+  fill: var(--avatar-busy-color);
+}
+
 .do_not_disturb {
   fill: var(--avatar-dnd-color);
 }
-.dnd {
+.dndBrick {
   fill: var(--default-background-color);
 }
 

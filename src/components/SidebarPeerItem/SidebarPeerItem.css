@@ -79,6 +79,7 @@
   align-content: stretch;
   align-items: flex-start;
   height: 20px;
+  @mixin flex-fix;
 }
 
 .title {

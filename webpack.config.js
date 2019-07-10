@@ -5,6 +5,8 @@
 const fs = require('fs');
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 function resolve(...paths) {
   return fs.realpathSync(path.join(__dirname, ...paths));
@@ -61,7 +63,9 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
           {
             loader: 'css-loader',
             options: {
@@ -80,7 +84,9 @@ module.exports = {
         include: whitelist,
         exclude: globalStyles,
         use: [
-          'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
           {
             loader: 'css-loader',
             options: {
@@ -128,5 +134,9 @@ module.exports = {
         to: 'encoderWorker.min.wasm',
       },
     ]),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
+    new OptimizeCSSAssetsPlugin(),
   ],
 };

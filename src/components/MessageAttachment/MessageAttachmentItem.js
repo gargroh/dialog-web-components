@@ -20,7 +20,7 @@ import getDateFnsLocale from '../../utils/getDateFnsLocale';
 import formatDate from 'date-fns/format';
 import styles from './MessageAttachment.css';
 
-type Props = {
+export type MessageAttachmentItemProps = {
   className?: string,
   type: 'forward' | 'reply',
   message: Message,
@@ -32,7 +32,7 @@ type Props = {
   onLightboxOpen?: (message: Message) => mixed,
 };
 
-class MessageAttachmentItem extends Component<Props> {
+class MessageAttachmentItem extends Component<MessageAttachmentItemProps> {
   context: ProviderContext;
 
   static contextTypes = {
@@ -80,22 +80,19 @@ class MessageAttachmentItem extends Component<Props> {
       return null;
     }
 
-    const classes = type === 'forward' ? styles.forwardPeerInfoTitle : '';
-
     return (
       <header className={styles.header}>
         <Icon glyph={type} size={20} className={styles.icon} />
         <PeerInfoTitle
-          className={classes}
           title={sender.title}
           userName={sender.userName}
-          titleClassName={styles.name}
-          userNameClassName={styles.nick}
           onTitleClick={this.handleGoToPeer}
           onUserNameClick={this.handleGoToPeer}
+          className={styles.title}
+          titleClassName={styles.name}
+          userNameClassName={styles.nick}
           addSpacebars
           emojiSize={18}
-          wrap={type === 'forward'}
         />
         {type === 'reply' ? this.renderTimestamp() : null}
       </header>

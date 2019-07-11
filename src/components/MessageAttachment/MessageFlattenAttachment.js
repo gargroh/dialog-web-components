@@ -12,7 +12,7 @@ import React, { PureComponent } from 'react';
 import MessageAttachment from './MessageAttachment';
 import flattenMessageAttachment from './utils/flattenMessageAttachment';
 
-type Props = {
+type MessageFlattenAttachmentProps = {
   className?: string,
   attachment: MessageAttachmentType,
   maxHeight: number,
@@ -22,7 +22,7 @@ type Props = {
   onForwardLightboxOpen?: (messages: Message[], focus: Message) => mixed,
 };
 
-class MessageFlattenAttachment extends PureComponent<Props> {
+class MessageFlattenAttachment extends PureComponent<MessageFlattenAttachmentProps> {
   handleLightboxOpen = (focus: Message) => {
     if (this.props.onForwardLightboxOpen) {
       this.props.onForwardLightboxOpen(this.props.attachment.messages, focus);

@@ -10,7 +10,6 @@ import classNames from 'classnames';
 
 import MessageAttachmentItem from './MessageAttachmentItem';
 import { PeerInfoTitle } from '../PeerInfoTitle/PeerInfoTitle';
-import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import styles from './MessageAttachment.css';
 
@@ -50,8 +49,7 @@ class MessageAttachmentForward extends PureComponent<MessageAttachmentForwardPro
     if (!from) {
       return null;
     }
-    from.title =
-      'lorem lorem loremlorem loremloremloremlorem loremloremloremlorem loremlorem lorem lorem lorem lorem lorem ';
+
     return (
       <div className={styles.from}>
         <Text id="MessageAttachment.from" className={styles.fromPrefix} />

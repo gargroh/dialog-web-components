@@ -19,17 +19,13 @@
 }
 
 .fluid {
-  @mixin text-overflow-ellipsis;
   display: inline-block;
   width: 100%;
+  @mixin text-overflow-ellipsis;
 }
 
 .title {
   flex: 0 0 auto;
-
-  &.wrap {
-    flex-shrink: 1;
-  }
 }
 
 .userName {

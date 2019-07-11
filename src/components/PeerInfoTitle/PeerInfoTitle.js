@@ -10,7 +10,7 @@ import Markdown from '../Markdown/Markdown';
 import decorators from './decorators';
 import styles from './PeerInfoTitle.css';
 
-type Props = {
+export type PeerInfoTitleProps = {
   title: string,
   inline: boolean,
   userName?: ?string,
@@ -24,45 +24,41 @@ type Props = {
   emojiSize?: number,
   isVerified?: ?boolean,
   isFluid: boolean,
-  wrap: boolean,
 };
 
-export function PeerInfoTitle(props: Props) {
+export function PeerInfoTitle(props: PeerInfoTitleProps) {
   const spacebars = props.addSpacebars ? '\u00A0\u00A0' : null;
-  const { userName, title, isFluid, wrap } = props;
 
   return (
     <span
       className={classNames(
         styles.container,
-        { [styles.fluid]: isFluid },
+        { [styles.fluid]: props.isFluid },
         props.className,
       )}
     >
       <span
-        className={classNames(styles.title, props.titleClassName, {
-          [styles.wrap]: wrap,
-        })}
+        className={classNames(styles.title, props.titleClassName)}
         style={props.onTitleClick ? { cursor: 'pointer' } : undefined}
         onClick={props.onTitleClick}
-        title={title}
+        title={props.title}
       >
         <Markdown
           inline={props.inline}
           emojiSize={props.emojiSize}
           decorators={decorators}
-          text={title}
+          text={props.title}
         />
         {spacebars}
       </span>
-      {userName ? (
+      {props.userName ? (
         <span
           className={classNames(styles.userName, props.userNameClassName)}
           style={props.onUserNameClick ? { cursor: 'pointer' } : undefined}
           onClick={props.onUserNameClick}
-          title={`@${userName}`}
+          title={`@${props.userName}`}
         >
-          {`@${userName}`}
+          {`@${props.userName}`}
           {spacebars}
         </span>
       ) : null}
@@ -84,5 +80,4 @@ PeerInfoTitle.defaultProps = {
   addSpacebars: false,
   inline: true,
   isFluid: false,
-  wrap: false,
 };

@@ -26,50 +26,61 @@ export type PeerInfoTitleProps = {
   isFluid: boolean,
 };
 
-export function PeerInfoTitle(props: PeerInfoTitleProps) {
-  const spacebars = props.addSpacebars ? '\u00A0\u00A0' : null;
+export function PeerInfoTitle({
+  title,
+  inline,
+  userName,
+  className,
+  titleClassName,
+  userNameClassName,
+  verifiedIconClassName,
+  onTitleClick,
+  onUserNameClick,
+  addSpacebars,
+  emojiSize,
+  isVerified,
+  isFluid,
+}: PeerInfoTitleProps) {
+  const spacebars = addSpacebars ? '\u00A0\u00A0' : null;
 
   return (
     <span
       className={classNames(
         styles.container,
-        { [styles.fluid]: props.isFluid },
-        props.className,
+        { [styles.fluid]: isFluid },
+        className,
       )}
     >
       <span
-        className={classNames(styles.title, props.titleClassName)}
-        style={props.onTitleClick ? { cursor: 'pointer' } : undefined}
-        onClick={props.onTitleClick}
-        title={props.title}
+        className={classNames(styles.title, titleClassName)}
+        style={onTitleClick ? { cursor: 'pointer' } : undefined}
+        onClick={onTitleClick}
+        title={title}
       >
         <Markdown
-          inline={props.inline}
-          emojiSize={props.emojiSize}
+          inline={inline}
+          emojiSize={emojiSize}
           decorators={decorators}
-          text={props.title}
+          text={title}
         />
         {spacebars}
       </span>
-      {props.userName ? (
+      {userName ? (
         <span
-          className={classNames(styles.userName, props.userNameClassName)}
-          style={props.onUserNameClick ? { cursor: 'pointer' } : undefined}
-          onClick={props.onUserNameClick}
-          title={`@${props.userName}`}
+          className={classNames(styles.userName, userNameClassName)}
+          style={onUserNameClick ? { cursor: 'pointer' } : undefined}
+          onClick={onUserNameClick}
+          title={`@${userName}`}
         >
-          {`@${props.userName}`}
+          {`@${userName}`}
           {spacebars}
         </span>
       ) : null}
-      {props.isVerified ? (
+      {isVerified ? (
         <Icon
           glyph="verified"
           size={16}
-          className={classNames(
-            styles.verifiedIcon,
-            props.verifiedIconClassName,
-          )}
+          className={classNames(styles.verifiedIcon, verifiedIconClassName)}
         />
       ) : null}
     </span>

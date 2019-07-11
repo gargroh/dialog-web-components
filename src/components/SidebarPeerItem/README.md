@@ -1,31 +1,34 @@
 ```jsx
 initialState = {
-  current: 0 
+  current: 0,
 };
 
 const info = [
   {
     peer: {
       id: 0,
-      type: 'user'
+      type: 'user',
     },
-    title: 'Some User',
-    placeholder: 'blue'
-  },{
+    title:
+      'Some User Some User User Some User User Some User User Some User User Some User User Some User',
+    placeholder: 'blue',
+  },
+  {
     peer: {
       id: 2,
-      type: 'user'
+      type: 'user',
     },
     title: 'Some User',
-    placeholder: 'blue'
-  },{
+    placeholder: 'blue',
+  },
+  {
     peer: {
       id: 3,
-      type: 'user'
+      type: 'user',
     },
     title: 'Some User',
-    placeholder: 'blue'
-  }
+    placeholder: 'blue',
+  },
 ];
 
 const handleSelect = (peer) => setState({ current: peer.id });
@@ -49,5 +52,5 @@ const handleSelect = (peer) => setState({ current: peer.id });
     onSelect={handleSelect}
     active={state.current === info[2].peer.id}
   />
-</div>
+</div>;
 ```

@@ -3,20 +3,20 @@
 ```jsx
 const content = {
   type: 'text',
-  text: 'Hello, world :+1:'
+  text: 'Hello, world :+1:',
 };
 
-<MessageContent content={content} />
+<MessageContent content={content} />;
 ```
 
 ```jsx
 const content = {
   type: 'text',
   text: 'Text with media',
-  media: [null]
+  media: [null],
 };
 
-<MessageContent content={content} />
+<MessageContent content={content} />;
 ```
 
 ### Service
@@ -24,20 +24,20 @@ const content = {
 ```jsx
 const content = {
   type: 'service',
-  text: 'Octocat joined group!'
+  text: 'Octocat joined group!',
 };
 
-<MessageContent content={content} />
+<MessageContent content={content} />;
 ```
 
 ### Deleted
 
 ```jsx
 const content = {
-  type: 'deleted'
+  type: 'deleted',
 };
 
-<MessageContent content={content} />
+<MessageContent content={content} />;
 ```
 
 ### Photo
@@ -45,7 +45,7 @@ const content = {
 ```jsx
 const messages = require('../../fixtures/messages');
 
-<MessageContent content={messages[2].content} />
+<MessageContent content={messages[2].content} />;
 ```
 
 ### Document
@@ -58,10 +58,12 @@ initialState = messages[4].content;
 const toggleUpload = () => setState({ isUploading: !state.isUploading });
 
 <div>
-  <Button onClick={toggleUpload} theme="primary" size="small">Toggle upload</Button>
+  <Button onClick={toggleUpload} theme="primary" size="small">
+    Toggle upload
+  </Button>
   <hr />
   <MessageContent content={state} />
-</div>
+</div>;
 ```
 
 ### Voice
@@ -74,10 +76,38 @@ initialState = messages[3].content;
 const toggleUpload = () => setState({ isUploading: !state.isUploading });
 
 <div>
-  <Button size="small" theme="primary" onClick={toggleUpload}>Toggle Upload</Button>
+  <Button size="small" theme="primary" onClick={toggleUpload}>
+    Toggle Upload
+  </Button>
   <hr />
   <MessageContent content={state} />
-</div>
+</div>;
+```
+
+Voice card with additional content:
+
+```jsx
+const { Button, Image, VoiceCardContent } = require('../..');
+const messages = require('../../fixtures/messages');
+const voiceContent = messages[3].content;
+
+<div style={{ background: '#fff' }}>
+  <MessageContent content={voiceContent}>
+    <VoiceCardContent>
+      <Button size="small" theme="primary">
+        Download
+      </Button>
+    </VoiceCardContent>
+    <VoiceCardContent section>
+      <Image
+        src="https://octodex.github.com/images/welcometocat.png"
+        alt="Welcometocat"
+        width={100}
+        height={100}
+      />
+    </VoiceCardContent>
+  </MessageContent>
+</div>;
 ```
 
 ### Video
@@ -86,22 +116,23 @@ const toggleUpload = () => setState({ isUploading: !state.isUploading });
 const messages = require('../../fixtures/messages');
 initialState = messages[5].content;
 
-<MessageContent content={state} />
+<MessageContent content={state} />;
 ```
 
 ```jsx
 const messages = require('../../fixtures/messages');
 initialState = Object.assign({}, messages[5].content, { fileUrl: null });
 
-<MessageContent content={state} />
+<MessageContent content={state} />;
 ```
 
 ### Contact
+
 ```jsx
 const messages = require('../../fixtures/messages');
 initialState = messages[6].content;
 
-<MessageContent content={state} />
+<MessageContent content={state} />;
 ```
 
 ### Location
@@ -110,5 +141,5 @@ initialState = messages[6].content;
 const messages = require('../../fixtures/messages');
 initialState = messages[7].content;
 
-<MessageContent content={state} />
+<MessageContent content={state} />;
 ```

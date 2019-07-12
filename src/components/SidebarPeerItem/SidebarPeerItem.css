@@ -31,13 +31,9 @@
   --sidebar-peer-item-font-size: var(--default-recent-item-font-size);
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
@@ -83,6 +79,7 @@
   align-content: stretch;
   align-items: flex-start;
   height: 20px;
+  @mixin flex-fix;
 }
 
 .title {

@@ -8,7 +8,7 @@ import React, { PureComponent } from 'react';
 import { PeerInfoTitle } from '../PeerInfoTitle/PeerInfoTitle';
 import Avatar from '../Avatar/Avatar';
 import styles from './AdminModal.css';
-import getAvatarPlaceholder from '../../utils/getAvatarPlaceholder';
+import getAvatarPlaceholder from '../Avatar/utils/getAvatarPlaceholder';
 
 type Props = {
   user: GroupMember,
@@ -41,6 +41,7 @@ class AdminModalUser extends PureComponent<Props> {
             title={title}
             className={styles.title}
             emojiSize={22}
+            isFluid
           />
         </div>
       </div>

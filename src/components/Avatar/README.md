@@ -1,89 +1,120 @@
 A component for displaying the user avatar.
 If there is no image, it shows the initials from `title` on the gradient background.
 
-Avatar with image:
-
 ```jsx
-<div>
+const { random } = require('lodash');
+initialState = {
+  withTitle: true,
+  withImage: false,
+  square: false,
+};
+
+<>
+  <Button
+    size="small"
+    onClick={() => setState({ withTitle: !state.withTitle })}
+  >
+    Toggle title
+  </Button>{' '}
+  <Button
+    size="small"
+    onClick={() => setState({ withImages: !state.withImages })}
+  >
+    Toggle images
+  </Button>{' '}
+  <Button size="small" onClick={() => setState({ square: !state.square })}>
+    Toggle square
+  </Button>
+  <hr />
   <Avatar
-    title="Valera Kotovski"
+    title={state.withTitle ? 'Valera Kotovski' : null}
     placeholder="empty"
     size={50}
-    image="https://picsum.photos/200/200/?1"
-  />
+    image={
+      state.withImages
+        ? `https://picsum.photos/200/200/?${random(1, 20)}`
+        : null
+    }
+    square={state.square}
+  />{' '}
   <Avatar
-    title="Hello World"
+    title={state.withTitle ? 'Hello World' : null}
     placeholder="lblue"
     size={50}
-    image="https://picsum.photos/200/200/?2"
-  />
+    image={
+      state.withImages
+        ? `https://picsum.photos/200/200/?${random(1, 20)}`
+        : null
+    }
+    square={state.square}
+  />{' '}
   <Avatar
-    title="Bad Timmy"
+    title={state.withTitle ? 'Bad Timmy' : null}
     placeholder="blue"
     size={50}
-    image="https://picsum.photos/200/200/?3"
-  />
+    image={
+      state.withImages
+        ? `https://picsum.photos/200/200/?${random(1, 20)}`
+        : null
+    }
+    square={state.square}
+  />{' '}
   <Avatar
-    title="Ashley Simpson"
+    title={state.withTitle ? 'Ashley Simpson' : null}
     placeholder="purple"
     size={50}
-    image="https://picsum.photos/200/200/?4"
-  />
+    image={
+      state.withImages
+        ? `https://picsum.photos/200/200/?${random(1, 20)}`
+        : null
+    }
+    square={state.square}
+  />{' '}
   <Avatar
-    title="Ray Charles"
+    title={state.withTitle ? 'Ray Charles' : null}
     placeholder="red"
     size={50}
-    image="https://picsum.photos/200/200/?5"
-  />
+    image={
+      state.withImages
+        ? `https://picsum.photos/200/200/?${random(1, 20)}`
+        : null
+    }
+    square={state.square}
+  />{' '}
   <Avatar
-    title="Someone Else"
+    title={state.withTitle ? 'Someone Else' : null}
     placeholder="orange"
     size={50}
-    image="https://picsum.photos/200/200/?6"
-  />
+    image={
+      state.withImages
+        ? `https://picsum.photos/200/200/?${random(1, 20)}`
+        : null
+    }
+    square={state.square}
+  />{' '}
   <Avatar
-    title="Net Vdohnoveniya"
+    title={state.withTitle ? 'Net Vdohnoveniya' : null}
     placeholder="yellow"
     size={50}
-    image="https://picsum.photos/200/200/?7"
-  />
+    image={
+      state.withImages
+        ? `https://picsum.photos/200/200/?${random(1, 20)}`
+        : null
+    }
+    square={state.square}
+  />{' '}
   <Avatar
-    title="Vladimir Vladimirovich"
+    title={state.withTitle ? 'Vladimir Vladimirovich' : null}
     placeholder="green"
     size={50}
-    image="https://picsum.photos/200/200/?8"
+    image={
+      state.withImages
+        ? `https://picsum.photos/200/200/?${random(1, 20)}`
+        : null
+    }
+    square={state.square}
   />
-</div>
-```
-
-Avatar without image:
-
-```jsx
-<div>
-  <Avatar title="Valera Kotovski" placeholder="empty" size={50} />
-  <Avatar title="Hello World" placeholder="lblue" size={50} />
-  <Avatar title="Bad Timmy" placeholder="blue" size={50} />
-  <Avatar title="Ashley Simpson" placeholder="purple" size={50} />
-  <Avatar title="Ray Charles" placeholder="red" size={50} />
-  <Avatar title="Someone Else" placeholder="orange" size={50} />
-  <Avatar title="Net Vdohnoveniya" placeholder="yellow" size={50} />
-  <Avatar title="Vladimir Vladimirovich" placeholder="green" size={50} />
-</div>
-```
-
-Avatar without title:
-
-```jsx
-<div>
-  <Avatar placeholder="empty" size={50} />
-  <Avatar placeholder="lblue" size={50} />
-  <Avatar placeholder="blue" size={50} />
-  <Avatar placeholder="purple" size={50} />
-  <Avatar placeholder="red" size={50} />
-  <Avatar placeholder="orange" size={50} />
-  <Avatar placeholder="yellow" size={50} />
-  <Avatar placeholder="green" size={50} />
-</div>
+</>;
 ```
 
 Avatar change props test:
@@ -113,7 +144,7 @@ const handleStatusChange = () => {
   <div className="styleguide__buttons">
     <Button onClick={handleImageChange} theme="primary" size="small">
       Change image
-    </Button>
+    </Button>{' '}
     <Button
       onClick={handleImageRemove}
       theme="warning"
@@ -121,7 +152,7 @@ const handleStatusChange = () => {
       disabled={!state.image}
     >
       Remove image
-    </Button>
+    </Button>{' '}
     <Button onClick={handleStatusChange} theme="primary" size="small">
       Randomize status
     </Button>

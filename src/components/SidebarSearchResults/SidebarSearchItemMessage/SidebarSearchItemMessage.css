@@ -19,13 +19,9 @@
   --sidebar-search-item-message-collapser-color: var(--color-primary);
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   font-family: var(--sidebar-search-item-message-font-family);
   padding: 6px 14px;
   box-sizing: border-box;

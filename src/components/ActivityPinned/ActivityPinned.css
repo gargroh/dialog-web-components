@@ -8,12 +8,7 @@
   --activity-pinned-font-family: var(--default-font-family);
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   display: block;
 }

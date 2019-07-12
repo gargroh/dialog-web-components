@@ -9,13 +9,8 @@
   --dialpad-font-family: var(--default-font-family);
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   font-family: var(--dialpad-font-family);
   padding: var(--default-padding-small);
   display: block;

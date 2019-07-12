@@ -10,13 +10,9 @@
   --permission-banner-text-color: #fff;
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   font-family: var(--permission-banner-font-family);
   display: flex;
   align-items: center;

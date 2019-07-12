@@ -1,21 +1,29 @@
-/*
+/**
  * Copyright 2019 dialog LLC <info@dlg.im>
- * @flow
+ * @flow strict
  */
 
-import type { Props } from './types';
 import { Text, LocalizationContextType } from '@dlghq/react-l10n';
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import VirtualizedSelect from 'react-virtualized-select';
 import styles from './CountryCodeSelector.css';
 import CountryCodeSelectorOption from './CountryCodeSelectorOption';
-import countries from './utils/countries';
+import countries, { type Country } from './utils/countries';
 import { getPreferredCountryCode } from '../../utils/language';
 import { isCountryMatches } from './utils/isCountryMatches';
 import { getCountryName } from '@dlghq/country-codes';
 
-class CountryCodeSelector extends PureComponent<Props> {
+export type CountryCodeSelectorProps = {
+  className?: string,
+  value: ?Country,
+  countries: Array<Country>,
+  label: ?string,
+  disabled: boolean,
+  onChange: (value: Country) => void,
+};
+
+class CountryCodeSelector extends PureComponent<CountryCodeSelectorProps> {
   select: ?VirtualizedSelect;
 
   static contextTypes = {

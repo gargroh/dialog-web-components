@@ -12,12 +12,8 @@
   --typing-transition-duration: 100ms;
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-.container {
   display: block;
   font-family: var(--typing-font-family);
   height: var(--typing-height);

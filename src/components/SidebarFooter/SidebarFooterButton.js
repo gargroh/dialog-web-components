@@ -47,7 +47,7 @@ class SidebarFooterButton extends PureComponent<Props> {
   renderCounter() {
     const { counter, pending } = this.props;
 
-    if (!counter || counter === 0 || pending) {
+    if (!counter || pending) {
       return null;
     }
 

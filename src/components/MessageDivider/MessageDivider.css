@@ -13,12 +13,8 @@
   --message-divider-default-line-color: color-mod(#000 alpha(15%));
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-.container {
   width: 100%;
   height: var(--message-divider-height);
   position: relative;

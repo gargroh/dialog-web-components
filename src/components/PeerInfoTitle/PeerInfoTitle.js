@@ -23,16 +23,26 @@ type Props = {
   addSpacebars: boolean,
   emojiSize?: number,
   isVerified?: ?boolean,
+  isFluid: boolean,
+  wrap: boolean,
 };
 
 export function PeerInfoTitle(props: Props) {
   const spacebars = props.addSpacebars ? '\u00A0\u00A0' : null;
-  const { userName, title } = props;
+  const { userName, title, isFluid, wrap } = props;
 
   return (
-    <span className={classNames(styles.container, props.className)}>
+    <span
+      className={classNames(
+        styles.container,
+        { [styles.fluid]: isFluid },
+        props.className,
+      )}
+    >
       <span
-        className={classNames(styles.title, props.titleClassName)}
+        className={classNames(styles.title, props.titleClassName, {
+          [styles.wrap]: wrap,
+        })}
         style={props.onTitleClick ? { cursor: 'pointer' } : undefined}
         onClick={props.onTitleClick}
         title={title}
@@ -73,4 +83,6 @@ export function PeerInfoTitle(props: Props) {
 PeerInfoTitle.defaultProps = {
   addSpacebars: false,
   inline: true,
+  isFluid: false,
+  wrap: false,
 };

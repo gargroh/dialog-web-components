@@ -16,13 +16,9 @@
   );
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: inline-flex;
   width: var(--toolbar-info-button-size);
   height: var(--toolbar-info-button-size);

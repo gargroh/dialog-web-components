@@ -27,6 +27,7 @@ export type Props = {
   shortnamePrefix?: ?string,
   autoFocus: boolean,
   maxGroupSize: number,
+  significantGroupSize: number,
   isPublicGroupsEnabled: boolean,
   onClose: () => mixed,
   onSubmit: (request: Request) => mixed,

@@ -19,13 +19,9 @@
   --toolbar-border-color: color-mod(#000 alpha(14%));
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   z-index: var(--z-index-toolbar);
   display: flex;
   flex-direction: row;

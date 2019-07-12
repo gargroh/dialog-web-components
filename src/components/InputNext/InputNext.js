@@ -7,7 +7,11 @@ import type { ProviderContext } from '@dlghq/react-l10n';
 import React, { PureComponent } from 'react';
 import { Text, LocalizationContextType } from '@dlghq/react-l10n';
 import classNames from 'classnames';
+
 import styles from './InputNext.css';
+import { deprecation } from '../../utils/deprecation';
+
+deprecation('InputNext');
 
 type HTMLAbstractInputElement = HTMLInputElement | HTMLTextAreaElement;
 

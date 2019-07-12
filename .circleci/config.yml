@@ -40,7 +40,7 @@ jobs:
           npm run build
           npm test
       - save_cache:
-          key: dialog-components-{{ .Branch }}
+          key: dialog-components-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
 
@@ -70,7 +70,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - dialog-components-{{ .Branch }}
+            - dialog-components-{{ checksum "package-lock.json" }}
       - run:
           <<: *defaults_run
       - run:
@@ -128,7 +128,7 @@ workflows:
           filters:
             branches:
               ignore:
-                - gh-pages 
+                - gh-pages
       - deployment:
           requires:
             - build

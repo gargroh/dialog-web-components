@@ -14,7 +14,7 @@ type Props = {
   onGoToPeer: (peer: Peer) => mixed,
 };
 
-class ActivitySearchItemMessage extends PureComponent<Props> {
+class ActivitySearchItemPeer extends PureComponent<Props> {
   handleGoToPeer = (event: SyntheticMouseEvent<>) => {
     event.preventDefault();
     event.stopPropagation();
@@ -34,4 +34,4 @@ class ActivitySearchItemMessage extends PureComponent<Props> {
   }
 }
 
-export default ActivitySearchItemMessage;
+export default ActivitySearchItemPeer;

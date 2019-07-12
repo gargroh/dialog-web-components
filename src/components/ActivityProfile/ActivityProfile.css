@@ -14,13 +14,8 @@
   --activity-profile-title-font-size: 22px;
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   display: flex;
   flex-direction: column;
   padding: var(--activity-profile-padding);

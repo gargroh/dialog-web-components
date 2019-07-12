@@ -33,13 +33,9 @@
   }
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: flex;
   flex-direction: column;
   overflow: hidden;

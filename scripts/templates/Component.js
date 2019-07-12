@@ -1,30 +1,52 @@
 /**
- * Copyright 2018 dialog LLC <info@dlg.im>
- * @flow
+ * Copyright <%= new Date().getFullYear() -%> dialog LLC <info@dlg.im>
+ * @flow strict
  */
 
-import React, { PureComponent } from 'react';
+<% if (functional) { -%>
+import React, { type Node } from 'react';
+<% } else { -%>
+import React, { PureComponent, type Node } from 'react';
+<% } -%>
 <% if (styles) { -%>
 import classNames from 'classnames';
+
 import styles from './<%= name %>.css';
 <% } -%>
 
-export type Props = {
+export type <%= name %>Props = {
 <% if (styles) { -%>
   className?: string,
 <% } -%>
-  children?: mixed
+  children?: Node
 };
 
-class <%= name %> extends PureComponent {
-  props: Props;
+<% if (functional) { -%>
+export function <%= name %>(props: <%= name %>Props) {
+<% if (styles) { -%>
+  const classes = classNames(styles.container, props.className);
 
+  return (
+    <div className={classes}>
+      {props.children}
+    </div>
+  );
+<% } else { -%>
+  return (
+    <div>
+      {props.children}
+    </div>
+  );
+<% } -%>
+}
+<% } else { -%>
+export class <%= name %> extends PureComponent<<%= name %>Props> {
   render() {
 <% if (styles) { -%>
-    const className = classNames(styles.container, this.props.className);
+    const classes = classNames(styles.container, this.props.className);
 
     return (
-      <div className={className}>
+      <div className={classes}>
         {this.props.children}
       </div>
     );
@@ -37,5 +59,4 @@ class <%= name %> extends PureComponent {
 <% } -%>
   }
 }
-
-export default <%= name %>;
+<% } -%>

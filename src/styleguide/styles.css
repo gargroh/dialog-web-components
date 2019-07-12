@@ -57,6 +57,12 @@ hr {
   }
 }
 
+:global(.styleguide__searchResultsButtons) {
+  & > button {
+    margin-right: 4px !important;
+  }
+}
+
 :global(.WelcomeMessage__button) {
   padding: 8px 0 !important;
   display: inline-flex !important;

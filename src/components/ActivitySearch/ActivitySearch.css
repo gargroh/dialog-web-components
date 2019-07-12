@@ -10,13 +10,8 @@
   --activity-search-border-color: #e6e6e6;
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   font-family: var(--activity-search-font-family);
   display: flex;
   flex-flow: column nowrap;

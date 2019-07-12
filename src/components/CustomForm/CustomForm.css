@@ -10,13 +10,9 @@
   --custom-form-text-color: #000;
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   width: 100%;
 }
 

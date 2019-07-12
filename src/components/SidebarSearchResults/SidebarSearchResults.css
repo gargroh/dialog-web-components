@@ -12,13 +12,9 @@
   --sidebar-search-result-text-color: #000;
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   font-family: var(--sidebar-search-result-font-size);
   position: relative;
   flex: 1 1 auto;

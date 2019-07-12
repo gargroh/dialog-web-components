@@ -5,6 +5,8 @@
 const fs = require('fs');
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 function resolve(...paths) {
   return fs.realpathSync(path.join(__dirname, ...paths));
@@ -17,6 +19,7 @@ const whitelist = [
   resolve('node_modules/@dlghq/dialog-types'),
   resolve('node_modules/@dlghq/dialog-utils'),
   resolve('node_modules/@dlghq/country-codes'),
+  resolve('node_modules/@dlghq/emoji'),
 ];
 
 const globalStyles = [
@@ -25,41 +28,44 @@ const globalStyles = [
   resolve('src/styleguide/styles.css'),
 ];
 
-const postcssOptions = {
-  env: {
-    features: {
-      'all-property': false,
-    },
-  },
-};
-
 module.exports = {
   mode: 'development',
+  resolve: {
+    alias: {
+      react: resolve('node_modules/react'),
+    },
+  },
   module: {
     rules: [
       {
         test: /\.js$/,
         include: whitelist,
-        loader: 'babel-loader',
-        options: {
-          babelrc: false,
-          cacheDirectory: true,
-          presets: [
-            [
-              '@dlghq/babel-preset-dialog',
-              {
-                modules: false,
-                runtime: false,
-                development: true,
-              },
-            ],
-          ],
-        },
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              babelrc: false,
+              cacheDirectory: true,
+              presets: [
+                [
+                  '@dlghq/babel-preset-dialog',
+                  {
+                    modules: false,
+                    runtime: false,
+                    development: true,
+                  },
+                ],
+              ],
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
           {
             loader: 'css-loader',
             options: {
@@ -69,11 +75,6 @@ module.exports = {
           },
           {
             loader: 'postcss-loader',
-            options: {
-              plugins() {
-                return require('@dlghq/postcss-dialog')(postcssOptions);
-              },
-            },
           },
         ],
         include: globalStyles,
@@ -83,22 +84,20 @@ module.exports = {
         include: whitelist,
         exclude: globalStyles,
         use: [
-          'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
           {
             loader: 'css-loader',
             options: {
-              modules: true,
+              modules: {
+                localIdentName: 'DialogComponents__[name]__[local]',
+              },
               importLoaders: 1,
-              localIdentName: '[name]__[local]',
             },
           },
           {
             loader: 'postcss-loader',
-            options: {
-              plugins() {
-                return require('@dlghq/postcss-dialog')(postcssOptions);
-              },
-            },
           },
         ],
       },
@@ -135,5 +134,9 @@ module.exports = {
         to: 'encoderWorker.min.wasm',
       },
     ]),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
+    new OptimizeCSSAssetsPlugin(),
   ],
 };

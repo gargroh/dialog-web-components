@@ -34,13 +34,9 @@
   }
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -100,6 +96,7 @@
 
 .title {
   font-size: 16px;
+  line-height: 22px;
   font-weight: 500;
   flex: 0 1 auto;
   @mixin text-overflow-ellipsis;
@@ -222,30 +219,16 @@
 }
 
 /* Content type  */
-.contact {
-}
-
-.document {
+.contact,
+.document,
+.location,
+.photo,
+.sticker,
+.voice,
+.video {
   margin-top: 4px;
 }
 
-.location {
-}
+/* .service {} */
 
-.photo {
-}
-
-.service {
-}
-
-.sticker {
-}
-
-.voice {
-}
-
-.video {
-}
-
-.text {
-}
+/* .text {} */

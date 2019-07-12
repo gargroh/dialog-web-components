@@ -57,7 +57,7 @@ class CustomProfile extends PureComponent<Props> {
       const { type, title } = schema.properties[propName];
 
       // Do not render property if no value presented
-      if (!propValue || typeof propValue === 'undefined' || propValue === '') {
+      if (typeof propValue === 'undefined' || !propValue) {
         return null;
       }
 

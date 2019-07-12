@@ -24,7 +24,7 @@ import Field from '../Field/Field';
 import Icon from '../Icon/Icon';
 import Button from '../Button/Button';
 import AvatarSelector from '../AvatarSelector/AvatarSelector';
-import getAvatarPlaceholder from '../../utils/getAvatarPlaceholder';
+import getAvatarPlaceholder from '../Avatar/utils/getAvatarPlaceholder';
 import ImageEdit from '../ImageEdit/ImageEdit';
 import Spinner from '../Spinner/Spinner';
 import CustomForm, { type FormErrors } from '../CustomForm/CustomForm';
@@ -40,10 +40,11 @@ class ProfileModal extends PureComponent<Props, State> {
       profile: null,
       customProfile: null,
       avatar: props.avatar,
+      errors: [],
     };
   }
 
-  static getDerivedStateFromProps(props: Props, state: State): $Shape<State> {
+  static getDerivedStateFromProps(props: Props, state: State): ?$Shape<State> {
     if (props.profile && !state.profile) {
       return {
         profile: props.profile.value,
@@ -66,8 +67,31 @@ class ProfileModal extends PureComponent<Props, State> {
     }
   };
 
-  handleFormChange = (name: FormName) => (value: JSONValue): void => {
-    this.setState({ [name]: JSON.parse(JSON.stringify(value)) });
+  handleFormChange = (name: FormName) => (
+    value: JSONValue,
+    id: string,
+    errors?: Array<FormErrors>,
+  ): void => {
+    this.setState((prevState) => {
+      const listErrors = prevState.errors.slice();
+
+      if (errors && errors.length > 0) {
+        if (!listErrors.includes(id)) {
+          listErrors.push(id);
+        }
+      } else {
+        const index = listErrors.indexOf(id);
+        if (index > -1) {
+          listErrors.splice(index, 1);
+        }
+      }
+
+      return {
+        ...prevState,
+        [name]: JSON.parse(JSON.stringify(value)),
+        errors: listErrors,
+      };
+    });
   };
 
   handleSubmit = (event: ?SyntheticEvent<>): void => {
@@ -322,7 +346,11 @@ class ProfileModal extends PureComponent<Props, State> {
             id="profile_modal_submit_button"
             rounded={false}
             loading={this.isPending()}
-            disabled={!this.isChanged() || this.isPending()}
+            disabled={
+              !this.isChanged() ||
+              this.isPending() ||
+              this.state.errors.length > 0
+            }
             onClick={this.handleSubmit}
           >
             <Text id="ProfileModal.save" />

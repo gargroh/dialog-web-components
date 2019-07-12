@@ -7,6 +7,8 @@
 :root {
   --confirm-width: 400px;
   --confirm-font-size: var(--default-font-size-large);
+  --confirm-checkbox-font-size: var(--default-font-size-small);
+  --confirm-checkbox-padding: var(--default-padding-small);
 }
 
 /* Styles */
@@ -36,6 +38,18 @@
   font-weight: 400;
   line-height: var(--default-line-height);
   cursor: default;
+}
+
+.checkboxWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--confirm-checkbox-font-size);
+  padding: var(--confirm-checkbox-padding);
+}
+
+.checkboxText {
+  padding-left: var(--confirm-checkbox-padding);
 }
 
 .footer {

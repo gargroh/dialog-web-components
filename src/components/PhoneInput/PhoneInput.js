@@ -10,6 +10,9 @@ import getCountryByPhone from './utils/getCountryByPhone';
 import normalize from './utils/normalize';
 import { getPreferredCountryCodes } from '../../utils/language';
 
+import { deprecation } from '../../utils/deprecation';
+deprecation('PhoneInput');
+
 type Props = {
   value: string,
   className?: string,

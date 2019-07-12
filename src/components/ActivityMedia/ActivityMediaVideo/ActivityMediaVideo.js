@@ -53,7 +53,7 @@ class ActivityMediaVideo extends PureComponent<Props> {
   renderTitle() {
     const { title } = this.props;
 
-    if (!title || title === '') {
+    if (!title) {
       return (
         <Text id="ActivityMedia.video" className={styles.title} tagName="div" />
       );

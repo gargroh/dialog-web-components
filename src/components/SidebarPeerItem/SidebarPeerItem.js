@@ -60,7 +60,8 @@ class SidebarPeerItem extends PureComponent<Props> {
         <div className={styles.text}>
           <PeerInfoTitle
             title={info.title}
-            titleClassName={styles.title}
+            className={styles.title}
+            inline
             emojiSize={15}
           />
         </div>

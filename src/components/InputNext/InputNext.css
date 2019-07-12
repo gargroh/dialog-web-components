@@ -47,17 +47,9 @@
   --input-next-length-padding: var(--default-padding-small);
 }
 
-/* Reset */
-.container,
-.input,
-.label,
-.prefix,
-.hint {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: block;
   width: 100%;
   margin-bottom: var(--default-padding);
@@ -67,6 +59,7 @@
 }
 
 .input {
+  all: initial;
   border: 0;
   outline: none;
   font-family: var(--input-next-font-family);
@@ -95,10 +88,10 @@
   }
 }
 
-.filled {
-}
+/* .filled {} */
 
 .label {
+  all: initial;
   @mixin no-select;
   color: var(--input-next-label-color);
   font-family: var(--input-next-font-family);
@@ -115,10 +108,14 @@
 }
 
 .prefix {
+  all: initial;
   font-family: var(--input-next-hint-font-family);
   font-size: var(--input-next-hint-font-size);
   line-height: var(--input-next-hint-line-height);
-  color: var(--input-next-hint-color);
+  display: block;
+  cursor: text;
+  transition: color var(--default-transition-duration) ease-in-out;
+  color: var(--input-next-placeholder-color);
 }
 
 .description {
@@ -130,6 +127,7 @@
 }
 
 .hint {
+  all: initial;
   display: inline-block;
   user-select: none;
   font-family: var(--input-next-hint-font-family);
@@ -301,13 +299,6 @@
   & .prefix {
     color: var(--input-next-focus-border-color);
   }
-}
-
-.prefix {
-  display: block;
-  cursor: text;
-  transition: color var(--default-transition-duration) ease-in-out;
-  color: var(--input-next-placeholder-color);
 }
 
 .readonly {

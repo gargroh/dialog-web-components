@@ -12,9 +12,6 @@
 
 .container {
   all: initial;
-}
-
-.container {
   font-family: var(--deleted-font-family);
 }
 

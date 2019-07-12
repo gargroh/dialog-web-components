@@ -31,7 +31,7 @@
 .input {
   width: 100%;
   margin-bottom: calc(var(--default-padding) * 2);
-  flex: 0;
+  flex: 0 0 auto;
 }
 
 .status {

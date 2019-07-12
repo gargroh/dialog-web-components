@@ -1,7 +1,7 @@
 ### Markdown
 
 ```jsx
-const text = require('raw-loader!../../fixtures/markdown.md');
+const text = require('raw-loader!../../fixtures/markdown.md').default;
 
 <Markdown text={text} />;
 ```
@@ -9,7 +9,7 @@ const text = require('raw-loader!../../fixtures/markdown.md');
 ### Links
 
 ```jsx
-const text = require('raw-loader!../../fixtures/links.md');
+const text = require('raw-loader!../../fixtures/links.md').default;
 
 <Markdown text={text} />;
 ```

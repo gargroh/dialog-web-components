@@ -9,13 +9,9 @@
   --space-list-space-add-icon-color: #ffffff;
 }
 
-/* Reset */
-.container {
-  all: initial;
-}
-
 /* Styles */
 .container {
+  all: initial;
   display: flex;
   line-height: 0;
 }

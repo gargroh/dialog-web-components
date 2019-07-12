@@ -59,9 +59,7 @@
       "Radio",
       "Switcher",
       "Range",
-      "Fieldset",
-      "CustomForm",
-      "Dialpad"
+      "Fieldset"
     ]
   },
   {
@@ -70,7 +68,13 @@
   },
   {
     "name": "Plug & Play Forms",
-    "components": ["Authorization", "Registration", "GenderSelect"]
+    "components": [
+      "Authorization",
+      "Registration",
+      "GenderSelect",
+      "CustomForm",
+      "Dialpad"
+    ]
   },
   {
     "name": "Modals",
@@ -92,7 +96,8 @@
       "EditSpaceModal",
       "CreateSpaceModal",
       "SelectCertificateModal",
-      "SpaceInfoModal"
+      "SpaceInfoModal",
+      "IFrameModal"
     ]
   },
   {

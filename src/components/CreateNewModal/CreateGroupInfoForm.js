@@ -16,22 +16,23 @@ export type Props = {
   id: string,
   type: 'group' | 'channel',
   title: string,
+  isPublic: boolean,
+  vertical: boolean,
+  isPublicGroupsEnabled: boolean,
   shortname: ?string,
   shortnamePrefix: ?string,
   about: ?string,
   avatar: ?File,
   className?: string,
-  vertical: boolean,
-  isPublicGroupsEnabled: boolean,
   aboutMaxLength?: number,
   onSubmit: (event: SyntheticEvent<>) => void,
   onChange: (value: string, event: SyntheticInputEvent<>) => void,
   onAvatarRemove: () => void,
   onAvatarChange: (avatar: File) => void,
+  onPublicToggle: (isPublic: boolean) => void,
 };
 export type State = {
   avatar: ?string,
-  isPublic: boolean,
 };
 
 export type Context = ProviderContext;
@@ -49,7 +50,6 @@ class CreateGroupInfoForm extends PureComponent<Props, State> {
 
     this.state = {
       avatar: null,
-      isPublic: Boolean(props.shortname),
     };
   }
 
@@ -67,9 +67,9 @@ class CreateGroupInfoForm extends PureComponent<Props, State> {
     }
   }
 
-  componentDidUpdate(prevProps: Props, prevState: State) {
+  componentDidUpdate(prevProps: Props) {
     if (this.shortnameInput) {
-      if (prevState.isPublic !== this.state.isPublic && this.state.isPublic) {
+      if (prevProps.isPublic !== this.props.isPublic && this.props.isPublic) {
         this.shortnameInput.focus();
       }
     }
@@ -82,7 +82,7 @@ class CreateGroupInfoForm extends PureComponent<Props, State> {
   };
 
   handlePublicToggle = (isPublic: boolean): void => {
-    this.setState({ isPublic });
+    this.props.onPublicToggle(isPublic);
   };
 
   setShortnameInput = (shortnameInput: ?InputNext): void => {
@@ -121,7 +121,7 @@ class CreateGroupInfoForm extends PureComponent<Props, State> {
         <Switcher
           id={`${id}_public_swither`}
           name={`${id}_public_swither`}
-          value={this.state.isPublic}
+          value={this.props.isPublic}
           onChange={this.handlePublicToggle}
           label={`CreateNewModal.${type}.public`}
           className={styles.switcher}
@@ -131,7 +131,7 @@ class CreateGroupInfoForm extends PureComponent<Props, State> {
           name="shortname"
           value={shortname || ''}
           prefix={this.props.shortnamePrefix}
-          disabled={!this.state.isPublic}
+          disabled={!this.props.isPublic}
           label={`CreateNewModal.${type}.info.shortname`}
           ref={this.setShortnameInput}
           onChange={this.props.onChange}

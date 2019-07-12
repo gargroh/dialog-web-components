@@ -14,32 +14,26 @@
   --avatar-active-opacity: 0.85;
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   display: inline-block;
   border-radius: 100%;
   line-height: 0;
   position: relative;
-  transform: translateZ(1);
+  transform: translateZ(0);
   transition: opacity var(--default-transition-duration) ease-in-out;
   opacity: 1;
   user-select: none;
+  cursor: inherit;
 }
 
 .svg {
   z-index: 3000;
 }
 
-.mask {
-}
+/* .mask {} */
 
-.status {
-}
+/* .status {} */
 
 .text {
   font-family: var(--default-font-family);

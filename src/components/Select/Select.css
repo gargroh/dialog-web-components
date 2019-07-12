@@ -30,20 +30,15 @@
   );
 }
 
-/* Reset */
-.container,
-.select,
-.wrapper {
-  all: initial;
-}
-
 /* Styles */
 .wrapper {
+  all: initial;
   position: relative;
   display: inline-flex;
 }
 
 .container {
+  all: initial;
   display: inline-flex;
   flex-flow: column;
   align-items: flex-start;
@@ -71,6 +66,7 @@
 }
 
 .select {
+  all: initial;
   width: 100%;
   background-color: var(--select-background-color);
   font-family: var(--select-font-family);

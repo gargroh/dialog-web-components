@@ -12,15 +12,25 @@ import styles from './CreateNewModal.css';
 type Props = {
   id: string,
   maxGroupSize: number,
+  significantGroupSize: number,
   type: 'group' | 'channel',
   onChange: (value: string, event: SyntheticInputEvent<>) => void,
 };
 
 function CreateGroupTypeForm(props: Props) {
+  const { id, maxGroupSize, significantGroupSize, type, onChange } = props;
+
+  const groupHint =
+    maxGroupSize < significantGroupSize
+      ? 'CreateNewModal.group.type.hintCount'
+      : 'CreateNewModal.group.type.hintDefault';
+  const groupSize =
+    maxGroupSize < significantGroupSize ? maxGroupSize : significantGroupSize;
+
   return (
     <div className={styles.type}>
-      <RadioGroup name="type" value={props.type} onChange={props.onChange}>
-        <Radio value="group" htmlAutoFocus id={`${props.id}_type_group`}>
+      <RadioGroup name="type" value={type} onChange={onChange}>
+        <Radio value="group" htmlAutoFocus id={`${id}_type_group`}>
           <Text
             id="CreateNewModal.group.type.title"
             className={styles.typeLabel}
@@ -28,12 +38,12 @@ function CreateGroupTypeForm(props: Props) {
         </Radio>
         <Text
           className={styles.typeHint}
-          id="CreateNewModal.group.type.hint"
-          values={{ count: String(props.maxGroupSize) }}
+          id={groupHint}
+          values={{ count: String(groupSize) }}
           tagName="div"
         />
         <br />
-        <Radio value="channel" id={`${props.id}_type_channel`}>
+        <Radio value="channel" id={`${id}_type_channel`}>
           <Text
             id="CreateNewModal.channel.type.title"
             className={styles.typeLabel}

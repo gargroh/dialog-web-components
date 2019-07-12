@@ -171,6 +171,9 @@ export {
 export {
   default as SpaceInfoModal,
 } from './components/SpaceInfoModal/SpaceInfoModal';
+export {
+  default as IFrameModal,
+} from './components/IFrameModal/IFrameModal';
 
 // Sidebar
 export {
@@ -241,6 +244,7 @@ export {
 export {
   default as VoiceRecorder,
 } from './components/VoiceRecorder/VoiceRecorder';
+export { VoiceCardContent } from './components/MessageContent/Voice/VoiceCardContent';
 export {
   default as VoiceRecorderControls,
 } from './components/VoiceRecorder/VoiceRecorderControls';

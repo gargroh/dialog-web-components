@@ -9,16 +9,13 @@
   --connection-status-font-color: #fff;
   --connection-status-height: calc(var(--default-padding-large) * 1.5);
   --connection-status-transition-duration: var(--default-transition-duration);
-  --connection-status-translate-size: calc(0 - var(--connection-status-height));
+  --connection-status-translate-size: calc(
+    0px - var(--connection-status-height)
+  );
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   position: absolute;
   z-index: var(--z-index-connection-status);
   top: 0;

@@ -11,6 +11,7 @@ function createSelectorState<T>(
   name: string,
   getValue: (item: T) => string,
   clearAfterSelection: boolean = false,
+  shouldFilterByQuery: boolean = true,
 ): SelectorStateCreator<T> {
   const defaultRecord = {
     query: '',
@@ -39,7 +40,9 @@ function createSelectorState<T>(
         return this;
       }
 
-      const filtered = filter(query, this.get('items'));
+      const filtered = shouldFilterByQuery
+        ? filter(query, this.get('items'))
+        : this.get('items');
 
       let hoverIndex = 0;
       if (this.getHoverIndex() !== 0) {

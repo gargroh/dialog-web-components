@@ -17,13 +17,8 @@
   );
 }
 
-/* Reset */
 .container {
   all: initial;
-}
-
-/* Styles */
-.container {
   display: flex;
   flex: 0 0 33.33%;
   align-items: center;

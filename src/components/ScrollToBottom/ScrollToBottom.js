@@ -19,7 +19,7 @@ class ScrollToBottom extends PureComponent<Props> {
   renderCounter() {
     const { counter } = this.props;
 
-    if (!counter || counter === 0) {
+    if (!counter) {
       return null;
     }
 

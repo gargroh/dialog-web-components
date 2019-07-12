@@ -4,25 +4,25 @@
  */
 
 import isEmoji from '../../../utils/isEmoji';
-import { isEmpty, filter } from 'lodash';
+import { isEmpty } from 'lodash';
+import { parse, decorators } from '@dlghq/markdown';
 
 function getAvatarText(title: string): string {
   if (title && title.length) {
-    if (isEmoji(title)) {
-      return '#';
-    }
+    const titleContent = parse(title, decorators)[0].content;
 
-    const trimmedTitleArray = title.trim().split(' ');
-    const titleArray = filter(trimmedTitleArray, (item) => {
-      if (isEmoji(item)) {
-        return false;
+    console.log(titleContent);
+    const titleArray = titleContent.reduce((array, {content, highlight} ) => {
+      if (!highlight) {
+        console.log(console.log(titleContent));
+        return [...array, ...content.trim().split(' ')] ;
       }
-
-      return !isEmpty(item);
-    });
+      return array;
+    }, []);
+    console.log(titleArray);
 
     if (titleArray.length === 1) {
-      return titleArray[0][0];
+      return titleArray[0][0] || '#';
     } else if (titleArray.length > 1) {
       return `${titleArray[0][0]}${titleArray[1][0]}`;
     }

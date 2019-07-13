@@ -3,30 +3,25 @@
  * @flow
  */
 
-import { parse, decorators } from '@dlghq/markdown';
+import { parseInline } from '@dlghq/markdown';
+import { emoji } from '@dlghq/markdown/src/decorators';
 
 function getAvatarText(title: string): string {
-  if (title && title.length) {
-    const titleContent = parse(title, decorators)[0].content;
+  const tokens = parseInline(title, [emoji])
+    .filter((token) => token.highlight !== 'emoji')
+    .map((token) => token.content)
+    .join('')
+    .trim()
+    .split(' ');
 
-    if (typeof titleContent !== 'string') {
-      const titleArray = titleContent.reduce(
-        (array, { content, highlight }) => {
-          if (!highlight) {
-            return [...array, ...content.trim().split(' ')];
-          }
+  const [firstToken, secondToken] = tokens[0];
 
-          return array;
-        },
-        [],
-      );
-
-      if (titleArray.length === 1) {
-        return titleArray[0][0] || '#';
-      } else if (titleArray.length > 1) {
-        return `${titleArray[0][0]}${titleArray[1][0]}`;
-      }
+  if (firstToken) {
+    if (secondToken) {
+      return firstToken[0] + secondToken[0];
     }
+
+    return firstToken[0];
   }
 
   return '#';

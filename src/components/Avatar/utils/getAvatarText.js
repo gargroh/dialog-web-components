@@ -3,8 +3,6 @@
  * @flow
  */
 
-import isEmoji from '../../../utils/isEmoji';
-import { isEmpty } from 'lodash';
 import { parse, decorators } from '@dlghq/markdown';
 
 function getAvatarText(title: string): string {

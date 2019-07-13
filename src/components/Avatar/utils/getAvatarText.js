@@ -12,6 +12,7 @@ function getAvatarText(title: string): string {
       if (!highlight) {
         return [...array, ...content.trim().split(' ')];
       }
+
       return array;
     }, []);
 

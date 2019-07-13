@@ -33,14 +33,14 @@ class ReactModal extends PureComponent<ReactModalProps> {
   };
 
   componentDidMount() {
-    document.addEventListener('keyup', this.handleEscapeClick);
+    document.addEventListener('keyup', this.handleKeyUp);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keyup', this.handleEscapeClick);
+    document.removeEventListener('keyup', this.handleKeyUp);
   }
 
-  handleEscapeClick = (event: KeyboardEvent) => {
+  handleKeyUp = (event: KeyboardEvent) => {
     if (event.defaultPrevented) {
       return;
     }

@@ -10,7 +10,7 @@ function getAvatarText(title: string): string {
   const tokens = parseInline(title, [emoji])
     .filter((token) => token.highlight !== 'emoji')
     .map((token) => token.content)
-    .join('')
+    .join(' ')
     .trim()
     .split(' ')
     .filter((text) => text !== '');

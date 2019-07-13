@@ -32,6 +32,27 @@ class ReactModal extends PureComponent<ReactModalProps> {
     shouldCloseOnOverlayClick: true,
   };
 
+  componentDidMount() {
+    document.addEventListener('keyup', this.handleKeyUp);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keyup', this.handleKeyUp);
+  }
+
+  handleKeyUp = (event: KeyboardEvent) => {
+    if (event.defaultPrevented) {
+      return;
+    }
+
+    const { onRequestClose } = this.props;
+    const key = event.key || event.keyCode;
+
+    if (onRequestClose && (key === 'Escape' || key === 'Esc' || key === 27)) {
+      onRequestClose();
+    }
+  };
+
   handleClickOverlay = () => {
     const { onRequestClose, shouldCloseOnOverlayClick } = this.props;
 

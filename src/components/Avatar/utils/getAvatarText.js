@@ -14,7 +14,7 @@ function getAvatarText(title: string): string {
     .trim()
     .split(' ');
 
-  const [firstToken, secondToken] = tokens[0];
+  const [firstToken, secondToken] = tokens;
 
   if (firstToken) {
     if (secondToken) {

@@ -23,6 +23,7 @@
     "build:l10n": "node scripts/compile-translations.js",
     "pretest": "npm run lint",
     "test": "jest",
+    "test:dev": "jest --watch -o",
     "lint": "npm run lint:eslint && npm run lint:flow",
     "lint:eslint": "eslint src/",
     "lint:flow": "flow check",

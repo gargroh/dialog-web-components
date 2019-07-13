@@ -98,6 +98,8 @@
     "@dlghq/postcss-dialog": "1.15.0",
     "@dlghq/react-l10n": "0.9.3",
     "@dlghq/stylelint-config-dialog": "0.11.0",
+    "@testing-library/jest-dom": "4.0.0",
+    "@testing-library/react": "8.0.5",
     "babel-jest": "24.8.0",
     "babel-loader": "8.0.6",
     "babel-preset-jest": "24.6.0",
@@ -117,6 +119,7 @@
     "inquirer": "6.2.2",
     "jest": "24.8.0",
     "jest-cli": "24.8.0",
+    "jest-css-modules": "2.1.0",
     "lint-staged": "8.2.1",
     "lodash": "4.17.13",
     "mini-css-extract-plugin": "0.7.0",
@@ -137,6 +140,13 @@
   "jest": {
     "transformIgnorePatterns": [
       "node_modules/(?!@dlghq)"
+    ],
+    "moduleNameMapper": {
+      "\\.css$": "<rootDir>/node_modules/jest-css-modules"
+    },
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom/extend-expect",
+      "@testing-library/react/cleanup-after-each"
     ]
   },
   "husky": {

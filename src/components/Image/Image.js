@@ -45,25 +45,23 @@ function Image(props: ImageProps) {
         );
         const source = state === STATE_SUCCESS ? src : props.preview;
 
-        if (!source) {
-          return null;
-        }
-
         return (
           <div
             className={className}
             title={props.alt}
             style={{ width, height }}
           >
-            <img
-              id={props.id}
-              src={source}
-              width={width}
-              height={height}
-              alt={props.alt}
-              onClick={props.onClick}
-              className={styles.image}
-            />
+            {source ? (
+              <img
+                id={props.id}
+                src={source}
+                width={width}
+                height={height}
+                alt={props.alt}
+                onClick={props.onClick}
+                className={styles.image}
+              />
+            ) : null}
           </div>
         );
       }}

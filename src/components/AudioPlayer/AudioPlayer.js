@@ -210,13 +210,15 @@ class AudioPlayer extends PureComponent<Props, State> {
   }
 
   renderState() {
-    const { error } = this.state;
+    const { error, duration, currentTime } = this.state;
     if (error) {
       return <MediaErrorMessage className={styles.error} error={error} />;
     }
 
     return (
-      <div className={styles.state}>{getHumanTime(this.state.duration)}</div>
+      <div className={styles.state}>
+        {`${getHumanTime(currentTime)}/${getHumanTime(duration)}`}
+      </div>
     );
   }
 

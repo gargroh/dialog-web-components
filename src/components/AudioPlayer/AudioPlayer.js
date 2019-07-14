@@ -11,14 +11,15 @@ import AudioPlayerButton from './AudioPlayerButton/AudioPlayerButton';
 import { PeerInfoTitle } from '../PeerInfoTitle/PeerInfoTitle';
 import styles from './AudioPlayer.css';
 
-type Props = {
+type AudioPlayerProps = {
   src: ?string,
   duration?: ?number,
   pending?: ?boolean,
   sender?: ?string,
+  showDuration: boolean,
 };
 
-type State = {
+type AudioPlayerState = {
   key: string,
   error: ?MediaError,
   duration: number,
@@ -26,11 +27,15 @@ type State = {
   currentTime: number,
 };
 
-class AudioPlayer extends PureComponent<Props, State> {
+class AudioPlayer extends PureComponent<AudioPlayerProps, AudioPlayerState> {
   audio: ?HTMLMediaElement;
   rewind: ?HTMLElement;
 
-  constructor(props: Props) {
+  static defaultProps = {
+    showDuration: false,
+  };
+
+  constructor(props: AudioPlayerProps) {
     super(props);
 
     this.state = {
@@ -58,6 +63,7 @@ class AudioPlayer extends PureComponent<Props, State> {
 
   handleLoadedMetadata = () => {
     const duration = this.getDuration();
+
     this.setState({ duration });
   };
 
@@ -209,16 +215,14 @@ class AudioPlayer extends PureComponent<Props, State> {
     );
   }
 
-  renderState() {
+  renderCurrentTime() {
     const { error, duration, currentTime } = this.state;
     if (error) {
       return <MediaErrorMessage className={styles.error} error={error} />;
     }
 
     return (
-      <div className={styles.state}>
-        {`${getHumanTime(currentTime)}/${getHumanTime(duration)}`}
-      </div>
+      <div className={styles.state}>{getHumanTime(this.getCurrentTime())}</div>
     );
   }
 
@@ -239,6 +243,18 @@ class AudioPlayer extends PureComponent<Props, State> {
     );
   }
 
+  renderDuration() {
+    if (!this.props.showDuration && this.state.duration === 0) {
+      return null;
+    }
+
+    return (
+      <div className={styles.durationTime}>
+        {getHumanTime(this.state.duration)}
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className={styles.player}>
@@ -246,8 +262,11 @@ class AudioPlayer extends PureComponent<Props, State> {
         <div className={styles.playerControls}>
           {this.renderPlayerSeeker()}
           <div className={styles.playerTime}>
-            {this.renderState()}
-            {this.renderSender()}
+            <div className={styles.currentTime}>
+              {this.renderCurrentTime()}
+              {this.renderSender()}
+            </div>
+            {this.renderDuration()}
           </div>
         </div>
         {this.renderAudioElement()}

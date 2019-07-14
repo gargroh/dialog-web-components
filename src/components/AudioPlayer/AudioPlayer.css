@@ -34,17 +34,30 @@
 }
 
 .playerTime {
-  display: block;
-  letter-spacing: -0.3px;
-  font-size: 13px;
-  line-height: 16px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-content: center;
+  align-items: center;
+  justofy-content: flex-start;
   height: 16px;
   padding-top: 2px;
   padding-bottom: 2px;
   flex: 1 1 auto;
+  font-size: 13px;
   font-family: var(--audio-player-font-family);
   color: var(--default-font-color-light);
+}
+
+.currentTime {
+  flex: 1 1 auto;
+  display: block;
+  letter-spacing: -0.3px;
+  line-height: 16px;
   @mixin text-overflow-ellipsis;
+}
+
+.durationTime {
+  flex: 0 0 auto;
 }
 
 .seeker {

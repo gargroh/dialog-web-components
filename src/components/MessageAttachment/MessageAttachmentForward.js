@@ -10,11 +10,10 @@ import classNames from 'classnames';
 
 import MessageAttachmentItem from './MessageAttachmentItem';
 import { PeerInfoTitle } from '../PeerInfoTitle/PeerInfoTitle';
-import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import styles from './MessageAttachment.css';
 
-type Props = {
+export type MessageAttachmentForwardProps = {
   className?: string,
   from: ?PeerInfo,
   messages: Message[],
@@ -25,7 +24,7 @@ type Props = {
   maxWidth: number,
 };
 
-class MessageAttachmentForward extends PureComponent<Props> {
+class MessageAttachmentForward extends PureComponent<MessageAttachmentForwardProps> {
   handleGoToPeer = (event: SyntheticEvent<>) => {
     event.preventDefault();
     event.stopPropagation();
@@ -46,25 +45,24 @@ class MessageAttachmentForward extends PureComponent<Props> {
 
   renderHeader() {
     const { from } = this.props;
+
     if (!from) {
       return null;
     }
 
     return (
       <div className={styles.from}>
-        <Text id="MessageAttachment.from" />
-        <Button
-          theme="primary"
-          view="link"
-          onClick={this.handleGoToPeer}
-          size="small"
-          className={styles.button}
-        >
-          {from.type === 'channel' || from.type === 'group' ? (
+        <Text id="MessageAttachment.from" className={styles.fromPrefix} />
+        <div onClick={this.handleGoToPeer} className={styles.fromButton}>
+          {(from.type === 'channel' || from.type === 'group') && (
             <Icon glyph={from.type} className={styles.fromIcon} size={20} />
-          ) : null}
-          <PeerInfoTitle title={from.title} emojiSize={16} wrap />
-        </Button>
+          )}
+          <PeerInfoTitle
+            title={from.title}
+            emojiSize={16}
+            className={styles.fromTitle}
+          />
+        </div>
       </div>
     );
   }

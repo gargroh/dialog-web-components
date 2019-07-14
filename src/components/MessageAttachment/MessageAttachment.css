@@ -44,13 +44,20 @@
   padding: 6px var(--message-attachment-padding) 0;
   font-size: var(--message-attachment-from-font-size);
   color: var(--message-attachment-from-color);
-  & .button {
-    padding: 0;
-    margin-left: 6px;
-    line-height: var(--message-attachment-header-line-height);
-    font-size: var(--message-attachment-from-font-size);
-    text-align: left;
-  }
+}
+
+.fromPrefix {
+  flex: 0 0 auto;
+}
+
+.fromButton {
+  flex: 0 1 auto;
+  margin-left: 6px;
+  line-height: var(--message-attachment-header-line-height);
+  color: var(--color-primary);
+  font-size: var(--message-attachment-from-font-size);
+  cursor: pointer;
+  @mixin text-overflow-ellipsis;
 }
 
 .fromIcon {
@@ -60,31 +67,50 @@
   color: currentColor;
 }
 
+.fromTitle {
+  display: inline;
+}
+
 .header {
   margin-bottom: 4px;
-  display: block;
-}
-
-.icon {
-  margin-right: 4px;
-  color: var(--message-attachment-from-color);
-  vertical-align: sub;
-}
-
-.forwardPeerInfoTitle {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: row nowrap;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
+  height: var(--message-attachment-header-line-height);
   line-height: var(--message-attachment-header-line-height);
 }
 
+.icon {
+  flex: 0 0 auto;
+  margin-right: 4px;
+  color: var(--message-attachment-from-color);
+}
+
+.title {
+  display: inline-flex;
+  flex: 0 1 auto;
+  overflow: hidden;
+  height: var(--message-attachment-header-line-height);
+}
+
 .name {
+  flex: 0 1 auto;
   font-size: var(--default-font-size);
   font-weight: 500;
+  @mixin text-overflow-ellipsis;
 }
 
 .nick {
+  display: block;
+  flex: 0 0 auto;
   font-size: var(--default-font-size-small);
   color: var(--message-attachment-nick-color);
+
+  /* Uncoment to enable text overflow for nickname */
+  /* flex: 0 1 auto; */
+  /* @mixin text-overflow-ellipsis; */
 }
 
 .reply {
@@ -131,6 +157,7 @@
 
 .timestamp {
   composes: time;
+  flex: 0 0 auto;
 }
 
 .fulltime {

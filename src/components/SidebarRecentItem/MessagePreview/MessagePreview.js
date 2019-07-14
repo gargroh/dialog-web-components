@@ -56,7 +56,7 @@ class MessagePreview extends PureComponent<Props> {
               attachment={attachment}
               content={content}
               className={styles.preview}
-              emojiSize={15}
+              emojiSize={10}
             />
           </div>
         );

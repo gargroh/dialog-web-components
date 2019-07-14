@@ -11,7 +11,7 @@ import AudioPlayerButton from './AudioPlayerButton/AudioPlayerButton';
 import { PeerInfoTitle } from '../PeerInfoTitle/PeerInfoTitle';
 import styles from './AudioPlayer.css';
 
-type AudioPlayerProps = {
+export type AudioPlayerProps = {
   src: ?string,
   duration?: ?number,
   pending?: ?boolean,
@@ -19,7 +19,7 @@ type AudioPlayerProps = {
   showDuration: boolean,
 };
 
-type AudioPlayerState = {
+export type AudioPlayerState = {
   key: string,
   error: ?MediaError,
   duration: number,
@@ -216,7 +216,7 @@ class AudioPlayer extends PureComponent<AudioPlayerProps, AudioPlayerState> {
   }
 
   renderCurrentTime() {
-    const { error, duration, currentTime } = this.state;
+    const { error } = this.state;
     if (error) {
       return <MediaErrorMessage className={styles.error} error={error} />;
     }
@@ -244,7 +244,7 @@ class AudioPlayer extends PureComponent<AudioPlayerProps, AudioPlayerState> {
   }
 
   renderDuration() {
-    if (!this.props.showDuration && this.state.duration === 0) {
+    if (!this.props.showDuration || this.state.duration === 0) {
       return null;
     }
 

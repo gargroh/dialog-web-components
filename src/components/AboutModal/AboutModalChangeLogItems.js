@@ -57,16 +57,12 @@ function AboutModalChangeLogItems(
           date,
         }}
       />
-      {localizedChanges.length > 0
-        ? localizedChanges.map((change) => {
-            return (
-              <AboutModalChangeLogItem
-                {...change}
-                key={`${version}_${change.headline}`}
-              />
-            );
-          })
-        : '-'}
+      {localizedChanges.map((change) => (
+        <AboutModalChangeLogItem
+          {...change}
+          key={`${version}_${change.headline}`}
+        />
+      ))}
     </div>
   );
 }

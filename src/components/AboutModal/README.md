@@ -164,7 +164,7 @@ const handleChangeLogOpen = () => {
   <Button theme="primary" onClick={handleChangeLogOpen}>
     Show change log about
   </Button>
-  {!state.isChangeLogOpen ? (
+  {state.isChangeLogOpen ? (
     <AboutModal changeLog={changeLog} {...state} {...actions} />
   ) : null}
 </div>;

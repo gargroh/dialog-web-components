@@ -36,7 +36,7 @@ type AboutModalState = {
 
 class AboutModal extends Component<AboutModalProps, AboutModalState> {
   state = {
-    changeLogExpanded: true,
+    changeLogExpanded: false,
   };
 
   handleToggleChangeLog = () => {

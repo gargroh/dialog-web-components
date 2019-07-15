@@ -7,13 +7,13 @@ import React, { PureComponent } from 'react';
 import AudioPlayer from '../../AudioPlayer/AudioPlayer';
 import styles from './ActivityMediaVoice.css';
 
-type Props = {
+export type ActivityMediaVoiceProps = {
   url: ?string,
   duration: ?number,
   sender: ?string,
 };
 
-class ActivityMediaVoice extends PureComponent<Props> {
+class ActivityMediaVoice extends PureComponent<ActivityMediaVoiceProps> {
   render() {
     return (
       <div className={styles.container}>
@@ -22,6 +22,7 @@ class ActivityMediaVoice extends PureComponent<Props> {
           src={this.props.url}
           duration={this.props.duration}
           sender={this.props.sender}
+          showDuration={false}
         />
       </div>
     );

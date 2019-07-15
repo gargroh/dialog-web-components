@@ -159,7 +159,6 @@ class AboutModal extends Component<AboutModalProps, AboutModalState> {
   }
 
   render() {
-    const { changeLogExpanded } = this.state;
     const { appName, appVersion } = this.props;
     const className = classNames(styles.container, this.props.className);
 

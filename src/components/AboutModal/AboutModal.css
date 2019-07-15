@@ -17,6 +17,11 @@
   --modal-about-padding: 10px;
   --modal-about-margin: 10px;
   --modal-about-version-color: #000;
+
+  --modal-about-small-font-size: 13px;
+
+  --modal-about-change-log-headline-font-size: 10px;
+  --modal-about-change-log-item-font-size: 11px;
 }
 
 /* Styles */
@@ -62,14 +67,14 @@
 }
 
 .version {
-  font-size: 13px;
+  font-size: var(--modal-about-small-font-size);
   line-height: 1;
   color: color-mod(var(--modal-about-appName-color) alpha(40%));
   margin-bottom: 1rem;
 }
 
-.changeLogBlock {
-  padding-top: var(--modal-about-padding);
+.changeLogWrapper {
+  padding-top: calc(var(--modal-about-padding) * 3);
 }
 
 .changeLogItem {
@@ -80,12 +85,28 @@
   }
 }
 
-.changeLogChanges {
+.changeLogChangesItem {
   text-align: left;
-  padding: var(--modal-about-padding);
   margin: 0;
+  word-break: break-word;
+  margin-bottom: calc(var(--modal-about-margin) * 2.5);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.changeLogHeadline {
+  font-size: var(--modal-about-small-font-size);
+  display: block;
+  margin-bottom: var(--modal-about-margin);
+}
+
+.changeLogChangesItems {
   list-style: none;
-  font-size: var(--font-size-small);
+  padding: 0;
+  margin: 0;
+  font-size: var(--modal-about-change-log-item-font-size);
   color: var(--modal-about-version-color);
   word-break: break-word;
 
@@ -99,9 +120,11 @@
 }
 
 .changeLogVersion {
-  font-size: var(--modal-about-state-font-size);
+  font-size: var(--font-size-small);
   line-height: 1;
   color: var(--modal-about-version-color);
+  display: block;
+  margin-bottom: 0.75rem;
 }
 
 .changeLogButton {

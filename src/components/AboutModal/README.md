@@ -18,8 +18,46 @@ const changeLog = [
     date: '10.04.2019',
     version: '2.3.1',
     changes: {
-      ru: ['Улучшена производительность', 'Починены звонки', 'Сделано хорошо'],
-      en: ['Greatly improve performance', 'Calls fixed', 'Everithyng okay'],
+      ru: [
+        {
+          headline: 'Исправленные следующие ошибки приложения:',
+          items: [
+            'При отсутствии связи не возможно произвести выход из приложения;',
+            'Создания ссылки для приглашения в Dialog Enterprise;',
+            'Исправлена вёрстка вкладки обзор.',
+          ],
+        },
+        {
+          headline: 'Добавлены новые возможности:',
+          items: [
+            'Отчистки приложения при команде с сервера;',
+            'Если при звонке другому абоненту у абонента занято, то пользователю выдаётся уведомление;',
+            'Теперь при отправке отчёта о работе прилодения обязательно нудно писать текст сообщения;',
+            'Добавлено меню "история версий" в в меню "О Программе";',
+            'Добавлено уведомление об отсудствии записывающих устройств при совершении звонка.',
+          ],
+        },
+      ],
+      en: [
+        {
+          headline: 'The following application errors are fixed:',
+          items: [
+            'In the absence of communication it is not possible to exit the application;',
+            'Create a link for an invitation to Dialog Enterprise;',
+            'Fixed layout tab review.',
+          ],
+        },
+        {
+          headline: 'Added new features:',
+          items: [
+            'Cleaning the application when a command from the server;',
+            'If during a call to another subscriber the subscriber is busy, the user is notified;',
+            'Now, when sending a report on the application work, it is necessary to write the text of the message;',
+            'Added menu "version history" in the menu "About the Program";',
+            'Added notification about the absence of recording devices when making a call.',
+          ],
+        },
+      ],
     },
   },
   {
@@ -27,29 +65,26 @@ const changeLog = [
     version: '2.3.0',
     changes: {
       ru: [
-        'Теперь можно использовать видеозвонки',
-        'Починены звонки 2.0',
-        'Новые нескучные обои',
-        'А здесь мы что-то очень долго-долго-долго-долго-долго-долго-долго-долго-долго делалии наконецнаконецнаконецнаконецнаконецнаконецнаконецнаконецнаконец доделали',
+        {
+          headline: 'Исправлены следующие ошибки приложения:',
+          items: [
+            'При отсутствии связи невозможно произвести выход из приложения;',
+            'Создания ссылки для приглашения в Dialog Enterprise;',
+            'Исправлена вёрстка карточек на вкладке обзор.',
+          ],
+        },
+        {
+          headline: 'Добавлены новые возможности:',
+          items: [
+            'Очистка приложения при команде с сервера;',
+            'Если при звонке другому абоненту у абонента занято, то пользователю выдаётся уведомление;',
+            'Теперь при отправке отчёта о работе приложения обязательно нужно писать текст сообщения;',
+            'Добавлено меню "история версий" в меню "О Программе";',
+            'Добавлено уведомление об отсутствии записывающих устройств при совершении звонка.',
+          ],
+        },
       ],
     },
-  },
-  {
-    date: '08.04.2019',
-    version: '2.2.9',
-    changes: {
-      ru: [
-        'Как-то так',
-        'Снова чинили звонки',
-        'С вертухи замержили в мастер',
-        'Тут что-то было',
-      ],
-    },
-  },
-  {
-    date: '07.04.2019',
-    version: '2.2.8',
-    changes: {},
   },
 ];
 
@@ -129,7 +164,7 @@ const handleChangeLogOpen = () => {
   <Button theme="primary" onClick={handleChangeLogOpen}>
     Show change log about
   </Button>
-  {state.isChangeLogOpen ? (
+  {!state.isChangeLogOpen ? (
     <AboutModal changeLog={changeLog} {...state} {...actions} />
   ) : null}
 </div>;

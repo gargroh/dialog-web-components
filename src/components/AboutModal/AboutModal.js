@@ -12,9 +12,9 @@ import Icon from '../Icon/Icon';
 import ModalBody from '../Modal/ModalBody';
 import Logo from '../Logo/Logo';
 import ButtonNext from '../ButtonNext/ButtonNext';
-import AboutModalChangeLogItem, {
+import AboutModalChangeLogItems, {
   type AboutModalChangeLogItemProps,
-} from './AboutModalChangeLogItem';
+} from './AboutModalChangeLogItems';
 import styles from './AboutModal.css';
 
 type AboutModalProps = {
@@ -36,7 +36,7 @@ type AboutModalState = {
 
 class AboutModal extends Component<AboutModalProps, AboutModalState> {
   state = {
-    changeLogExpanded: false,
+    changeLogExpanded: true,
   };
 
   handleToggleChangeLog = () => {
@@ -145,9 +145,9 @@ class AboutModal extends Component<AboutModalProps, AboutModalState> {
     }
 
     return (
-      <div className={styles.changeLogBlock}>
+      <div className={styles.changeLogWrapper}>
         {changeLog.map((log) => (
-          <AboutModalChangeLogItem
+          <AboutModalChangeLogItems
             key={`${log.version}_${log.date.toString()}`}
             version={log.version}
             date={log.date}
@@ -159,6 +159,7 @@ class AboutModal extends Component<AboutModalProps, AboutModalState> {
   }
 
   render() {
+    const { changeLogExpanded } = this.state;
     const { appName, appVersion } = this.props;
     const className = classNames(styles.container, this.props.className);
 

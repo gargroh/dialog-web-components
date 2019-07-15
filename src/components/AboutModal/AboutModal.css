@@ -70,7 +70,6 @@
   font-size: var(--modal-about-small-font-size);
   line-height: 1;
   color: color-mod(var(--modal-about-appName-color) alpha(40%));
-  margin-bottom: 1rem;
 }
 
 .changeLogWrapper {
@@ -128,18 +127,12 @@
 }
 
 .changeLogButton {
-  display: block;
   margin: 0 auto;
-  outline: none;
-  font-size: var(--font-size-small);
-  color: var(--modal-about-version-color);
-  background-color: transparent;
-  border-color: transparent;
   text-decoration: underline;
-  cursor: pointer;
 }
 
 .state {
+  margin-top: 1rem;
   margin-bottom: 1rem;
   font-size: var(--modal-about-state-font-size);
   color: var(--modal-about-state-color);

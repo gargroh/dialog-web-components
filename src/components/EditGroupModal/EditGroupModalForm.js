@@ -227,9 +227,7 @@ class EditGroupModalForm extends PureComponent<Props, State> {
             onChange={this.props.onChange}
             maxLength={aboutMaxLength}
             label={`CreateNewModal.${group.type}.info.description.label`}
-            placeholder={`CreateNewModal.${
-              group.type
-            }.info.description.placeholder`}
+            placeholder={`CreateNewModal.${group.type}.info.description.placeholder`}
             type="textarea"
             value={about.value || ''}
             {...this.getInputState('about')}

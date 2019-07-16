@@ -2,6 +2,7 @@
  * Copyright 2019 dialog LLC <info@dlg.im>
  * @flow
  */
+
 import type { SelectorState } from '../../entities';
 import type {
   Peer,

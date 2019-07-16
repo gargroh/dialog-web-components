@@ -2,6 +2,7 @@
  * Copyright 2019 dialog LLC <info@dlg.im>
  * @flow
  */
+
 import format from 'date-fns/format';
 import differenceInCalendarDays from 'date-fns/difference_in_calendar_days';
 import getLocalTimeFormat from './getLocalTimeFormat';

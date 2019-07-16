@@ -2,6 +2,7 @@
  * Copyright 2019 dialog LLC <info@dlg.im>
  * @flow
  */
+
 /* eslint max-lines: ["error", 500] */
 
 import type {

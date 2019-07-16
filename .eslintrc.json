@@ -11,7 +11,8 @@
     "react/no-did-mount-set-state": 0,
     "react/jsx-max-props-per-line": 0,
     "react/jsx-curly-brace-presence": 0,
-    "no-negated-condition": 0
+    "no-negated-condition": 0,
+    "flowtype/no-weak-types": 0
   },
   "env": {
     "jest": true

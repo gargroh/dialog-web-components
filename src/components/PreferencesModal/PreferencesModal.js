@@ -2,6 +2,7 @@
  * Copyright 2019 dialog LLC <info@dlg.im>
  * @flow
  */
+
 /* eslint class-methods-use-this: "warn" */
 
 import type { ProfileSettings } from '@dlghq/dialog-types';

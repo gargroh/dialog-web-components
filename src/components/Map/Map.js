@@ -2,6 +2,7 @@
  * Copyright 2019 dialog LLC <info@dlg.im>
  * @flow
  */
+
 import * as React from 'react';
 
 export type Props = {
@@ -14,9 +15,7 @@ export type Props = {
 };
 
 function Map(props: Props) {
-  const href = `https://maps.google.com/?z=16&q=loc:${props.latitude},${
-    props.longitude
-  }`;
+  const href = `https://maps.google.com/?z=16&q=loc:${props.latitude},${props.longitude}`;
   let src =
     'https://maps.googleapis.com/maps/api/staticmap?' +
     `center=${props.latitude},${props.longitude}` +

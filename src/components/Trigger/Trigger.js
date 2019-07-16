@@ -72,8 +72,9 @@ export type State = {
   position: Point,
 };
 
+type Listener = { remove(): mixed };
 class Trigger extends Component<Props, State> {
-  listeners: ?({ remove(): void }[]);
+  listeners: Array<Listener>;
 
   static defaultProps = {
     closeOnDocumentClick: false,
@@ -91,6 +92,8 @@ class Trigger extends Component<Props, State> {
         y: 0,
       },
     };
+
+    this.listeners = [];
   }
 
   shouldComponentUpdate(nextProps: Props, nextState: State): boolean {
@@ -167,7 +170,7 @@ class Trigger extends Component<Props, State> {
   removeListeners = (): void => {
     if (this.listeners) {
       this.listeners.forEach((listener) => listener.remove());
-      this.listeners = null;
+      this.listeners = [];
     }
   };
 

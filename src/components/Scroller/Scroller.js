@@ -30,9 +30,11 @@ type State = {
   isUserInteraction: boolean,
 };
 
+type Listener = { remove(): mixed };
+
 class Scroller extends Component<Props, State> {
   container: ?HTMLElement;
-  listeners: ?({ remove(): void }[]);
+  listeners: Array<Listener>;
 
   static defaultProps = {
     fromBottom: false,
@@ -44,40 +46,43 @@ class Scroller extends Component<Props, State> {
     this.state = {
       isUserInteraction: false,
     };
+
+    this.listeners = [];
   }
 
   componentDidMount(): void {
-    if (this.container) {
+    const { container } = this;
+    if (container) {
       this.listeners = [
-        listen(this.container, 'user_scroll', this.handleScrollByUser, {
+        listen(container, 'user_scroll', this.handleScrollByUser, {
           passive: true,
         }),
-        listen(this.container, 'js_scroll', this.handleScrollByJS, {
+        listen(container, 'js_scroll', this.handleScrollByJS, {
           passive: true,
         }),
-        listen(this.container, 'scroll', this.handleScroll, { passive: true }),
+        listen(container, 'scroll', this.handleScroll, { passive: true }),
 
-        listen(this.container, 'mousedown', this.handleUserInteractionStart, {
+        listen(container, 'mousedown', this.handleUserInteractionStart, {
           passive: true,
         }),
-        listen(this.container, 'mouseup', this.handleUserInteractionEnd, {
+        listen(container, 'mouseup', this.handleUserInteractionEnd, {
           passive: true,
         }),
-        listen(this.container, 'wheel', this.handleMouseWheel, {
-          passive: true,
-        }),
-
-        listen(this.container, 'touchstart', this.handleUserInteractionStart, {
-          passive: true,
-        }),
-        listen(this.container, 'touchend', this.handleUserInteractionEnd, {
-          passive: true,
-        }),
-        listen(this.container, 'touchmove', this.handleTouchMove, {
+        listen(container, 'wheel', this.handleMouseWheel, {
           passive: true,
         }),
 
-        listen(this.container, 'keydown', this.handleKeyDown, {
+        listen(container, 'touchstart', this.handleUserInteractionStart, {
+          passive: true,
+        }),
+        listen(container, 'touchend', this.handleUserInteractionEnd, {
+          passive: true,
+        }),
+        listen(container, 'touchmove', this.handleTouchMove, {
+          passive: true,
+        }),
+
+        listen(container, 'keydown', this.handleKeyDown, {
           passive: true,
         }),
       ];
@@ -94,7 +99,7 @@ class Scroller extends Component<Props, State> {
   componentWillUnmount(): void {
     if (this.listeners) {
       this.listeners.forEach((listener) => listener.remove());
-      this.listeners = null;
+      this.listeners = [];
     }
   }
 
@@ -127,6 +132,7 @@ class Scroller extends Component<Props, State> {
     }
   };
 
+  // $FlowFixMe
   handleKeyDown = (event: KeyboardEvent): void => {
     if (
       event.keyCode === 33 ||

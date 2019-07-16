@@ -44,10 +44,12 @@ export type State = {
   minZoom: number,
 };
 
+type Listener = { remove(): mixed };
+
 class ImageEdit extends PureComponent<Props, State> {
   croppieElement: ?HTMLElement;
   croppie: ?Object;
-  listeners: ?({ remove(): void }[]);
+  listeners: Array<Listener>;
 
   static defaultProps = {
     type: 'circle',
@@ -65,7 +67,7 @@ class ImageEdit extends PureComponent<Props, State> {
     };
 
     this.croppie = null;
-    this.listeners = null;
+    this.listeners = [];
   }
 
   componentDidMount() {
@@ -180,7 +182,7 @@ class ImageEdit extends PureComponent<Props, State> {
   removeListeners = (): void => {
     if (this.listeners) {
       this.listeners.forEach((listener) => listener.remove());
-      this.listeners = null;
+      this.listeners = [];
     }
   };
 

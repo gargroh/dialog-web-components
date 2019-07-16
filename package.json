@@ -67,7 +67,7 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "@dlghq/dialog-utils": "0.10.1",
+    "@dlghq/dialog-utils": "0.10.3",
     "classnames": "2.2.6",
     "clipboard": "2.0.4",
     "croppie": "2.6.4",
@@ -112,7 +112,7 @@
     "eslint-config-prettier": "4.3.0",
     "eslint-plugin-react": "7.14.2",
     "file-loader": "4.0.0",
-    "flow-bin": "0.94.0",
+    "flow-bin": "0.102.0",
     "flow-coverage-report": "0.6.1",
     "glob": "7.1.4",
     "husky": "1.3.1",

@@ -58,7 +58,7 @@
   "homepage": "https://dialogs.github.io/dialog-web-components",
   "peerDependencies": {
     "@dlghq/country-codes": "^0.3.0",
-    "@dlghq/dialog-types": "^1.37.0",
+    "@dlghq/dialog-types": "^1.38.3",
     "@dlghq/emoji": "^2.2.0",
     "@dlghq/markdown": "^1.7.1",
     "@dlghq/react-l10n": "^0.9.3",

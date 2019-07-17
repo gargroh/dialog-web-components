@@ -12,9 +12,10 @@ import Icon from '../Icon/Icon';
 import ModalBody from '../Modal/ModalBody';
 import Logo from '../Logo/Logo';
 import ButtonNext from '../ButtonNext/ButtonNext';
-import AboutModalChangeLogItem, {
+import Button from '../Button/Button';
+import AboutModalChangeLogItems, {
   type AboutModalChangeLogItemProps,
-} from './AboutModalChangeLogItem';
+} from './AboutModalChangeLogItems';
 import styles from './AboutModal.css';
 
 type AboutModalProps = {
@@ -55,20 +56,31 @@ class AboutModal extends Component<AboutModalProps, AboutModalState> {
     }
 
     if (updateState.error) {
-      return <div className={styles.error}>{updateState.error.message}</div>;
+      return (
+        <div className={styles.state}>
+          <div className={styles.error}>{updateState.error.message}</div>;
+        </div>
+      );
     }
 
     if (updateState.pending) {
       return (
-        <Text
-          id={`AboutModal.pending.${updateState.value}`}
-          values={{ appName }}
-        />
+        <div className={styles.state}>
+          <Text
+            id={`AboutModal.pending.${updateState.value}`}
+            values={{ appName }}
+          />
+        </div>
       );
     }
 
     return (
-      <Text id={`AboutModal.state.${updateState.value}`} values={{ appName }} />
+      <div className={styles.state}>
+        <Text
+          id={`AboutModal.state.${updateState.value}`}
+          values={{ appName }}
+        />
+      </div>
     );
   }
 
@@ -115,8 +127,10 @@ class AboutModal extends Component<AboutModalProps, AboutModalState> {
     }
 
     return (
-      <button
-        type="button"
+      <Button
+        theme="default"
+        size="small"
+        view="link"
         id="about_change_log_button"
         onClick={this.handleToggleChangeLog}
         className={styles.changeLogButton}
@@ -128,7 +142,7 @@ class AboutModal extends Component<AboutModalProps, AboutModalState> {
               : 'AboutModal.showChangeLog'
           }
         />
-      </button>
+      </Button>
     );
   }
 
@@ -145,9 +159,9 @@ class AboutModal extends Component<AboutModalProps, AboutModalState> {
     }
 
     return (
-      <div className={styles.changeLogBlock}>
+      <div className={styles.changeLogWrapper}>
         {changeLog.map((log) => (
-          <AboutModalChangeLogItem
+          <AboutModalChangeLogItems
             key={`${log.version}_${log.date.toString()}`}
             version={log.version}
             date={log.date}
@@ -181,7 +195,7 @@ class AboutModal extends Component<AboutModalProps, AboutModalState> {
             onClick={this.props.onVersionClick}
             className={styles.version}
           />
-          <div className={styles.state}>{this.renderState()}</div>
+          {this.renderState()}
           {this.renderUpdateButton()}
           {this.renderChangeLogButton()}
           {this.renderChangeLogBlock()}

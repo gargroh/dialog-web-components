@@ -9,7 +9,7 @@ const SIZES = {
   large: 42,
 };
 
-export type IconSize = $Enum<typeof SIZES> | number;
+export type IconSize = $Keys<typeof SIZES> | number;
 
 function getIconSize(size: IconSize): number {
   if (typeof size === 'number') {

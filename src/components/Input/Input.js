@@ -17,6 +17,7 @@ export type Props = {
   inputClassName?: string,
   wrapperClassName?: string,
   prefixClassName?: string,
+  inputStyle?: { [key: string]: mixed },
   id: string,
   type:
     | 'text'
@@ -136,6 +137,10 @@ class Input extends PureComponent<Props, State> {
     return Boolean(this.props.autoFocus) && !this.props.disabled;
   }
 
+  getScrollHeight(): ?number {
+    return this.ref.current && this.ref.current.scrollHeight;
+  }
+
   autoFocus(): void {
     if (this.isAutoFocus() && this.ref.current) {
       if (document.activeElement !== this.ref.current) {
@@ -223,34 +228,37 @@ class Input extends PureComponent<Props, State> {
         onKeyDown,
         onKeyPress,
         spellcheck,
+        inputStyle
       },
       context: { l10n },
     } = this;
 
     const props = {
       ref: this.ref,
-      className: classNames(styles.input, this.props.inputClassName),
-      disabled,
       id,
       name,
-      placeholder: placeholder ? l10n.formatText(placeholder) : null,
       type,
       value,
+      disabled,
       tabIndex,
+      style: inputStyle,
       autoFocus: htmlAutoFocus,
-      onChange: this.handleChange,
-      onBlur: this.handleBlur,
-      onFocus: this.handleFocus,
+      className: classNames(styles.input, this.props.inputClassName),
+      spellCheck: spellcheck ? 'true' : 'false',
+      placeholder: placeholder ? l10n.formatText(placeholder) : null,
+      onKeyUp,
       onKeyDown,
       onKeyPress,
-      onKeyUp,
+      onBlur: this.handleBlur,
+      onFocus: this.handleFocus,
+      onChange: this.handleChange,
     };
 
     if (type === 'textarea') {
-      return <textarea {...props} spellCheck={spellcheck ? 'true' : 'false'} />;
+      return <textarea {...props} />;
     }
 
-    return <input {...props} spellCheck={spellcheck ? 'true' : 'false'} />;
+    return <input {...props} />;
   }
 
   render() {

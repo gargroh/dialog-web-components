@@ -9,16 +9,15 @@ import { LocalizationContextType } from '@dlghq/react-l10n';
 import classNames from 'classnames';
 import styles from './Input.css';
 
+type ReactRef<T> = {|current: null | T|};
+
 type HTMLAbstractInputElement = HTMLInputElement | HTMLTextAreaElement;
-type RefType =
-  | ((null | HTMLAbstractInputElement) => mixed)
-  | { current: null | HTMLAbstractInputElement };
 export type Props = {
-  forwardRef?: RefType,
   className?: string,
   inputClassName?: string,
   wrapperClassName?: string,
   prefixClassName?: string,
+  inputStyle?: { [key: string]: mixed },
   id: string,
   type:
     | 'text'
@@ -65,7 +64,7 @@ export type Context = ProviderContext;
 
 class Input extends PureComponent<Props, State> {
   context: Context;
-  innerRef: RefType;
+  ref: ReactRef<HTMLAbstractInputElement>;
 
   static defaultProps = {
     type: 'text',
@@ -84,7 +83,7 @@ class Input extends PureComponent<Props, State> {
       isFocused: false,
     };
 
-    this.setInnerRef();
+    this.ref = createRef();
   }
 
   componentDidMount(): void {
@@ -93,7 +92,6 @@ class Input extends PureComponent<Props, State> {
 
   componentDidUpdate(): void {
     this.autoFocus();
-    this.setInnerRef();
   }
 
   handleChange = (
@@ -130,8 +128,8 @@ class Input extends PureComponent<Props, State> {
   handleLabelMouseDown = (event: $FlowIssue): void => {
     event.preventDefault();
 
-    if (this.innerRef.current) {
-      this.innerRef.current.focus();
+    if (this.ref.current) {
+      this.ref.current.focus();
     }
   };
 
@@ -139,30 +137,30 @@ class Input extends PureComponent<Props, State> {
     return Boolean(this.props.autoFocus) && !this.props.disabled;
   }
 
-  setInnerRef(): void {
-    this.innerRef = this.props.forwardRef || createRef();
+  getScrollHeight(): ?number {
+    return this.ref.current && this.ref.current.scrollHeight;
   }
 
   autoFocus(): void {
-    if (this.isAutoFocus() && this.innerRef.current) {
-      if (document.activeElement !== this.innerRef.current) {
-        this.innerRef.current.focus();
+    if (this.isAutoFocus() && this.ref.current) {
+      if (document.activeElement !== this.ref.current) {
+        this.ref.current.focus();
       }
     }
   }
 
   focus(): void {
     if (
-      this.innerRef.current &&
-      document.activeElement !== this.innerRef.current
+      this.ref.current &&
+      document.activeElement !== this.ref.current
     ) {
-      this.innerRef.current.focus();
+      this.ref.current.focus();
     }
   }
 
   blur(): void {
-    if (this.innerRef.current) {
-      this.innerRef.current.blur();
+    if (this.ref.current) {
+      this.ref.current.blur();
     }
   }
 
@@ -230,34 +228,37 @@ class Input extends PureComponent<Props, State> {
         onKeyDown,
         onKeyPress,
         spellcheck,
+        inputStyle
       },
       context: { l10n },
     } = this;
 
     const props = {
-      className: classNames(styles.input, this.props.inputClassName),
-      disabled,
+      ref: this.ref,
       id,
       name,
-      placeholder: placeholder ? l10n.formatText(placeholder) : null,
       type,
       value,
-      ref: this.innerRef,
+      disabled,
       tabIndex,
+      style: inputStyle,
       autoFocus: htmlAutoFocus,
-      onChange: this.handleChange,
-      onBlur: this.handleBlur,
-      onFocus: this.handleFocus,
+      className: classNames(styles.input, this.props.inputClassName),
+      spellCheck: spellcheck ? 'true' : 'false',
+      placeholder: placeholder ? l10n.formatText(placeholder) : null,
+      onKeyUp,
       onKeyDown,
       onKeyPress,
-      onKeyUp,
+      onBlur: this.handleBlur,
+      onFocus: this.handleFocus,
+      onChange: this.handleChange,
     };
 
     if (type === 'textarea') {
-      return <textarea {...props} spellCheck={spellcheck ? 'true' : 'false'} />;
+      return <textarea {...props} />;
     }
 
-    return <input {...props} spellCheck={spellcheck ? 'true' : 'false'} />;
+    return <input {...props} />;
   }
 
   render() {
@@ -294,6 +295,4 @@ class Input extends PureComponent<Props, State> {
   }
 }
 
-export default React.forwardRef<Props, HTMLAbstractInputElement>(
-  (props, ref) => <Input {...props} forwardRef={ref} />,
-);
+export default Input;

@@ -27,6 +27,8 @@
   width: var(--presence-dot-size);
   height: var(--presence-dot-size);
   margin-right: var(--default-padding);
+  display: flex;
+  align-items: center;
 }
 
 .status {
@@ -49,6 +51,17 @@
   background-color: var(--color-danger);
 }
 
+.dndBrick {
+  background-color: var(--default-background-color);
+  width: 60%;
+  height: 10%;
+  margin: auto;
+}
+
 .invisible {
   background-color: #c1c1c0;
+}
+
+.busy {
+  background-color: var(--color-danger);
 }

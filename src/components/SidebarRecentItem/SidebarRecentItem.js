@@ -3,7 +3,12 @@
  * @flow
  */
 
-import type { Peer, PeerInfo, Message } from '@dlghq/dialog-types';
+import type {
+  Peer,
+  PeerInfo,
+  Message,
+  UserStatusType,
+} from '@dlghq/dialog-types';
 import React, { PureComponent } from 'react';
 import { Text } from '@dlghq/react-l10n';
 import classNames from 'classnames';
@@ -25,6 +30,7 @@ export type Props = {
   draft: ?string,
   typing: ?string,
   online: ?boolean,
+  status: ?UserStatusType,
   message: ?Message,
   favourite: ?boolean,
   onSelect: (peer: Peer) => mixed,
@@ -42,7 +48,7 @@ class SidebarRecentItem extends PureComponent<Props> {
   }
 
   renderAvatar() {
-    const { info, message, online } = this.props;
+    const { info, message, online, status } = this.props;
 
     if (message && message.sender && info.type === 'group') {
       return (
@@ -61,6 +67,7 @@ class SidebarRecentItem extends PureComponent<Props> {
         size={36}
         peer={info}
         online={online}
+        status={status}
       />
     );
   }

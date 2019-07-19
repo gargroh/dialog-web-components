@@ -33,10 +33,17 @@ class UserStatus extends PureComponent<Props> {
       styles.status,
       this.props.statusClassName,
     );
+    const dndClassName = classNames(styles.dndBrick);
 
     return (
       <div className={className}>
-        {this.props.withoutDot ? null : <div className={dotClassName} />}
+        {this.props.withoutDot ? null : (
+          <div className={dotClassName}>
+            {this.props.status === 'do_not_disturb' && (
+              <div className={dndClassName} />
+            )}
+          </div>
+        )}
         <Text
           id={`UserStatus.${this.props.status}`}
           className={statusClassName}

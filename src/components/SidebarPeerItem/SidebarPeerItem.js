@@ -3,7 +3,7 @@
  * @flow
  */
 
-import type { Peer, PeerInfo } from '@dlghq/dialog-types';
+import type { Peer, PeerInfo, UserStatusType } from '@dlghq/dialog-types';
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import PeerAvatar from '../PeerAvatar/PeerAvatar';
@@ -16,6 +16,7 @@ export type Props = {
   active: boolean,
   counter: number,
   online?: ?boolean,
+  status: ?UserStatusType,
   onSelect: (peer: Peer) => mixed,
 };
 
@@ -23,6 +24,7 @@ class SidebarPeerItem extends PureComponent<Props> {
   static defaultProps = {
     counter: 0,
     active: false,
+    status: null,
   };
 
   handleClick = (): void => {
@@ -39,7 +41,7 @@ class SidebarPeerItem extends PureComponent<Props> {
   }
 
   render() {
-    const { active, counter, info, online } = this.props;
+    const { active, counter, info, online, status } = this.props;
     const className = classNames(styles.container, this.props.className, {
       [styles.active]: active,
       [styles.unread]: counter !== 0,
@@ -56,6 +58,7 @@ class SidebarPeerItem extends PureComponent<Props> {
           peer={info}
           online={online}
           size={32}
+          status={status}
         />
         <div className={styles.text}>
           <PeerInfoTitle

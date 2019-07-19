@@ -17,6 +17,19 @@ import SidebarSearchItem from './SidebarSearchItem/SidebarSearchItem';
 import styles from './SidebarSearchResults.css';
 
 class SidebarSearchResults extends PureComponent<SidebarSearchResultsProps> {
+  getOnline(peer: PeerInfo): ?boolean {
+    const { online } = this.props;
+
+    if (peer.type === 'user') {
+      const userOnline = online.get(peer.peer.id);
+      if (userOnline) {
+        return userOnline.isOnline;
+      }
+    }
+
+    return null;
+  }
+
   renderContent(): Node {
     const { minQueryLength, query } = this.props;
 
@@ -44,6 +57,9 @@ class SidebarSearchResults extends PureComponent<SidebarSearchResultsProps> {
     }
 
     return peers.map((peerInfo: PeerInfo) => {
+      const isOnline = this.getOnline(peerInfo);
+      const status = isOnline ? 'unset' : null;
+
       return (
         <SidebarPeerItem
           key={peerInfo.peer.id}
@@ -51,6 +67,8 @@ class SidebarSearchResults extends PureComponent<SidebarSearchResultsProps> {
           counter={0}
           onSelect={this.props.onGoToPeer}
           info={peerInfo}
+          status={status}
+          online={isOnline}
         />
       );
     });

@@ -3,7 +3,14 @@
  * @flow
  */
 
-import type { Peer, Message, PeerInfo, Field } from '@dlghq/dialog-types';
+import type {
+  Peer,
+  Message,
+  PeerInfo,
+  Field,
+  UserOnline,
+} from '@dlghq/dialog-types';
+import type { Map as ImmutableMap } from 'immutable';
 
 export type SearchEntity = {
   info: PeerInfo,
@@ -18,6 +25,7 @@ export type SidebarSearchResultsProps = {
   peers: PeerInfo[],
   messages: Field<SearchEntity[]>,
   onGoToPeer: (peer: Peer) => mixed,
+  online: ImmutableMap<number, UserOnline>,
   onGoToMessage: (peer: Peer, message: Message) => mixed,
   minQueryLength?: number,
 };

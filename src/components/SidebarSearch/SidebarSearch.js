@@ -18,6 +18,7 @@ export type Props = {
   query: string,
   focus: boolean,
   pending: boolean,
+  placeholder: string,
   onFocus: (query: string) => mixed,
   onBlur: () => mixed,
   onCancel: () => mixed,
@@ -113,7 +114,8 @@ class SidebarSearch extends Component<Props> {
     );
     const inputClassName = classNames(styles.input, this.props.inputClassName);
 
-    const placeholder = l10n.formatText('SidebarSearch.placeholder');
+    const placeholder =
+      this.props.placeholder || l10n.formatText('SidebarSearch.placeholder');
 
     return (
       <div className={className}>

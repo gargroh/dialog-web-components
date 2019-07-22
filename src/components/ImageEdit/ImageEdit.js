@@ -10,7 +10,7 @@ import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import Range from '../Range/Range';
 import styles from './ImageEdit.css';
-import { Croppie } from 'croppie';
+import Croppie from 'croppie';
 import { listen, fileToBase64 } from '@dlghq/dialog-utils';
 import HotKeys from '../HotKeys/HotKeys';
 

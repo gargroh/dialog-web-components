@@ -143,3 +143,15 @@ initialState = messages[7].content;
 
 <MessageContent content={state} />;
 ```
+
+### Sticker
+
+```jsx
+const content = {
+  type: 'sticker',
+  image: require('../../fixtures/lottie-sticker.png'),
+  width: 128,
+  height: 128
+};
+<MessageContent content={content} />;
+```

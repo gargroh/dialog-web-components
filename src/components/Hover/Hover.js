@@ -12,6 +12,8 @@ export type Props = {
   children?: Node,
   onHover: (hover: boolean) => mixed,
   onClick?: (event: SyntheticMouseEvent<>) => mixed,
+  onMouseUp?: (event: SyntheticMouseEvent<>) => mixed,
+  onMouseDown?: (event: SyntheticMouseEvent<>) => mixed,
 };
 
 class Hover extends Component<Props> {
@@ -72,6 +74,8 @@ class Hover extends Component<Props> {
         id={this.props.id}
         className={this.props.className}
         onClick={this.props.onClick}
+        onMouseUp={this.props.onMouseUp}
+        onMouseDown={this.props.onMouseDown}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >

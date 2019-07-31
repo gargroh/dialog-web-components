@@ -24,9 +24,11 @@ export type AvatarProps = {
   size: number,
   placeholder: AvatarPlaceholder,
   className?: string,
-  onClick?: (event: SyntheticMouseEvent<>) => mixed,
   status?: ?UserStatusType,
   square?: boolean,
+  onClick?: (event: SyntheticMouseEvent<>) => mixed,
+  onMouseUp?: (event: SyntheticMouseEvent<>) => mixed,
+  onMouseDown?: (event: SyntheticMouseEvent<>) => mixed,
 };
 
 export type AvatarState = {
@@ -220,12 +222,16 @@ class Avatar extends PureComponent<AvatarProps, AvatarState> {
           onHover={this.handleHover}
           className={styles.clickerMask}
           onClick={this.props.onClick}
+          onMouseUp={this.props.onMouseUp}
+          onMouseDown={this.props.onMouseDown}
         />
         {!status || status === 'invisible' ? null : (
           <Hover
             onHover={this.handleHover}
             className={styles.clickerStatus}
             onClick={this.props.onClick}
+            onMouseUp={this.props.onMouseUp}
+            onMouseDown={this.props.onMouseDown}
           />
         )}
       </div>

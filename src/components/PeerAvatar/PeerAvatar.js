@@ -15,6 +15,8 @@ export type Props = {
   size: number,
   status?: ?UserStatusType,
   onClick?: (event: SyntheticMouseEvent<>) => mixed,
+  onMouseUp?: (event: SyntheticMouseEvent<>) => mixed,
+  onMouseDown?: (event: SyntheticMouseEvent<>) => mixed,
 };
 
 function PeerAvatar(props: Props) {
@@ -27,6 +29,8 @@ function PeerAvatar(props: Props) {
       placeholder={getAvatarPlaceholder(props.peer.peer.id)}
       onClick={props.onClick}
       status={props.status}
+      onMouseUp={props.onMouseUp}
+      onMouseDown={props.onMouseDown}
     />
   );
 }

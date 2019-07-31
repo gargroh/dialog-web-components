@@ -67,7 +67,7 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "@dlghq/dialog-utils": "0.10.4",
+    "@dlghq/dialog-utils": "0.10.5",
     "classnames": "2.2.6",
     "clipboard": "2.0.4",
     "croppie": "2.6.4",

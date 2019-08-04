@@ -20,7 +20,7 @@ export type Props = {
   pending: boolean,
   placeholder: string,
   onFocus: (query: string) => mixed,
-  onBlur: () => mixed,
+  onBlur: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed,
   onCancel: () => mixed,
   onChange: (query: string) => mixed,
   onSearch: (query: string) => mixed,
@@ -63,10 +63,6 @@ class SidebarSearch extends Component<Props> {
 
   handleFocus = () => {
     this.props.onFocus(this.props.query);
-  };
-
-  handleBlur = () => {
-    this.props.onBlur();
   };
 
   setInput = (input: ?HTMLInputElement) => {
@@ -129,7 +125,7 @@ class SidebarSearch extends Component<Props> {
           value={this.props.query}
           autoFocus={this.props.focus}
           onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
+          onBlur={this.props.onBlur}
           onChange={this.handleChange}
         />
         {this.renderClearIcon()}

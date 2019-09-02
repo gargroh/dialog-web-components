@@ -15,13 +15,14 @@ group:
   finish: Create group
   public: Make this group public
   error:
-    max_group_size: You cannot add such many people to the group
+    max_size: You cannot add such many people to the group
 
 channel:
   title: Create new channel
   type:
     title: Channel
-    hint: Channels are tool for broadcasting your messages to unlimited audiences
+    hintCount: Channels are tool for broadcasting your messages to audiences with up to {count} members
+    hintDefault: Channels are tool for broadcasting your messages to audiences with more than {count} members
   info:
     title:
       label: Channel title
@@ -32,6 +33,8 @@ channel:
     shortname: Channel link
   finish: Create channel
   public: Make this channel public
+  error:
+    max_size: You cannot add such many people to the channel
 
 next:
   type: Add info

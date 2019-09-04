@@ -12,20 +12,38 @@ import styles from './CreateNewModal.css';
 type Props = {
   id: string,
   maxGroupSize: number,
+  maxChannelSize: number,
   significantGroupSize: number,
+  significantChannelSize: number,
   type: 'group' | 'channel',
   onChange: (value: string, event: SyntheticInputEvent<>) => void,
 };
 
 function CreateGroupTypeForm(props: Props) {
-  const { id, maxGroupSize, significantGroupSize, type, onChange } = props;
+  const {
+    id,
+    maxGroupSize,
+    significantGroupSize,
+    maxChannelSize,
+    significantChannelSize,
+    type,
+    onChange,
+  } = props;
 
   const groupHint =
     maxGroupSize < significantGroupSize
       ? 'CreateNewModal.group.type.hintCount'
       : 'CreateNewModal.group.type.hintDefault';
+  const channelHint =
+    maxChannelSize < significantChannelSize
+      ? 'CreateNewModal.channel.type.hintCount'
+      : 'CreateNewModal.channel.type.hintDefault';
   const groupSize =
     maxGroupSize < significantGroupSize ? maxGroupSize : significantGroupSize;
+  const channelSize =
+    maxChannelSize < significantChannelSize
+      ? maxChannelSize
+      : significantChannelSize;
 
   return (
     <div className={styles.type}>
@@ -51,7 +69,8 @@ function CreateGroupTypeForm(props: Props) {
         </Radio>
         <Text
           className={styles.typeHint}
-          id="CreateNewModal.channel.type.hint"
+          id={channelHint}
+          values={{ count: String(channelSize) }}
           tagName="div"
         />
       </RadioGroup>

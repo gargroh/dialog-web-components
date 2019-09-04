@@ -60,14 +60,7 @@ class AddMembersModal extends PureComponent<Props> {
   };
 
   isMaxGroupSizeExceeded(): boolean {
-    const {
-      maxGroupSize,
-      group: { type },
-    } = this.props;
-
-    const membersCount = this.getMembersCount();
-
-    return type === 'group' && membersCount > maxGroupSize;
+    return this.getMembersCount() > this.props.maxGroupSize;
   }
 
   getMembersCount = (): number => {
@@ -80,11 +73,14 @@ class AddMembersModal extends PureComponent<Props> {
   };
 
   renderError() {
-    const { error } = this.props;
+    const {
+      error,
+      group: { type },
+    } = this.props;
     if (this.isMaxGroupSizeExceeded()) {
       return (
         <div className={styles.error}>
-          <Text id="CreateNewModal.group.error.max_group_size" />
+          <Text id={`CreateNewModal.${type}.error.max_size`} />
         </div>
       );
     }
@@ -101,15 +97,7 @@ class AddMembersModal extends PureComponent<Props> {
   }
 
   renderMembersCount() {
-    const {
-      maxGroupSize,
-      isMaxGroupSizeVisible,
-      group: { type },
-    } = this.props;
-
-    if (type !== 'group') {
-      return null;
-    }
+    const { maxGroupSize, isMaxGroupSizeVisible } = this.props;
 
     const membersCount = this.getMembersCount();
     const membersCountClassNames = classNames(styles.membersCount, {
@@ -124,13 +112,7 @@ class AddMembersModal extends PureComponent<Props> {
   }
 
   render() {
-    const {
-      maxGroupSize,
-      selector,
-      autoFocus,
-      pending,
-      group: { type },
-    } = this.props;
+    const { maxGroupSize, selector, autoFocus, pending } = this.props;
     const className = classNames(styles.container, this.props.className);
     const membersCount = this.getMembersCount();
 
@@ -159,8 +141,7 @@ class AddMembersModal extends PureComponent<Props> {
               theme="success"
               rounded={false}
               disabled={
-                selector.getSelected().size === 0 ||
-                (type === 'group' && membersCount > maxGroupSize)
+                selector.getSelected().size === 0 || membersCount > maxGroupSize
               }
               loading={pending}
               onClick={this.handleSubmit}

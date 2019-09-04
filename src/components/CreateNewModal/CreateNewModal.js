@@ -37,6 +37,7 @@ class CreateNewModal extends PureComponent<Props, CreateNewModalState> {
      * because higher number are not so interesting for him
      */
     significantGroupSize: 10000,
+    significantChannelSize: 10000,
   };
 
   state = {
@@ -144,20 +145,26 @@ class CreateNewModal extends PureComponent<Props, CreateNewModalState> {
   isMaxGroupSizeExceeded(): boolean {
     const {
       maxGroupSize,
+      maxChannelSize,
       request: { type, members },
     } = this.props;
     const membersCount = members.getSelected().size;
 
-    return type === 'group' && membersCount > maxGroupSize;
+    return type === 'group'
+      ? membersCount > maxGroupSize
+      : membersCount > maxChannelSize;
   }
 
   renderError() {
-    const { error } = this.props;
+    const {
+      error,
+      request: { type },
+    } = this.props;
 
     if (this.isMaxGroupSizeExceeded()) {
       return (
         <div className={styles.error}>
-          <Text id="CreateNewModal.group.error.max_group_size" />
+          <Text id={`CreateNewModal.${type}.error.max_size`} />
         </div>
       );
     }
@@ -177,9 +184,11 @@ class CreateNewModal extends PureComponent<Props, CreateNewModalState> {
     const {
       id,
       maxGroupSize,
+      maxChannelSize,
       request: { type },
       step,
       significantGroupSize,
+      significantChannelSize,
     } = this.props;
 
     return (
@@ -198,7 +207,9 @@ class CreateNewModal extends PureComponent<Props, CreateNewModalState> {
             id={id}
             type={type}
             maxGroupSize={maxGroupSize}
+            maxChannelSize={maxChannelSize}
             significantGroupSize={significantGroupSize}
+            significantChannelSize={significantChannelSize}
             onChange={this.handleChange}
             onSubmit={this.handleNextStepClick}
           />
@@ -322,21 +333,19 @@ class CreateNewModal extends PureComponent<Props, CreateNewModalState> {
     const {
       request: { type, members },
       maxGroupSize,
+      maxChannelSize,
       isMaxGroupSizeVisible,
     } = this.props;
-
-    if (type !== 'group') {
-      return null;
-    }
 
     const membersCount = members.getSelected().size;
     const membersCountClassNames = classNames(styles.membersCount, {
       [styles.membersCountError]: this.isMaxGroupSizeExceeded(),
     });
+    const maxSize = type === 'group' ? maxGroupSize : maxChannelSize;
 
     return (
       <small className={membersCountClassNames}>
-        {`(${membersCount}${isMaxGroupSizeVisible ? '/' + maxGroupSize : ''})`}
+        {`(${membersCount}${isMaxGroupSizeVisible ? '/' + maxSize : ''})`}
       </small>
     );
   }

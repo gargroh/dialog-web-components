@@ -32,6 +32,7 @@ class CreateNewModal extends PureComponent<Props, CreateNewModalState> {
     id: 'create_new_modal',
     isPublicGroupsEnabled: true,
     isMaxGroupSizeVisible: false,
+    isMaxChannelSizeVisible: false,
     /*
      * if max group size is below this value, we must inform user about it,
      * because higher number are not so interesting for him
@@ -185,6 +186,7 @@ class CreateNewModal extends PureComponent<Props, CreateNewModalState> {
       id,
       maxGroupSize,
       maxChannelSize,
+      isMaxChannelSizeVisible,
       request: { type },
       step,
       significantGroupSize,
@@ -208,6 +210,7 @@ class CreateNewModal extends PureComponent<Props, CreateNewModalState> {
             type={type}
             maxGroupSize={maxGroupSize}
             maxChannelSize={maxChannelSize}
+            isMaxChannelSizeVisible={isMaxChannelSizeVisible}
             significantGroupSize={significantGroupSize}
             significantChannelSize={significantChannelSize}
             onChange={this.handleChange}
@@ -335,17 +338,21 @@ class CreateNewModal extends PureComponent<Props, CreateNewModalState> {
       maxGroupSize,
       maxChannelSize,
       isMaxGroupSizeVisible,
+      isMaxChannelSizeVisible,
     } = this.props;
 
     const membersCount = members.getSelected().size;
     const membersCountClassNames = classNames(styles.membersCount, {
       [styles.membersCountError]: this.isMaxGroupSizeExceeded(),
     });
-    const maxSize = type === 'group' ? maxGroupSize : maxChannelSize;
 
     return (
       <small className={membersCountClassNames}>
-        {`(${membersCount}${isMaxGroupSizeVisible ? '/' + maxSize : ''})`}
+        {type === 'group' &&
+          `(${membersCount}${isMaxGroupSizeVisible ? '/' + maxGroupSize : ''})`}
+        {type === 'channel' &&
+          isMaxChannelSizeVisible &&
+          `(${membersCount}/${maxChannelSize})`}
       </small>
     );
   }

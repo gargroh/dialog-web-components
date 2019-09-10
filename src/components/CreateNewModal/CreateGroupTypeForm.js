@@ -15,6 +15,7 @@ type Props = {
   maxChannelSize: number,
   significantGroupSize: number,
   significantChannelSize: number,
+  isMaxChannelSizeVisible: boolean,
   type: 'group' | 'channel',
   onChange: (value: string, event: SyntheticInputEvent<>) => void,
 };
@@ -26,6 +27,7 @@ function CreateGroupTypeForm(props: Props) {
     significantGroupSize,
     maxChannelSize,
     significantChannelSize,
+    isMaxChannelSizeVisible,
     type,
     onChange,
   } = props;
@@ -34,10 +36,14 @@ function CreateGroupTypeForm(props: Props) {
     maxGroupSize < significantGroupSize
       ? 'CreateNewModal.group.type.hintCount'
       : 'CreateNewModal.group.type.hintDefault';
-  const channelHint =
-    maxChannelSize < significantChannelSize
-      ? 'CreateNewModal.channel.type.hintCount'
-      : 'CreateNewModal.channel.type.hintDefault';
+
+  let channelHint = 'CreateNewModal.channel.type.hintDefault';
+  if (isMaxChannelSizeVisible) {
+    channelHint =
+      maxChannelSize < significantChannelSize
+        ? 'CreateNewModal.channel.type.hintCount'
+        : 'CreateNewModal.channel.type.hintOverCount';
+  }
   const groupSize =
     maxGroupSize < significantGroupSize ? maxGroupSize : significantGroupSize;
   const channelSize =

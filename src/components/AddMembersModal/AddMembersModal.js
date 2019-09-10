@@ -30,11 +30,13 @@ export type Props = {
   onSubmit: (group: Group, uids: number[]) => mixed,
   onChange: (selector: SelectorState<PeerInfo>) => mixed,
   isMaxGroupSizeVisible: boolean,
+  isMaxChannelSizeVisible: boolean,
 };
 
 class AddMembersModal extends PureComponent<Props> {
   static defaultProps = {
     isMaxGroupSizeVisible: false,
+    isMaxChannelSizeVisible: false,
   };
 
   handleClose = (): void => {
@@ -97,7 +99,12 @@ class AddMembersModal extends PureComponent<Props> {
   }
 
   renderMembersCount() {
-    const { maxGroupSize, isMaxGroupSizeVisible } = this.props;
+    const {
+      maxGroupSize,
+      isMaxGroupSizeVisible,
+      isMaxChannelSizeVisible,
+      group: { type },
+    } = this.props;
 
     const membersCount = this.getMembersCount();
     const membersCountClassNames = classNames(styles.membersCount, {
@@ -106,7 +113,11 @@ class AddMembersModal extends PureComponent<Props> {
 
     return (
       <small className={membersCountClassNames}>
-        {`(${membersCount}${isMaxGroupSizeVisible ? '/' + maxGroupSize : ''})`}
+        {type === 'group' &&
+          `(${membersCount}${isMaxGroupSizeVisible ? '/' + maxGroupSize : ''})`}
+        {type === 'channel' &&
+          isMaxChannelSizeVisible &&
+          `(${membersCount}/${maxGroupSize})`}
       </small>
     );
   }

@@ -21,8 +21,9 @@ channel:
   title: Create new channel
   type:
     title: Channel
+    hintDefault: Channels are tool for broadcasting your messages to unlimited audiences
     hintCount: Channels are tool for broadcasting your messages to audiences with up to {count} members
-    hintDefault: Channels are tool for broadcasting your messages to audiences with more than {count} members
+    hintOverCount: Channels are tool for broadcasting your messages to audiences with more than {count} members
   info:
     title:
       label: Channel title

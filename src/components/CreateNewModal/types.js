@@ -37,4 +37,5 @@ export type Props = {
   onStepChange: (step: Step) => mixed,
   onRequestChange: (request: Request) => mixed,
   isMaxGroupSizeVisible: boolean,
+  isMaxChannelSizeVisible: boolean,
 };
